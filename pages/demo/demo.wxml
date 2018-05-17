@@ -1,0 +1,3 @@
+<!--pages/demo/demo.wxml-->
+<text>pages/demo/demo.wxml</text>
+  <button bindtap="requestTask"> wx request </button>
