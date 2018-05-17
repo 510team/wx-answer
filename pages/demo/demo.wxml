@@ -1,3 +1,6 @@
 <!--pages/demo/demo.wxml-->
-<text>pages/demo/demo.wxml</text>
-  <button bindtap="requestTask"> wx request </button>
+  <text>demo实例</text>
+  <button bindtap="requestTask" class="wx-btn"> wx request </button>
+  <text>{{requestData}}</text>
+
+  <navigator url="./chat/index" class="wx-btn"> wx socket </navigator>

@@ -5,19 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    requestData: '---'
   },
   requestTask() {
-    // wx.request({
-    //   url: 'https://adazhang.com/', //仅为示例，并非真实的接口地址
-    //   data: {},
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data)
-    //   }
-    // })
+    let t = this;
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      mask: true
+    }) 
+    wx.request({
+      url: 'https://adazhang.com/', //仅为示例，并非真实的接口地址
+      data: {},
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        t.setData({
+          requestData: JSON.stringify(res.data)
+        })
+      },
+      fail(err) {
+        t.setData({
+          requestData: JSON.stringify(err)
+        })
+      },
+      complete: function (res) {
+        wx.stopPullDownRefresh();
+        wx.hideToast();
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -58,7 +75,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.requestTask();
   },
 
   /**
