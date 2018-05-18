@@ -172,7 +172,7 @@ Page({
     this.amendMessage(createSystemMessage('正在加入群聊...'))
 
     const socket = (this.socket = io(
-      'http://127.0.0.1:8362/',
+      'ws://127.0.0.1:8362/',
     ))
 
     /**

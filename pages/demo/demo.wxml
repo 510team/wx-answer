@@ -1,6 +1,12 @@
 <!--pages/demo/demo.wxml-->
   <text>demo实例</text>
-  <button bindtap="requestTask" class="wx-btn"> wx request </button>
+  <button bindtap="requestTask" class="wx-btn"> wx 请求 </button>
   <text>{{requestData}}</text>
 
-  <navigator url="./chat/index" class="wx-btn"> wx socket </navigator>
+  <navigator url="./chat/index" class="wx-btn"> wx 聊天 </navigator>
+  
+  <button bindtap="onVibrate" class="wx-btn"> wx 震动 </button>
+
+  <button bindtap="onAnimatio" class="wx-btn"> wx 动画 </button>
+
+  <view animation="{{animationData}}" class="demo-box"></view>

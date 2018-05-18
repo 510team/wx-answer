@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    requestData: '---'
+    requestData: '',
+    animationData: {}
   },
   requestTask() {
     let t = this;
@@ -36,6 +37,34 @@ Page({
       }
     })
   },
+  onVibrate() {
+    wx.vibrateShort({
+      success: function(res) {
+        console.log(res);
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
+  },
+  onAnimatio() {
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: "linear"
+    })
+    this.animation = animation
+    animation.scale(2, 2).rotate3d(45,45,45,45).backgroundColor('#000').step();
+    this.setData({
+      animationData: animation.export()
+    })
+    setTimeout(function () {
+      animation.translate(30).step();
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 1000)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

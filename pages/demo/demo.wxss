@@ -1,2 +1,11 @@
 /* pages/demo/demo.wxss */
-@import "../../assets/wxss/common.wxss"
+@import "../../assets/wxss/common.wxss";
+.demo-box {
+  background:red;
+  height:100rpx;
+  width:100rpx;
+  margin:auto;
+}
+.wx-btn {
+  margin-bottom: 20rpx;
+}
