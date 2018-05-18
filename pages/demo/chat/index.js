@@ -24,9 +24,9 @@ function createSystemMessage(content) {
 /**
  * 生成聊天室的聊天消息
  */
-function createUserMessage(content, user, isMe) {
-  const color = getUsernameColor(user)
-  return { id: msgUuid(), type: 'speak', content, user, isMe, color }
+function createUserMessage(content, username, isMe) {
+  const color = getUsernameColor(username)
+  return { id: msgUuid(), type: 'speak', content, username, isMe, color }
 }
 
 var COLORS = [
@@ -163,9 +163,8 @@ Page({
     if (!msg) {
       return
     }
-    console.log('chat', msg);
-    this.socket.emit('chat', msg)
-    this.pushMessage(createUserMessage(msg, this.me.nickName))
+    const wsData = createUserMessage(msg, this.me.nickName)
+    this.socket.emit('chat', wsData)
     this.setData({ inputContent: null })
   },
 
@@ -173,7 +172,7 @@ Page({
     this.amendMessage(createSystemMessage('正在加入群聊...'))
 
     const socket = (this.socket = io(
-      'http://127.0.0.1:8360/',
+      'http://127.0.0.1:8362/',
     ))
 
     /**
@@ -181,7 +180,7 @@ Page({
      */
     socket.on('connect', () => {
       this.popMessage()
-      this.pushMessage(createSystemMessage('You joined'))
+      this.pushMessage(createSystemMessage('加入聊聊天室'))
     })
 
     socket.on('connect_error', d => {
@@ -237,13 +236,14 @@ Page({
 
     socket.on('stop typing', d => {})
 
-    socket.emit('adduser', this.me.nickName)
+    socket.emit('adduser', {username: this.me.nickName || '路人甲'})
 
 
 
     socket.on('chat', d => {
       console.log('chat', d);
-      this.pushMessage(createUserMessage(d.message, d.username))
+      const wsData = createUserMessage(d.message, d.username);
+      this.pushMessage(wsData)
     })
   },
 })
