@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <view class="container">
-  <image src="../../assets/image/index_bg.png" class="container-bg"></image>
+  <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
   <view class="footer">
     <view class="footer-item">
       <view class="footer-item-icon iconfont icon-paixing"></view>
