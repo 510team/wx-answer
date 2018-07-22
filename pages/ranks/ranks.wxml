@@ -1,0 +1,10 @@
+<view class="ranks">
+    <view wx:for="{{rankList}}" wx:for-item="rank" wx:key="{{index}}" class="item-box">
+      <text class="rank-item">{{index + 1}}</text>
+      <view class="rank-item info">
+        <image mode="aspectFit" src="{{rank.src}}" class="rank-item image"></image>
+        <text>{{rank.nickName}}</text>
+      </view>
+      <text class="rank-item">{{rank.score}}</text>
+    </view>
+</view>

@@ -3,7 +3,7 @@
   <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
   <view class="footer">
     <view class="footer-item">
-      <view class="footer-item-icon iconfont icon-paixing"></view>
+      <navigator url="/pages/ranks/ranks" redirect class="footer-item-icon iconfont icon-paixing"></navigator>
     </view>
     <view class="footer-item">
       <view class="footer-item-icon iconfont icon-fankui"></view>

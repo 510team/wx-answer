@@ -3,12 +3,13 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/demo/demo",
-    "pages/demo/chat/index"
+    "pages/demo/chat/index",
+    "pages/ranks/ranks"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "答题",
     "navigationBarTextStyle": "black"
   }
 }
