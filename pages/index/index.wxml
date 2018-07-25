@@ -1,15 +1,15 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <button bindtap="goDemo"> go demo </button>
-  <button bindtap="goPage" data-url="chat"> chat 页面 </button>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
+  <view class="footer">
+    <view class="footer-item">
+      <navigator url="/pages/ranks/ranks" redirect class="footer-item-icon iconfont icon-paixing"></navigator>
+    </view>
+    <view class="footer-item">
+      <view class="footer-item-icon iconfont icon-fankui"></view>
+    </view>
+    <view class="footer-item">
+      <view class="footer-item-icon iconfont icon-fankuiguanli"></view>
+    </view>
   </view>
 </view>
