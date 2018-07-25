@@ -23,9 +23,9 @@ App({
                 console.log(res.data);
                 wx.setStorage({
                   key: "code",
-                  data: res.data.data.openid
+                  data: code
                 });
-                getUserInfo.call(this);
+                getUserInfo.call(this, this);
               }
             });
             console.log("code", code); //发起请求
@@ -41,7 +41,7 @@ App({
   }
 });
 
-function getUserInfo() {
+function getUserInfo(_this) {
   wx.getSetting({
     success: res => {
       if (res.authSetting["scope.userInfo"]) {
@@ -55,7 +55,7 @@ function getUserInfo() {
               data: res.userInfo
             });
 
-            saveUserInfo.call(this);
+            saveUserInfo.call(_this);
 
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况

@@ -5,6 +5,6 @@ const Login = {
 
 const SaveUserInfo = {
   url: "http://adazhang.com/login/setUser",
-  method: "get"
+  method: "post"
 };
 export { Login, SaveUserInfo };

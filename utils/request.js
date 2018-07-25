@@ -11,7 +11,8 @@ const httpRequest = data => {
           data: { ...data.data, code: code },
           method: data.method,
           header: {
-            code: code
+            code: code,
+            "content-type": "application/x-www-form-urlencoded" // 默认值
           },
           success: function(res) {
             if (res.data.success) {
