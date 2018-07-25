@@ -14,17 +14,13 @@ App({
                         this.userInfoReadyCallback(res);
                     }
                     return true;
-                }).then(()=>{
-                    return setUserInfo();
-                })
+                }).then(()=> setUserInfo())
             },
             // 登录过期需要重新登录
             fail: res => {
                 loginApi()
-                    .then(code => {
-                        return loginServer(code);
-                    }).then(data => {
-                        return wx.setStorage({
+                    .then(code => loginServer(code)).then(data => {
+                         wx.setStorage({
                             key: "code",
                             data: code
                         });
