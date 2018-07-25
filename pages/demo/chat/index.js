@@ -104,12 +104,8 @@ Page({
 
     // 如果登录过，会记录当前用户在 this.me 上
     if (!this.me) {
-      wx.getUserInfo({
-        success: res => {
-          this.me = res.userInfo
-          this.createConnect()
-        },
-      })
+      this.me = app.globalData.userInfo
+      this.createConnect()
     } else {
       this.createConnect()
     }

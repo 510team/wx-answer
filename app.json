@@ -4,6 +4,7 @@
     "pages/logs/logs",
     "pages/demo/demo",
     "pages/demo/chat/index",
+    "pages/chat/chat",
     "pages/ranks/ranks"
   ],
   "window": {

@@ -1,0 +1,8 @@
+<!--pages/chat/chatList/chatList.wxml-->
+<text>pages/chat/chatList/chatList.wxml</text>
+<scroll-view class="chat-list" scroll-x style="width: 100%">
+    <view class="c-item">
+        <view class="i-lable">系统消息</view>
+        <view class="i-content">消息内容</view>
+    </view>
+</scroll-view>

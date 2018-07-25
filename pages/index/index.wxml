@@ -1,5 +1,6 @@
 <!-- index.wxml -->
 <view class="container">
+ <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
   <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
   <view class="footer">
     <view class="footer-item">
