@@ -60,13 +60,12 @@ Page({
 });
 // 保存用户信息
 function saveUserInfo() {
-  httpRequest({
+  const userReq = httpRequest({
     method: SaveUserInfo.method,
     data: { id: 123 },
     url: SaveUserInfo.url
-  }).then(data => {
-    console.log(data);
   });
+  console.log(userReq);
 }
 // 获取用户信息
 function getUserInfo() {

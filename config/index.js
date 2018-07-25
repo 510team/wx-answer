@@ -4,7 +4,7 @@ const Login = {
 };
 
 const SaveUserInfo = {
-  url: "http://adazhang.com/login/setUser",
+  url: "https://adazhang.com/login/setUser",
   method: "post"
 };
 export { Login, SaveUserInfo };
