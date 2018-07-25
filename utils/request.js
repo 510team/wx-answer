@@ -3,12 +3,12 @@ const httpRequest = data => {
   wx.getStorage({
     key: "code",
     success: res => {
-      code = res.code;
+      code = res.data;
       return new Promise(function(resolve, reject) {
         //发起网络请求
         wx.request({
           url: data.url,
-          data: data.data,
+          data: { ...data.data, code: code },
           method: data.method,
           header: {
             code: code
