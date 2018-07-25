@@ -8,6 +8,7 @@
     </block>
   </view>
   <button bindtap="goDemo"> go demo </button>
+  <button bindtap="goPage" data-url="chat"> chat 页面 </button>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>

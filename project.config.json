@@ -12,7 +12,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.98",
-	"appid": "wx89992f9fca71d578",
+	"appid": "touristappid",
 	"projectname": "wx-answer",
 	"condition": {
 		"search": {

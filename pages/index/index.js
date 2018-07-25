@@ -59,4 +59,10 @@ Page({
       url: '../demo/demo'
     })
   },
+  goPage: function(event) {
+    console.log(event);
+    wx.navigateTo({
+      url: '../' + event.currentTarget.dataset.url + '/' + event.currentTarget.dataset.url
+    })
+  }
 })
