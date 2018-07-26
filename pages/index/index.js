@@ -1,6 +1,6 @@
 //index.js
 import httpRequest from "../../utils/request.js";
-import { SaveUserInfo } from "../../config/index.js";
+import { loginApi, getUserInfoApi, getUserSettingApi, loginRequest, setUserRequest  } from "../../services/login.js";
 //获取应用实例
 const app = getApp();
 
@@ -33,13 +33,19 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         });
-        saveUserInfo.call(this);
+        //saveUserInfo.call(this);
       };
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
-      getUserInfo.call(this);
+      //getUserInfo.call(this);
+      getUserInfoApi().then((res)=>{
+        app.globalData.userInfo = res.userInfo;
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        });
+      })
     }
-    console.log(this.data.userInfo);
   },
   //事件处理函数
   goDemo: function() {
@@ -58,16 +64,9 @@ Page({
     });
   }
 });
-// 保存用户信息
-function saveUserInfo() {
-  const userReq = httpRequest({
-    method: SaveUserInfo.method,
-    data: { id: 123 },
-    url: SaveUserInfo.url
-  });
-  console.log(userReq);
-}
+
 // 获取用户信息
+/*
 function getUserInfo() {
   wx.getUserInfo({
     success: res => {
@@ -78,5 +77,5 @@ function getUserInfo() {
       });
     }
   });
-  saveUserInfo.call(this);
 }
+*/

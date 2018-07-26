@@ -1,10 +1,13 @@
+
+//const serverHost = 'https://adazhang.com'
+const serverHost = 'http://localhost:8362'
 const Login = {
-  url: "https://adazhang.com/login",
+  url: `${serverHost}/login`,
   method: "get"
 };
 
 const SaveUserInfo = {
-  url: "https://adazhang.com/login/setUser",
+  url: `${serverHost}/login/setUser`,
   method: "post"
 };
 export { Login, SaveUserInfo };
