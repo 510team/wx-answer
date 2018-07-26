@@ -1,6 +1,12 @@
 //index.js
 import httpRequest from "../../utils/request.js";
-import { loginApi, getUserInfoApi, getUserSettingApi, loginRequest, setUserRequest  } from "../../services/login.js";
+import {
+  loginApi,
+  getUserInfoApi,
+  getUserSettingApi,
+  loginRequest,
+  setUserRequest
+} from "../../services/login.js";
 //获取应用实例
 const app = getApp();
 
@@ -33,18 +39,20 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         });
-        //saveUserInfo.call(this);
+        return res;
       };
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
-      //getUserInfo.call(this);
-      getUserInfoApi().then((res)=>{
-        app.globalData.userInfo = res.userInfo;
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        });
-      })
+      getUserInfoApi()
+        .then(res => {
+          app.globalData.userInfo = res.userInfo;
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          });
+          return res;
+        })
+        .then(res => setUserRequest(res.rawData, res.signature));
     }
   },
   //事件处理函数
@@ -64,18 +72,3 @@ Page({
     });
   }
 });
-
-// 获取用户信息
-/*
-function getUserInfo() {
-  wx.getUserInfo({
-    success: res => {
-      app.globalData.userInfo = res.userInfo;
-      this.setData({
-        userInfo: res.userInfo,
-        hasUserInfo: true
-      });
-    }
-  });
-}
-*/
