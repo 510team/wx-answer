@@ -1,0 +1,12 @@
+logs
+*.log
+pids
+*.pid
+*.seed
+.lock-wscript
+node_modules/
+.idea
+output/
+output.tar.gz
+runtime/
+app/
