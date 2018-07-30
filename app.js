@@ -9,7 +9,6 @@ import {
 
 App({
   onLaunch: function() {
-    //检查用户登录状态
     wx.checkSession({
       // 如果已经登录过，则跳过登录
       success: res => {
@@ -26,11 +25,12 @@ App({
           })
           .then(data => setUserRequest(data.rawData, data.signature));
       },
-      // 登录过期需要重新登录
+      // 登录过期需要重新登录,先调用loginApi获得Code，然后调用到后台换取OpenId，SessionKey
       fail: res => {
         loginApi()
           .then(code => loginRequest(code))
           .then(data => {
+            //code 成功
             console.log("login request result", data);
             wx.setStorage({
               key: "code",
