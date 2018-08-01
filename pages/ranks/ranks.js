@@ -8,7 +8,11 @@ Page({
         score: 100,
         src: "../../assets/image/index_bg@2x.png"
       },
-      { nickName: "lxy", score: 100, src: "../../assets/image/index_bg@2x.png" }
+      {
+        nickName: "lxy",
+        score: 100,
+        src: "../../assets/image/index_bg@2x.png"
+      }
     ]
   },
   onLoad: function() {

@@ -5,7 +5,8 @@
     "pages/demo/demo",
     "pages/demo/chat/index",
     "pages/chat/chat",
-    "pages/ranks/ranks"
+    "pages/ranks/ranks",
+    "pages/answer/answer"
   ],
   "window": {
     "backgroundTextStyle": "light",

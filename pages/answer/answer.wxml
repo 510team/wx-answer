@@ -1,0 +1,32 @@
+<view class="answers">
+    <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
+    <view class="alarm">
+        倒计时：
+        <text>{{countdown}}</text>
+    </view>
+    <view class="questions-box">
+        <view class="question">
+            <text class="title" id="{{answerItem.id}}">
+                {{answerItem.id+"、"}}女友问：{{answerItem.title}}，你如何作答：
+            </text>
+            <radio-group class="radio-group" bindchange="radioChange">
+                <label class="radio">
+                    <radio value="A" checked="{{answerItem.checked}}" disabled="{{answerItem.disabled}}" />
+                    {{answerItem['A']}}
+                </label>
+                <label class="radio">
+                    <radio value="B" checked="{{answerItem.checked}}" disabled="{{answerItem.disabled}}" />
+                    {{answerItem['B']}}
+                </label>
+                <label class="radio">
+                    <radio value="C" checked="{{answerItem.checked}}" disabled="{{answerItem.disabled}}" />
+                    {{answerItem['C']}}
+                </label>
+                <label class="radio">
+                    <radio value="D" checked="{{answerItem.checked}}" disabled="{{answerItem.disabled}}" />
+                    {{answerItem['D']}}
+                </label>
+            </radio-group>
+        </view>
+    </view>
+</view>
