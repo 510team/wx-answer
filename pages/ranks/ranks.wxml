@@ -1,10 +1,27 @@
 <view class="ranks">
+    <view class="info-box">
+        <view>第{{user.index || 1}}名</view>
+        <view>
+          <image mode="aspectFit" src="{{user.avatarUrl}}" class="info-image"></image>
+        </view>
+        <view>{{user.score || 0}}分</view>
+    </view>
     <view wx:for="{{rankList}}" wx:for-item="rank" wx:key="{{index}}" class="item-box">
-      <text class="rank-item">{{index + 1}}</text>
+      <view class="rank-item">
+          <image class="rank-icon" wx:if="{{index === 0}}" mode="aspectFit" src="../../../assets/image/first.png"></image>
+          <image class="rank-icon" wx:elif="{{index === 1}}" mode="aspectFit" src="../../../assets/image/second.png"></image>
+          <image class="rank-icon" wx:elif="{{index === 2}}" mode="aspectFit" src="../../../assets/image/third.png"></image>
+          <text wx:else>{{index + 1}}</text>
+      </view>
       <view class="rank-item info">
-        <image mode="aspectFit" src="{{rank.src}}" class="rank-item image"></image>
-        <text>{{rank.nickName}}</text>
+        <image mode="aspectFit" src="{{rank.avatar_url}}" class="rank-item image"></image>
+        <text>{{rank.nick_name}}</text>
       </view>
       <text class="rank-item">{{rank.score}}</text>
     </view>
+    <view class="loading-content" hidden="{{isHideLoadMore}}">
+      <view class="loading-icon"></view>
+      <view class="loading-text">正在加载</view>
+    </view>
+    <view class="loading-all" hidden="{{isHideLoadAll}}">已经到最后一名啦~~~</view>
 </view>
