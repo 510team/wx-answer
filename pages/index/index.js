@@ -75,12 +75,23 @@ Page({
     });
   },
   getUserInfo:function(e){
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-    setUserRequest(e.detail.rawData, e.detail.signature)
+    if(this.data.hasUserInfo){
+      wx.redirectTo({
+        url: '/pages/answer/answer'
+      })
+    }else{
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+      setUserRequest(e.detail.rawData, e.detail.signature).then(()=>{
+        wx.redirectTo({
+          url: '/pages/answer/answer'
+        })
+      })
+    }
+   
   },
   test(){
     testRequest().then((data)=>{

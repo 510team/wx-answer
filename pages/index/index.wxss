@@ -1,6 +1,41 @@
 /**index.wxss**/
 @import '../../assets/wxss/icon.wxss'; 
 
+
+
+.userinfo{
+  height: 140rpx;
+  width: 100%;
+  color:#fff;
+  /* border: 1px solid rgba(0, 0, 0, .1); */
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  margin-top:10rpx;
+  transition: all 300ms ease;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+  border:2px solid #fff;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  /* color: #007AFF; */
+}
+
+
+.content{
+  margin-top:150rpx;
+  padding:0 30rpx;
+}
+.content button{
+  margin:60rpx 0 ;
+}
 .footer{
   position: fixed;
   bottom:0;
