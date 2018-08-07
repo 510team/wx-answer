@@ -9,7 +9,7 @@
   </navigator>
   <view class="footer">
     <view class="footer-item">
-      <navigator url="/pages/ranks/ranks" redirect class="footer-item-icon iconfont icon-paixing"></navigator>
+      <navigator url="/pages/ranks/ranks" class="footer-item-icon iconfont icon-paixing"></navigator>
     </view>
     <view class="footer-item">
       <view class="footer-item-icon iconfont icon-fankui"></view>
