@@ -10,4 +10,9 @@ const SaveUserInfo = {
   url: `${serverHost}/login/setUser`,
   method: "post"
 };
-export { Login, SaveUserInfo };
+const test = {
+  url: `${serverHost}/test`,
+  method: "post"
+};
+
+export { Login, SaveUserInfo ,test};

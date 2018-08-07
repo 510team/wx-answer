@@ -7,6 +7,9 @@ import {
   loginRequest,
   setUserRequest
 } from "../../services/login.js";
+import {
+  testRequest
+} from "../../services/test.js";
 //获取应用实例
 const app = getApp();
 
@@ -78,6 +81,11 @@ Page({
       hasUserInfo: true
     })
     setUserRequest(e.detail.rawData, e.detail.signature)
+  },
+  test(){
+    testRequest().then((data)=>{
+      console.log(data);
+    })
   }
 });
 

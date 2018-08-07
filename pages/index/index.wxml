@@ -3,6 +3,9 @@
   <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
     获取头像昵称
   </button>
+
+ <button bindtap="test">test</button>
+
   <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
   <navigator url="/pages/answer/answer" redirect class="">
     <button>直接答题</button>
