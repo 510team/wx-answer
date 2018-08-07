@@ -2,7 +2,9 @@
 @import '../../assets/wxss/icon.wxss'; 
 
 
-
+.container{
+  padding-top:100rpx;
+}
 .userinfo{
   height: 140rpx;
   width: 100%;
@@ -34,7 +36,8 @@
   padding:0 30rpx;
 }
 .content button{
-  margin:60rpx 0 ;
+  width:500rpx;
+  margin:60rpx auto;
 }
 .footer{
   position: fixed;
