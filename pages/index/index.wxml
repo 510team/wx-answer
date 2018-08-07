@@ -1,7 +1,5 @@
 <!-- index.wxml -->
 <view class="container">
-
-
       <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
       <view class="userinfo" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
         <image
@@ -15,8 +13,8 @@
     </view>
 
   <view class="content">
-    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始答题</button>
-    <navigator url="/pages/ranks/ranks" redirect > <button >排行榜</button></navigator>
+    <button open-type="getUserInfo" data-url="/pages/answer/answer" bindgetuserinfo="getUserInfo">开始答题</button>
+    <button open-type="getUserInfo" data-url="/pages/ranks/ranks" bindgetuserinfo="getUserInfo">排行榜</button>
     <button bindtap="test">设置</button>
   </view>
 </view>

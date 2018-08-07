@@ -75,9 +75,10 @@ Page({
     });
   },
   getUserInfo:function(e){
+    console.log('userinfo',e);
     if(this.data.hasUserInfo){
-      wx.redirectTo({
-        url: '/pages/answer/answer'
+      wx.navigateTo({
+        url: e.target.dataset.url
       })
     }else{
       app.globalData.userInfo = e.detail.userInfo
@@ -86,12 +87,11 @@ Page({
         hasUserInfo: true
       })
       setUserRequest(e.detail.rawData, e.detail.signature).then(()=>{
-        wx.redirectTo({
-          url: '/pages/answer/answer'
+        wx.navigateTo({
+          url: e.target.dataset.url
         })
       })
     }
-   
   },
   test(){
     testRequest().then((data)=>{
