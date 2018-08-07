@@ -1,21 +1,20 @@
 <!-- index.wxml -->
 <view class="container">
-  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-    获取头像昵称
-  </button>
-  <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
-  <navigator url="/pages/answer/answer" redirect class="">
-    <button>直接答题</button>
-  </navigator>
-  <view class="footer">
-    <view class="footer-item">
-      <navigator url="/pages/ranks/ranks" redirect class="footer-item-icon iconfont icon-paixing"></navigator>
+      <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
+      <view class="userinfo" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        <image
+            class="userinfo-avatar"
+            src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}"
+            background-size="cover"
+        ></image>
+        <view>
+            <text class="userinfo-nickname">{{userInfo.avatarUrl ? userInfo.nickName : '匿名'}}</text>
+        </view>
     </view>
-    <view class="footer-item">
-      <view class="footer-item-icon iconfont icon-fankui"></view>
-    </view>
-    <view class="footer-item">
-      <view class="footer-item-icon iconfont icon-fankuiguanli"></view>
-    </view>
+
+  <view class="content">
+    <button open-type="getUserInfo" data-url="/pages/answer/answer" bindgetuserinfo="getUserInfo">开始答题</button>
+    <button open-type="getUserInfo" data-url="/pages/ranks/ranks" bindgetuserinfo="getUserInfo">排行榜</button>
+    <button bindtap="test">设置</button>
   </view>
 </view>
