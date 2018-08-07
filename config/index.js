@@ -14,4 +14,9 @@ const GetRanks = {
   url: `${serverHost}/ranks`,
   method: "get"
 };
-export { Login, SaveUserInfo, GetRanks };
+const test = {
+  url: `${serverHost}/test`,
+  method: "post"
+};
+
+export { Login, SaveUserInfo, GetRanks, test };
