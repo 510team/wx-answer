@@ -4,6 +4,10 @@ const Login = {
   url: `${serverHost}/login`,
   method: "get"
 };
+const FindUser = {
+  url: `${serverHost}/user/findUser`,
+  method: "get"
+};
 
 const SaveUserInfo = {
   url: `${serverHost}/login/setUser`,
@@ -19,4 +23,4 @@ const test = {
   method: "post"
 };
 
-export { Login, SaveUserInfo, GetRanks, test };
+export { FindUser,Login, SaveUserInfo, GetRanks, test };
