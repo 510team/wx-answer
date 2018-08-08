@@ -50,7 +50,7 @@ const loginRequest = code => {
         code
       },
       success: function(res) {
-        resolve(code);
+        resolve(res);
       }
     });
   });
@@ -63,6 +63,7 @@ const setUserRequest = (rawData, signature) => {
     url: SaveUserInfo.url
   });
 };
+
 
 export {
   loginApi,
