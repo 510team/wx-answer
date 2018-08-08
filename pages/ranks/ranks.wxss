@@ -7,6 +7,13 @@
   line-height: 120rpx;
   border-bottom: 1rpx solid #eee;
 }
+.ranks .tips {
+  font-size: 20rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 6rpx;
+  font-weight: 200;
+}
 .ranks .rank-item {
   flex: 1;
   text-align: center;
@@ -27,7 +34,7 @@
   display: flex;
   height: 140rpx;
   padding: 60rpx 0;
-  background: #f0145a;
+  background: #fde3ec;
   font-size: 38rpx;
   font-weight: 600;
 }
