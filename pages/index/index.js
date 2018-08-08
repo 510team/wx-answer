@@ -36,12 +36,15 @@ Page({
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
             app.userInfoReadyCallback = res => {
-                this.setData({
-                    userInfo: res.userInfo,
-                    hasUserInfo: true
-                });
-                console.log('userInfoReadyCallback', res);
-                return res;
+                if (res.userInfo && res.userInfo.nickName && res.userInfo.avatarUrl) {
+                    this.setData({
+                        userInfo: res.userInfo,
+                        hasUserInfo: true
+                    });
+                    console.log('userInfoReadyCallback', res);
+                    return res;
+                }
+
             };
         } else {
             // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -72,7 +75,7 @@ Page({
                 "/" +
                 event.currentTarget.dataset.url
         });
-      
+
     },
     getUserInfo: function (e) {
         console.log('userinfo', e);
@@ -85,7 +88,7 @@ Page({
         setUserRequest(e.detail.rawData, e.detail.signature)
     },
 
-    onNav(e){
+    onNav(e) {
         wx.navigateTo({
             url: e.target.dataset.url
         })
