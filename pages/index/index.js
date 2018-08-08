@@ -72,9 +72,7 @@ Page({
                 "/" +
                 event.currentTarget.dataset.url
         });
-        wx.navigateTo({
-            url: e.target.dataset.url
-        })
+      
     },
     getUserInfo: function (e) {
         console.log('userinfo', e);
@@ -87,7 +85,11 @@ Page({
         setUserRequest(e.detail.rawData, e.detail.signature)
     },
 
-
+    onNav(e){
+        wx.navigateTo({
+            url: e.target.dataset.url
+        })
+    },
     test() {
         testRequest().then((data) => {
             console.log(data);
