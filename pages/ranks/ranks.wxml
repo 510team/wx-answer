@@ -1,10 +1,11 @@
 <view class="ranks">
     <view class="info-box">
-        <view>第{{user.index || 1}}名</view>
+        <text class="tips">注：排行榜每小时更新一次</text>
+        <view>第{{currentRank || 1}}名</view>
         <view>
           <image mode="aspectFit" src="{{user.avatarUrl}}" class="info-image"></image>
         </view>
-        <view>{{user.score || 0}}分</view>
+        <view>{{score || 0}}分</view>
     </view>
     <view wx:for="{{rankList}}" wx:for-item="rank" wx:key="{{index}}" class="item-box">
       <view class="rank-item">
@@ -17,7 +18,7 @@
         <image mode="aspectFit" src="{{rank.avatar_url}}" class="rank-item image"></image>
         <text>{{rank.nick_name}}</text>
       </view>
-      <text class="rank-item">{{rank.score}}</text>
+      <text class="rank-item">{{rank.score || 0}}</text>
     </view>
     <view class="loading-content" hidden="{{isHideLoadMore}}">
       <view class="loading-icon"></view>

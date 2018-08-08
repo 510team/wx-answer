@@ -5,6 +5,8 @@ const app = getApp();
 Page({
   data: {
     rankList: [],
+    currentRank: 1,
+    score: 0,
     user: {},
     offset: 0,
     count: 10,
@@ -59,7 +61,9 @@ Page({
   updateData: function(data) {
     this.setData({
       rankList: [...this.data.rankList, ...data.rankList],
-      user: JSON.parse(data.user.rawData),
+      currentRank: data.currentRank,
+      score: data.score,
+      user: data.user,
       offset: this.data.offset + this.data.count,
       amount: data.amount
     });
