@@ -1,20 +1,20 @@
 <!-- index.wxml -->
 <view class="container">
-      <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
-      <view class="userinfo" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-        <image
-            class="userinfo-avatar"
-            src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}"
-            background-size="cover"
-        ></image>
+    <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
+    <view class="userinfo" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}" background-size="cover"></image>
         <view>
             <text class="userinfo-nickname">{{userInfo.avatarUrl ? userInfo.nickName : '匿名'}}</text>
         </view>
     </view>
-
-  <view class="content">
-    <button open-type="getUserInfo" data-url="/pages/answer/answer" bindgetuserinfo="getUserInfo">开始答题</button>
-    <button open-type="getUserInfo" data-url="/pages/ranks/ranks" bindgetuserinfo="getUserInfo">排行榜</button>
-    <button bindtap="test">设置</button>
-  </view>
+    <view class="content">
+        <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            获取授权
+        </button>
+        <view wx:if="{{hasUserInfo}}">
+            <button bindtap="onNav" data-url="/pages/answer/answer">开始答题</button>
+            <button bindtap="onNav" data-url="/pages/ranks/ranks">排行榜</button>
+            <button bindtap="test">设置</button>
+        </view>
+    </view>
 </view>
