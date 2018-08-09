@@ -8,13 +8,14 @@ const httpRequest = data => {
         //发起网络请求
         wx.request({
           url: data.url,
-          data: { ...data.data, code: code },
+          data: { ...data.data },
           method: data.method,
           header: {
             code: code,
             "content-type": "application/x-www-form-urlencoded" // 默认值
           },
           success: function (res) {
+            console.log('request',res);
             if (res.data.success) {
               resolve(res.data);
             } else {
