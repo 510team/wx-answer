@@ -22,7 +22,7 @@ Page({
         recordTime: curDuration + this.data.recordTime,
         correctAmount: this.data.correctAmount + 1
       });
-      util.showModel("恭喜你，答对了！");
+      util.showSuccess("恭喜你，答对了！");
       setTimeout(() => {
         this.goNextQuestion();
       }, 500);
@@ -30,9 +30,10 @@ Page({
       //回答错误
       clearTimeout(this.timer);
       this.setData({ ["answerItem.disabled"]: true });
-      // util.showModel("答错了，当心回家跪键盘！");
-      wx.redirectTo({
-        url: "/pages/game-over/game-over"
+      util.showModel("你答错了!",undefined,(res)=>{
+        wx.redirectTo({
+          url: "/pages/game-over/game-over"
+        });
       });
     }
   },
@@ -43,7 +44,11 @@ Page({
         //超时退出
         this.setData({ ["answerItem.disabled"]: true });
         clearTimeout(this.timer);
-        util.showModel("回答超时了哦！");
+        util.showModel("回答超时了哦！",undefined,()=>{
+          wx.redirectTo({
+            url: "/pages/game-over/game-over"
+          });
+         });
       } else {
         this.setCountdown();
       }
