@@ -22,13 +22,18 @@
             </view>
         </view>
         <view class="level_process">
-            <view class="process_wrap" wx:for="{{processData}}">
+            <view class="process_wrap {{currentLevel>=item.id?'active':''}}" wx:for="{{processData}}" wx:key="">
                 <view class="process process-{{item.id}}">
-                    <view class="process_line" style="background:{{item.start}}"></view>
-                    <image class="process_icon" src="{{item.icon}}"></image>
-                    <view class="process_line" style="background:{{item.end}}"></view>
+                    <view class="process_line start"></view>
+                    <!-- <image class="process_icon" src="{{item.icon}}"></image> -->
+                    <view class="process_circle">
+                        <text class="{{item.icon}}"></text>
+                    </view>
+                    <view class="process_line end"></view>
                 </view>
-                <text class="process_name">{{item.name}}</text>
+                <view class="process_name" wx:if="{{currentLevel==item.id}}">
+                    <text>{{item.name}}</text>
+                </view>
             </view>
         </view>
         <view class="upgrade">
@@ -40,7 +45,7 @@
         </view>
     </view>
     <view class="footer">
-        <button>再来一局</button>
+        <button bindtap="onPlay">再来一局</button>
         <button class="share" open-type='share'>炫耀一下</button>
     </view>
 </view>

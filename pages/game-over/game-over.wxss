@@ -1,3 +1,4 @@
+@import "../../assets/wxss/custom-icon.wxss";
 .user-image {
   text-align: center;
   padding: 10px 0;
@@ -93,16 +94,21 @@
   flex: 1;
   align-items: center;
 }
-
+.process_wrap:first-child .start {
+  background: transparent;
+}
+.process_wrap:last-child .end {
+  background: transparent;
+}
 .process {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-.process_icon {
-  width: 50rpx;
-  height: 50rpx;
+.process_circle text {
+  font-size: 32px;
+  color: #dfdfdf;
 }
 
 .process_line {
@@ -112,12 +118,35 @@
 }
 
 .process_name {
+  position: relative;
+  margin-top: 5px;
+  background: rgb(253, 161, 40);
+  border-radius: 5px;
   font-size: 24rpx;
+  color: #fff;
+}
+.process_name:after {
+  position: absolute;
+  content: "";
+  top: -10px;
+  left: 35%;
+  border: 5px solid transparent;
+  border-bottom-color: rgb(253, 161, 40);
+}
+.process_name text {
+  padding: 3rpx 5rpx;
+}
+.active .process_circle text {
+  color: rgb(253, 161, 40);
+}
+.active .process_line {
+  background: rgb(253, 161, 40);
 }
 
 .upgrade {
+  margin-top: 10px;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 
 .upgrade text {

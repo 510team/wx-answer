@@ -7,30 +7,35 @@ Page({
       score: 150,
       questions: 3
     },
+    currentLevel: 2,
     processData: [
       {
-        id: "1",
+        id: 1,
         name: "初学乍到",
-        start: "transparent",
-        end: "rgb(136, 99, 29)",
-        icon: "../../assets/image/level1-2.svg"
+        icon: "iconfont icon-level1"
       },
       {
-        id: "2",
-        name: "",
-        start: "rgb(136, 99, 29)",
-        end: "rgb(136, 99, 29)",
-        icon: "../../assets/image/level2-1.svg"
+        id: 2,
+        name: "游学四方",
+        icon: "iconfont icon-level2"
       },
       {
-        id: "3",
-        name: "",
-        start: "rgb(136, 99, 29)",
-        end: "transparent",
-        icon: "../../assets/image/level3-1.svg"
+        id: 3,
+        name: "有学而志",
+        icon: "iconfont icon-level3"
+      },
+      {
+        id: 4,
+        name: "青年俊才",
+        icon: "iconfont icon-level4"
+      },
+      {
+        id: 5,
+        name: "学长师友",
+        icon: "iconfont icon-level5"
       }
     ],
-    nextLevel: "游学而至",
+    nextLevel: "",
     nextScore: 100
   },
 
@@ -47,7 +52,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow: function() {
+    this.setData({
+      nextLevel: this.data.processData[this.data.currentLevel + 1].name
+    });
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -74,5 +83,14 @@ Page({
    */
   onShareAppMessage: function() {
     console.log(123);
+  },
+
+  /**
+   * 再来一局
+   */
+  onPlay: function() {
+    wx.navigateTo({
+      url: "/pages/answer/answer"
+    });
   }
 });
