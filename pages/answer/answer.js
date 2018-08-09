@@ -1,5 +1,5 @@
 var util = require("../../utils/util.js");
-
+import { getQuestionsRequest } from "../../services/answer.js";
 // const app = getApp();
 
 Page({
@@ -22,43 +22,17 @@ Page({
         recordTime: curDuration + this.data.recordTime,
         correctAmount: this.data.correctAmount + 1
       });
-      util.showSuccess("恭喜你，答对了！");
+      util.showModel("恭喜你，答对了！");
       setTimeout(() => {
         this.goNextQuestion();
       }, 500);
     } else {
+      //回答错误
       clearTimeout(this.timer);
       this.setData({ ["answerItem.disabled"]: true });
       util.showModel("答错了，当心回家跪键盘！");
-      // wx.redirectTo({
-      //   url: "/pages/index/index"
-      // });
+     
     }
-  },
-  requestList: function() {
-    const _this = this;
-    wx.request({
-      url: "http://127.0.0.1:8362/questions",
-      data: {
-        offset: 0,
-        count: 10
-      },
-      header: {
-        "content-type": "application/json" // 默认值
-      },
-      success(res) {
-        // util.showSuccess("请求成功完成");
-        _this.setData({
-          answerItems: res.data
-        });
-        //开始展示题目
-        _this.goNextQuestion();
-      },
-      fail(error) {
-        // util.showModel("请求失败", error);
-        console.log("request fail", error);
-      }
-    });
   },
   setCountdown: function() {
     this.timer = setTimeout(() => {
@@ -68,9 +42,6 @@ Page({
         this.setData({ ["answerItem.disabled"]: true });
         clearTimeout(this.timer);
         util.showModel("回答超时了哦！");
-        // wx.redirectTo({
-        //   url: "/pages/index/index"
-        // });
       } else {
         this.setCountdown();
       }
@@ -110,6 +81,14 @@ Page({
     this.setCountdown();
   },
   onLoad: function() {
-    this.requestList();
+    getQuestionsRequest().then(res => {
+      this.setData({
+        answerItems: res.data
+      });
+      this.goNextQuestion();
+    });
+  },
+  onUnload(){
+    clearTimeout(this.timer);
   }
 });
