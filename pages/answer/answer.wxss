@@ -41,10 +41,12 @@
   margin-bottom: 10px;
   /* border-radius: 0px; */
 }
-/* 去掉边框 */
+/* 去掉默认边框 */
 .btn::after {
   border: 0;
 }
-.answer-box button.btn_hover {
+.answer-box button.btn_hover,
+.answer-box .cur-btn {
   background: #5ca05f;
+  color: #fff;
 }

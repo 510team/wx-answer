@@ -5,8 +5,9 @@ var util = require("../../utils/util.js");
 Page({
   data: {
     timer: null,
+    answer: "",
     initDuration: 10, //每题最长时长
-    recordTime: 0, //总时间
+    curKey: "",
     countdown: 0, //当前计时器的展示时间
     curIndex: 0, //当前题目的索引值
     answerItem: null, //当前的题目
@@ -14,8 +15,9 @@ Page({
     answerItems: []
   },
   onTapCheck: function(e) {
-    // 回答正确题目继续，回答错误知己退出，超时直接退出
-    if (e.target.dataset.value == this.data.answerItem.answer) {
+    // 回答正确题目继续，回答错误自动退出，超时直接退出
+    this.setData({ curKey: e.target.dataset.key });
+    if (e.target.dataset.key == this.data.answerItem.answer) {
       const curDuration = this.data.initDuration - this.data.countdown;
       // console.log("!!!!!", curDuration);
       this.setData({
@@ -98,6 +100,7 @@ Page({
     //每题开始，初始化数据
     this.setData({
       countdown: this.data.initDuration,
+      curKey: "",
       answerItem: {
         ...this.data.answerItems[this.data.curIndex],
         id: this.data.curIndex + 1

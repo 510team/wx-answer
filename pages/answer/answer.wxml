@@ -10,7 +10,7 @@
                 {{answerItem.id+"、"}}女友问：{{answerItem.title}}你如何作答：
             </text>
             <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
-                <button data-value="{{item.key}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
+                <button class="{{curKey==item.key?'cur-btn':''}}" data-key="{{item.key}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
                     {{item.value}}
                 </button>
             </view>
