@@ -30,8 +30,10 @@ Page({
       //回答错误
       clearTimeout(this.timer);
       this.setData({ ["answerItem.disabled"]: true });
-      util.showModel("答错了，当心回家跪键盘！");
-     
+      // util.showModel("答错了，当心回家跪键盘！");
+      wx.redirectTo({
+        url: "/pages/game-over/game-over"
+      });
     }
   },
   setCountdown: function() {
@@ -54,6 +56,7 @@ Page({
     if (this.data.curIndex == this.data.answerItems.length) {
       console.log(this.data.curIndex);
       //最后一道题
+      /*
       util.showModel(
         "恭喜你，答对了" +
           this.data.correctAmount +
@@ -61,9 +64,10 @@ Page({
           this.data.recordTime +
           "秒"
       );
-      // wx.redirectTo({
-      //   url: "/pages/result"
-      // });
+      */
+      wx.redirectTo({
+        url: "/pages/game-over/game-over"
+      });
       return;
     }
     //每题开始，初始化数据
