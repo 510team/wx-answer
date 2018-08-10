@@ -90,30 +90,8 @@ Page({
     });
   },
   test() {
-    updateScoreRequest({ score: 125555 }).then(data => {
+    testRequest().then(data => {
       console.log(data);
     });
   }
 });
-
-var list = $("a");
-var index = 0;
-setInterval(() => {
-  index++;
-  if (list[index].href.indexOf("jd.com") != -1) {
-    var winObj = window.open(list[index].href);
-    if ($(".d-gift-modal .J_drawGift")) {
-      if (
-        $(".d-gift-modal .d-type")
-          .text()
-          .indexOf("京豆") != -1
-      )
-        $(".d-gift-modal .J_drawGift").trigger("click");
-      setTimeout(() => {
-        window.close();
-      }, 1000);
-    } else {
-      window.close();
-    }
-  }
-}, 2000);
