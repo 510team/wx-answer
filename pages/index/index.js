@@ -7,7 +7,11 @@ import {
   loginRequest,
   setUserRequest
 } from "../../services/login.js";
+<<<<<<< Updated upstream
 import { testRequest, updateScoreRequest } from "../../services/test.js";
+=======
+import { testRequest } from "../../services/test.js";
+>>>>>>> Stashed changes
 //获取应用实例
 const app = getApp();
 
@@ -75,6 +79,7 @@ Page({
   },
   getUserInfo: function(e) {
     console.log("userinfo", e);
+<<<<<<< Updated upstream
 
     app.globalData.userInfo = e.detail.userInfo;
     this.setData({
@@ -89,6 +94,25 @@ Page({
       url: e.target.dataset.url
     });
   },
+=======
+    if (this.data.hasUserInfo) {
+      wx.navigateTo({
+        url: e.target.dataset.url
+      });
+    } else {
+      app.globalData.userInfo = e.detail.userInfo;
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      });
+      setUserRequest(e.detail.rawData, e.detail.signature).then(() => {
+        wx.navigateTo({
+          url: e.target.dataset.url
+        });
+      });
+    }
+  },
+>>>>>>> Stashed changes
   test() {
     testRequest().then(data => {
       console.log(data);

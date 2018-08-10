@@ -1,5 +1,9 @@
 const httpRequest = data => {
   return new Promise(function(resolve, reject) {
+<<<<<<< Updated upstream
+=======
+    console.log("http request", data.url);
+>>>>>>> Stashed changes
     let code = "";
     wx.getStorage({
       key: "code",
@@ -30,6 +34,7 @@ const httpRequest = data => {
         });
       },
       fail: res => {
+        console.log("http request failed", code);
         console.log("not found code in storage");
       }
     });

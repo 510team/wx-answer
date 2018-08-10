@@ -9,6 +9,7 @@
     </view>
 
   <view class="content">
+<<<<<<< Updated upstream
         <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
             获取授权
         </button>
@@ -18,4 +19,10 @@
             <button bindtap="test">设置</button>
         </view>
     </view>
+=======
+    <button wx:if='{{isLogin}}' open-type="getUserInfo" data-url="/pages/answer/answer" bindgetuserinfo="getUserInfo">开始答题</button>
+    <button wx:if='{{isLogin}}' open-type="getUserInfo" data-url="/pages/ranks/ranks" bindgetuserinfo="getUserInfo">排行榜</button>
+    <button bindtap="test">设置</button>
+  </view>
+>>>>>>> Stashed changes
 </view>
