@@ -4,7 +4,7 @@
   position: relative;
 }
 .alarm {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   height: 32px;
@@ -27,26 +27,51 @@
 }
 .answer-box {
   margin-top: 10px;
+  position: relative;
+}
+.answer-box .icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
 }
 .answer-box button {
+  border: 0px;
+  padding: 0;
   display: block;
   line-height: 30px;
-  width: 100%;
-  /* margin-left: 10%; */
-  text-align: center;
+  margin-left: 28px;
+  text-align: left;
   margin-bottom: 10px;
   font-size: 14px;
   background: none;
-  border: 1px solid #5ca05f;
-  margin-bottom: 10px;
-  /* border-radius: 0px; */
+  border-radius: 0px;
+  border-bottom: 1px dashed #5ca05f;
+  padding-left: 3px;
+  color: rgba(0, 0, 0, 0.7);
 }
 /* 去掉默认边框 */
 .btn::after {
   border: 0;
 }
+/* 禁用的样式 */
+button[disabled][type="default"],
+wx-button[disabled]:not([type]) {
+  color: rgba(0, 0, 0, 0.3);
+  background: none;
+}
 .answer-box button.btn_hover,
 .answer-box .cur-btn {
-  background: #5ca05f;
-  color: #fff;
+  color: #5ca05f;
+}
+
+.right-box,
+.wrong-box {
+  position: fixed;
+  text-align: center;
+  left: 0;
+  top: 0;
+  transform: translate(0, 200%) scale(0);
+  opacity: 0;
+  z-index: 100;
 }

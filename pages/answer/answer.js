@@ -7,12 +7,29 @@ Page({
     timer: null,
     answer: "",
     initDuration: 10, //每题最长时长
-    curKey: "",
+    curKey: "", //当前的key
     countdown: 0, //当前计时器的展示时间
     curIndex: 0, //当前题目的索引值
     answerItem: null, //当前的题目
     correctAmount: 0, //正确数量
-    answerItems: []
+    answerItems: [], //所有题目
+    curRight: false, //当前题目正确（添加动画所需变量）
+    curWrong: false, //当前题目回答错误
+    animation: ""
+  },
+  onReady: function() {
+    // 页面渲染完成
+    //实例化一个动画
+    const animation = wx.createAnimation({
+      duration: 2000,
+      timingFunction: "ease-in-out",
+      delay: 100,
+      transformOrigin: "center center 0",
+      success: function(res) {
+        console.log(res);
+      }
+    });
+    this.animation = animation;
   },
   onTapCheck: function(e) {
     // 回答正确题目继续，回答错误自动退出，超时直接退出
@@ -22,8 +39,23 @@ Page({
       // console.log("!!!!!", curDuration);
       this.setData({
         recordTime: curDuration + this.data.recordTime,
-        correctAmount: this.data.correctAmount + 1
+        correctAmount: this.data.correctAmount + 1,
+        curRight: true
       });
+      // this.animation
+      //   .opacity(1)
+      //   .step()
+      //   .translate("50%")
+      //   .scale(1)
+      //   .step()
+      //   .opatity(0)
+      //   .step()
+      //   .translate("200%")
+      //   .step({ ducation: 2000 });
+      // this.setData({
+      //   //输出动画
+      //   animation: this.animation.export()
+      // });
       util.showModel("恭喜你，答对了！");
       setTimeout(() => {
         this.goNextQuestion();
@@ -31,7 +63,7 @@ Page({
     } else {
       //回答错误
       clearTimeout(this.timer);
-      this.setData({ ["answerItem.disabled"]: true });
+      this.setData({ ["answerItem.disabled"]: true, curWrong: true });
       // util.showModel("答错了，当心回家跪键盘！");
       wx.redirectTo({
         url: "/pages/game-over/game-over"
@@ -46,6 +78,9 @@ Page({
         this.setData({ ["answerItem.disabled"]: true });
         clearTimeout(this.timer);
         util.showModel("回答超时了哦！");
+        wx.redirectTo({
+          url: "/pages/game-over/game-over"
+        });
       } else {
         this.setCountdown();
       }
@@ -75,6 +110,8 @@ Page({
     //每题开始，初始化数据
     this.setData({
       countdown: this.data.initDuration,
+      curRight: false,
+      curWrong: false,
       curKey: "",
       answerItem: {
         ...this.data.answerItems[this.data.curIndex],
@@ -95,7 +132,7 @@ Page({
       this.goNextQuestion();
     });
   },
-  onUnload(){
+  onUnload() {
     clearTimeout(this.timer);
   }
 });
