@@ -6,6 +6,7 @@ const loginApi = () => {
   return new Promise((resolve, reject) => {
     wx.login({
       success: res => {
+        console.log("login api res", res);
         if (res.code) {
           resolve(res.code);
         } else {
