@@ -7,7 +7,8 @@
             <text class="userinfo-nickname">{{userInfo.avatarUrl ? userInfo.nickName : '匿名'}}</text>
         </view>
     </view>
-    <view class="content">
+
+  <view class="content">
         <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
             获取授权
         </button>

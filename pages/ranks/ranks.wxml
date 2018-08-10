@@ -1,11 +1,10 @@
 <view class="ranks">
     <view class="info-box">
-        <text class="tips">注：排行榜每小时更新一次</text>
-        <view>第{{currentRank || 1}}名</view>
-        <view>
+        <view class="item">第{{currentRank || 1}}名</view>
+        <view class="item">
           <image mode="aspectFit" src="{{user.avatarUrl}}" class="info-image"></image>
         </view>
-        <view>{{score || 0}}分</view>
+        <view class="item">{{score || 0}}分</view>
     </view>
     <view wx:for="{{rankList}}" wx:for-item="rank" wx:key="{{index}}" class="item-box">
       <view class="rank-item">

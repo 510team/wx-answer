@@ -1,5 +1,5 @@
 import httpRequest from "../utils/request.js";
-import { GetQuestions } from "../config/index.js";
+import { GetQuestions,AnswerQuestion } from "../config/index.js";
 
 const getQuestionsRequest = data => {
   return httpRequest({
@@ -9,4 +9,13 @@ const getQuestionsRequest = data => {
   });
 };
 
-export { getQuestionsRequest };
+const answerQuestion = data => {
+  return httpRequest({
+    method: AnswerQuestion.method,
+    url: AnswerQuestion.url,
+    data
+  });
+};
+
+
+export { getQuestionsRequest ,answerQuestion};

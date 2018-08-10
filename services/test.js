@@ -1,15 +1,21 @@
 import httpRequest from "../utils/request.js";
 
-import { test } from "../config/index.js";
+import { test, updateScore } from "../config/index.js";
 
-const testRequest  = () => {
+const testRequest = () => {
   return httpRequest({
-    method: 'get',
-    data: {  },
+    method: "get",
+    data: {},
     url: test.url
   });
 };
 
-export {
-   testRequest
+const updateScoreRequest = data => {
+  return httpRequest({
+    method: "get",
+    data: { ...data },
+    url: updateScore.url
+  });
 };
+
+export { testRequest, updateScoreRequest };

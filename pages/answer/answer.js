@@ -1,5 +1,5 @@
 var util = require("../../utils/util.js");
-import { getQuestionsRequest } from "../../services/answer.js";
+import { getQuestionsRequest, answerQuestion } from "../../services/answer.js";
 // const app = getApp();
 
 Page({
@@ -34,7 +34,12 @@ Page({
   onTapCheck: function(e) {
     // 回答正确题目继续，回答错误自动退出，超时直接退出
     this.setData({ curKey: e.target.dataset.key });
-    if (e.target.dataset.key == this.data.answerItem.answer) {
+    const userAnswer = e.target.dataset.value;
+    this.onAnswer({
+      question_id: this.data.answerItem.id,
+      answer: userAnswer
+    });
+    if (userAnswer == this.data.answerItem.answer) {
       const curDuration = this.data.initDuration - this.data.countdown;
       // console.log("!!!!!", curDuration);
       this.setData({
@@ -77,9 +82,10 @@ Page({
         //超时退出
         this.setData({ ["answerItem.disabled"]: true });
         clearTimeout(this.timer);
-        util.showModel("回答超时了哦！");
-        wx.redirectTo({
-          url: "/pages/game-over/game-over"
+        util.showModel("回答超时了哦！", undefined, () => {
+          wx.redirectTo({
+            url: "/pages/game-over/game-over"
+          });
         });
       } else {
         this.setCountdown();
@@ -131,6 +137,9 @@ Page({
       });
       this.goNextQuestion();
     });
+  },
+  onAnswer(param) {
+    answerQuestion(param);
   },
   onUnload() {
     clearTimeout(this.timer);
