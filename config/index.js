@@ -8,6 +8,10 @@ const FindUser = {
   url: `${serverHost}/user/findUser`,
   method: "get"
 };
+const AnswerQuestion = {
+  url: `${serverHost}/answer`,
+  method: "get"
+};
 
 const SaveUserInfo = {
   url: `${serverHost}/login/setUser`,
@@ -28,4 +32,4 @@ const test = {
   method: "post"
 };
 
-export { FindUser,Login, SaveUserInfo, GetRanks, test ,GetQuestions};
+export { FindUser,Login, SaveUserInfo, GetRanks, test ,AnswerQuestion,GetQuestions};

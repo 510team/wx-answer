@@ -1,5 +1,5 @@
 var util = require("../../utils/util.js");
-import { getQuestionsRequest } from "../../services/answer.js";
+import { getQuestionsRequest ,answerQuestion } from "../../services/answer.js";
 // const app = getApp();
 
 Page({
@@ -15,7 +15,12 @@ Page({
   },
   onTapCheck: function(e) {
     // 回答正确题目继续，回答错误知己退出，超时直接退出
-    if (e.target.dataset.value == this.data.answerItem.answer) {
+    const userAnswer =  e.target.dataset.value 
+    this.onAnswer({
+      question_id:this.data.answerItem.id,
+      answer:userAnswer
+    });
+    if (userAnswer == this.data.answerItem.answer) {
       const curDuration = this.data.initDuration - this.data.countdown;
       // console.log("!!!!!", curDuration);
       this.setData({
@@ -96,6 +101,9 @@ Page({
       });
       this.goNextQuestion();
     });
+  },
+  onAnswer(param){
+    answerQuestion(param)
   },
   onUnload(){
     clearTimeout(this.timer);
