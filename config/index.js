@@ -42,4 +42,3 @@ export {
   GetQuestions,
   updateScore
 };
-export { Login, SaveUserInfo, GetRanks, GetQuestions, test, updateScore  };
