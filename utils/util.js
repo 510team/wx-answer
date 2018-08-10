@@ -30,17 +30,19 @@ var showBusy = text =>
 var showSuccess = text =>
   wx.showToast({
     title: text,
-    icon: "success"
+    icon: "success",
+    duration: 800
   });
 
 // 显示失败提示,需要用户点击
-var showModel = (title, content) => {
+var showModel = (title, content,callback) => {
   wx.hideToast();
 
   wx.showModal({
     title,
     content: JSON.stringify(content) || "",
-    showCancel: false
+    showCancel: false,
+    success:callback
   });
 };
 

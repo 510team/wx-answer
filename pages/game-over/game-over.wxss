@@ -1,0 +1,170 @@
+@import "../../assets/wxss/custom-icon.wxss";
+.user-image {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.user-image image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.play-score-content {
+  width: 200px;
+  padding: 10px 0;
+  margin: 0 auto 0;
+  text-align: center;
+  position: relative;
+}
+
+.play-score-content text {
+  margin: 0 5px;
+}
+
+.play-score-content .questions {
+  margin-top: 10px;
+}
+
+.play-score-content .score text {
+  color: rgb(136, 99, 29);
+}
+
+.play-score-content .questions text {
+  color: rgb(136, 99, 29);
+}
+
+.border {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgb(136, 99, 29);
+}
+.border-left-top,
+.border-right-top {
+  top: 0;
+  border-bottom: 0;
+}
+
+.border-right-bottom,
+.border-left-bottom {
+  top: 53px;
+  border-top: 0;
+}
+
+.border-left-top,
+.border-left-bottom {
+  left: 0;
+  border-right: 0;
+}
+
+.border-right-top,
+.border-right-bottom {
+  right: 0;
+  border-left: 0;
+}
+
+.border-left-top {
+  border-top-left-radius: 5px;
+}
+
+.border-right-top {
+  border-top-right-radius: 5px;
+}
+
+.border-right-bottom {
+  border-bottom-right-radius: 5px;
+}
+
+.border-left-bottom {
+  border-bottom-left-radius: 5px;
+}
+
+.level_process {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 20px;
+  padding: 10rpx 10rpx 20rpx 10rpx;
+  /*  background-color: #fff; */
+}
+
+.process_wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+.process_wrap:first-child .start {
+  background: transparent;
+}
+.process_wrap:last-child .end {
+  background: transparent;
+}
+.process {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.process_circle text {
+  font-size: 32px;
+  color: #dfdfdf;
+}
+
+.process_line {
+  background: #eff3f6;
+  flex: 1;
+  height: 5rpx;
+}
+
+.process_name {
+  position: relative;
+  margin-top: 5px;
+  background: rgb(253, 161, 40);
+  border-radius: 5px;
+  font-size: 24rpx;
+  color: #fff;
+}
+.process_name:after {
+  position: absolute;
+  content: "";
+  top: -10px;
+  left: 35%;
+  border: 5px solid transparent;
+  border-bottom-color: rgb(253, 161, 40);
+}
+.process_name text {
+  padding: 3rpx 5rpx;
+}
+.active .process_circle text {
+  color: rgb(253, 161, 40);
+}
+.active .process_line {
+  background: rgb(253, 161, 40);
+}
+
+.upgrade {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.upgrade text {
+  margin: 0 5px;
+  color: rgb(253, 161, 40);
+  font-size: 30rpx;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+.footer button {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.footer .share {
+  background: rgb(253, 161, 40);
+  color: #ffffff;
+}

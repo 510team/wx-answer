@@ -1,5 +1,5 @@
 var util = require("../../utils/util.js");
-
+import { getQuestionsRequest } from "../../services/answer.js";
 // const app = getApp();
 
 Page({
@@ -27,38 +27,15 @@ Page({
         this.goNextQuestion();
       }, 500);
     } else {
+      //回答错误
       clearTimeout(this.timer);
       this.setData({ ["answerItem.disabled"]: true });
-      util.showModel("答错了，当心回家跪键盘！");
-      // wx.redirectTo({
-      //   url: "/pages/index/index"
-      // });
-    }
-  },
-  requestList: function() {
-    const _this = this;
-    wx.request({
-      url: "http://127.0.0.1:8362/questions",
-      data: {
-        offset: 0,
-        count: 10
-      },
-      header: {
-        "content-type": "application/json" // 默认值
-      },
-      success(res) {
-        // util.showSuccess("请求成功完成");
-        _this.setData({
-          answerItems: res.data
+      util.showModel("你答错了!",undefined,(res)=>{
+        wx.redirectTo({
+          url: "/pages/game-over/game-over"
         });
-        //开始展示题目
-        _this.goNextQuestion();
-      },
-      fail(error) {
-        // util.showModel("请求失败", error);
-        console.log("request fail", error);
-      }
-    });
+      });
+    }
   },
   setCountdown: function() {
     this.timer = setTimeout(() => {
@@ -67,10 +44,11 @@ Page({
         //超时退出
         this.setData({ ["answerItem.disabled"]: true });
         clearTimeout(this.timer);
-        util.showModel("回答超时了哦！");
-        // wx.redirectTo({
-        //   url: "/pages/index/index"
-        // });
+        util.showModel("回答超时了哦！",undefined,()=>{
+          wx.redirectTo({
+            url: "/pages/game-over/game-over"
+          });
+         });
       } else {
         this.setCountdown();
       }
@@ -83,6 +61,7 @@ Page({
     if (this.data.curIndex == this.data.answerItems.length) {
       console.log(this.data.curIndex);
       //最后一道题
+      /*
       util.showModel(
         "恭喜你，答对了" +
           this.data.correctAmount +
@@ -90,9 +69,10 @@ Page({
           this.data.recordTime +
           "秒"
       );
-      // wx.redirectTo({
-      //   url: "/pages/result"
-      // });
+      */
+      wx.redirectTo({
+        url: "/pages/game-over/game-over"
+      });
       return;
     }
     //每题开始，初始化数据
@@ -110,6 +90,14 @@ Page({
     this.setCountdown();
   },
   onLoad: function() {
-    this.requestList();
+    getQuestionsRequest().then(res => {
+      this.setData({
+        answerItems: res.data
+      });
+      this.goNextQuestion();
+    });
+  },
+  onUnload(){
+    clearTimeout(this.timer);
   }
 });
