@@ -28,7 +28,6 @@ const test = {
   method: "post"
 };
 
-<<<<<<< Updated upstream
 const updateScore = {
   url: `${serverHost}/ranks/updateScore`,
   method: "post"
@@ -43,7 +42,4 @@ export {
   GetQuestions,
   updateScore
 };
-=======
-export { Login, SaveUserInfo, GetRanks, test };
-//
->>>>>>> Stashed changes
+export { Login, SaveUserInfo, GetRanks, GetQuestions, test, updateScore  };
