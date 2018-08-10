@@ -7,16 +7,16 @@
   line-height: 120rpx;
   border-bottom: 1rpx solid #eee;
 }
-.ranks .tips {
-  font-size: 20rpx;
-  position: absolute;
-  right: 10rpx;
-  top: 6rpx;
-  font-weight: 200;
-}
 .ranks .rank-item {
   flex: 1;
   text-align: center;
+}
+.ranks .is-new {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  right: -10rpx;
+  top: -10rpx;
 }
 .ranks .image {
   width: 80rpx;
@@ -29,6 +29,9 @@
 .ranks .info {
   flex: 2;
   text-align: left;
+}
+.ranks .image-box {
+  position: relative;
 }
 .ranks .info-box {
   display: flex;
@@ -50,7 +53,7 @@
   background: #ccc;
   vertical-align: middle;
 }
-.ranks .info-box view {
+.ranks .info-box .item {
   flex: 1;
   text-align: center;
   height: 140rpx;
