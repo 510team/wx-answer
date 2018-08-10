@@ -7,11 +7,7 @@ import {
   loginRequest,
   setUserRequest
 } from "../../services/login.js";
-<<<<<<< Updated upstream
 import { testRequest, updateScoreRequest } from "../../services/test.js";
-=======
-import { testRequest } from "../../services/test.js";
->>>>>>> Stashed changes
 //获取应用实例
 const app = getApp();
 
