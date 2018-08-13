@@ -148,7 +148,7 @@ Page({
     const recordTimeStr = this.data.recordTime.join(",");
     const correctAmount = this.data.correctAmount;
 
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/game-over/game-over?account=${correctAmount}&time=${recordTimeStr}`
     });
   },
