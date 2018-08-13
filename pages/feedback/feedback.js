@@ -1,20 +1,11 @@
-import { getRanksRequest } from "../../services/ranks.js";
+import { addFeedbackRequest } from "../../services/feedback.js";
 
 const app = getApp();
 
 Page({
   data: {
+    btnLoading: false,
     feedbackContent: ""
-  },
-  onLoad: function() {
-    getRanksRequest({
-      offset: this.data.offset,
-      count: this.data.count
-    }).then(res => {
-      if (res.success) {
-        this.updateData(res.data);
-      }
-    });
   },
   bindTextAreaInput: function(e) {
     this.setData({
@@ -22,6 +13,28 @@ Page({
     });
   },
   bindSubmit: function() {
-    console.log(this.data.feedbackContent);
+    this.setData({
+      btnLoading: true
+    });
+    addFeedbackRequest({
+      content: this.data.feedbackContent
+    }).then(res => {
+      if (res.success) {
+        this.setData({
+          btnLoading: false
+        });
+        this.showToast("提交成功，感谢您的反馈");
+      } else {
+        console.log("fail");
+        this.showToast("提交失败，请稍后再试");
+      }
+    });
+  },
+  showToast: function(title, icon = "none", duration = 2000) {
+    wx.showToast({
+      title: title,
+      icon: icon,
+      duration: duration
+    });
   }
 });

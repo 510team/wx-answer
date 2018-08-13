@@ -42,6 +42,11 @@ const GetLevel = {
   method: "get"
 };
 
+const addFeedback = {
+  url: `${serverHost}/feedback`,
+  method: "post"
+};
+
 export {
   FindUser,
   Login,
@@ -51,5 +56,6 @@ export {
   GetQuestions,
   updateScore,
   AnswerQuestion,
-  GetLevel
+  GetLevel,
+  addFeedback
 };
