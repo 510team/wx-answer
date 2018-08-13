@@ -1,0 +1,26 @@
+<view class="feedback">
+  <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
+  <view>
+    <textarea bindinput="bindTextAreaInput" placeholder="如果您对我们有任何建议或意见，请在此处向我们提交，期待您的宝贵建议。" />
+        <view class="btn-area">
+             <button bindtap="bindSubmit" disabled="{{feedbackContent.length === 0 || btnLoading}}" loading="{{btnLoading}}">提交</button>
+        </view>
+  </view>
+  <view class="about-us">
+    <view class="title">
+        <text>反馈给我们</text>
+    </view>
+    <view class="image-content">
+        <view>
+            <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIxQoibT3WvrjFK6n03SjJkMibmPQP6B4HKBBwHBd9MUIuB5KvknaJRgzLlt2Rfl1ncNJTnic8V01PhQ/132" class="info-image"></image>
+            <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIxQoibT3WvrjFK6n03SjJkMibmPQP6B4HKBBwHBd9MUIuB5KvknaJRgzLlt2Rfl1ncNJTnic8V01PhQ/132" class="info-image"></image>
+            <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIxQoibT3WvrjFK6n03SjJkMibmPQP6B4HKBBwHBd9MUIuB5KvknaJRgzLlt2Rfl1ncNJTnic8V01PhQ/132" class="info-image"></image>
+        </view>
+        <view>
+            <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIxQoibT3WvrjFK6n03SjJkMibmPQP6B4HKBBwHBd9MUIuB5KvknaJRgzLlt2Rfl1ncNJTnic8V01PhQ/132" class="info-image"></image>
+            <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIxQoibT3WvrjFK6n03SjJkMibmPQP6B4HKBBwHBd9MUIuB5KvknaJRgzLlt2Rfl1ncNJTnic8V01PhQ/132" class="info-image"></image>
+            <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIxQoibT3WvrjFK6n03SjJkMibmPQP6B4HKBBwHBd9MUIuB5KvknaJRgzLlt2Rfl1ncNJTnic8V01PhQ/132" class="info-image"></image>
+        </view>
+    </view>
+  </view>
+</view>
