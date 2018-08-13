@@ -7,7 +7,8 @@
     "pages/chat/chat",
     "pages/ranks/ranks",
     "pages/answer/answer",
-    "pages/game-over/game-over"
+    "pages/game-over/game-over",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",
