@@ -1,5 +1,6 @@
-var util = require("../../utils/util.js");
+// var util = require("../../utils/util.js");
 import { getQuestionsRequest, answerQuestion } from "../../services/answer.js";
+// import { callbackify } from "util";
 // const app = getApp();
 
 Page({
@@ -11,84 +12,111 @@ Page({
     countdown: 0, //当前计时器的展示时间
     curIndex: 0, //当前题目的索引值
     answerItem: null, //当前的题目
+    recordTime: [], //每题时间组成的数组
     correctAmount: 0, //正确数量
     answerItems: [], //所有题目
-    curRight: false, //当前题目正确（添加动画所需变量）
-    curWrong: false, //当前题目回答错误
-    animation: ""
+    showRightBox: false, //动画框是否显示
+    showRight: "", //动画l类型
+    animationData: {}
   },
   onReady: function() {
-    // 页面渲染完成
-    //实例化一个动画
-    const animation = wx.createAnimation({
-      duration: 2000,
-      timingFunction: "ease-in-out",
-      delay: 100,
-      transformOrigin: "center center 0",
-      success: function(res) {
-        console.log(res);
-      }
-    });
-    this.animation = animation;
+    // 页面渲染完成,实例化一个动画
+    this.animationReset();
   },
   onTapCheck: function(e) {
+    var _self = this;
     // 回答正确题目继续，回答错误自动退出，超时直接退出
-    this.setData({ curKey: e.target.dataset.key });
+    this.setData({ curKey: e.target.dataset.key, showRightBox: true });
     const userAnswer = e.target.dataset.value;
     this.onAnswer({
       question_id: this.data.answerItem.id,
       answer: userAnswer
     });
-    if (userAnswer == this.data.answerItem.answer) {
+    if (this.data.curKey == this.data.answerItem.answer) {
       const curDuration = this.data.initDuration - this.data.countdown;
-      // console.log("!!!!!", curDuration);
+      let recordTime = this.data.recordTime;
+      recordTime.push(curDuration);
       this.setData({
-        recordTime: curDuration + this.data.recordTime,
+        recordTime: recordTime,
         correctAmount: this.data.correctAmount + 1,
-        curRight: true
+        showRight: "right"
       });
-      // this.animation
-      //   .opacity(1)
-      //   .step()
-      //   .translate("50%")
-      //   .scale(1)
-      //   .step()
-      //   .opatity(0)
-      //   .step()
-      //   .translate("200%")
-      //   .step({ ducation: 2000 });
-      // this.setData({
-      //   //输出动画
-      //   animation: this.animation.export()
-      // });
-      util.showModel("恭喜你，答对了！");
-      setTimeout(() => {
-        this.goNextQuestion();
-      }, 500);
+      this.animationFun(function() {
+        _self.goNextQuestion();
+      });
     } else {
-      //回答错误
+      // 回答错误
       clearTimeout(this.timer);
-      this.setData({ ["answerItem.disabled"]: true, curWrong: true });
-      // util.showModel("答错了，当心回家跪键盘！");
-      wx.redirectTo({
-        url: "/pages/game-over/game-over"
+      this.setData({
+        ["answerItem.disabled"]: true,
+        showRight: "wrong"
+      });
+      this.animationFun(function() {
+        _self.goLink();
       });
     }
   },
-  setCountdown: function() {
-    this.timer = setTimeout(() => {
-      this.setData({ countdown: this.data.countdown - 1 });
-      if (this.data.countdown == 0) {
-        //超时退出
-        this.setData({ ["answerItem.disabled"]: true });
-        clearTimeout(this.timer);
-        util.showModel("回答超时了哦！", undefined, () => {
-          wx.redirectTo({
-            url: "/pages/game-over/game-over"
+  animationFun: function(callback) {
+    var _self = this;
+    this.animation
+      .translate3d("-50%", "-100%", 0)
+      .scale(6)
+      .step();
+    this.setData({
+      animationData: this.animation.export()
+    });
+    function timeout() {
+      return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+          _self.animation.opacity(0).step();
+          _self.setData({
+            animationData: _self.animation.export()
           });
+          resolve();
+        }, 1000);
+      });
+    }
+    timeout().then(function() {
+      //重置animation
+      _self.animationReset();
+      callback();
+    });
+  },
+  animationReset: function() {
+    var animation = wx.createAnimation({
+      transformOrigin: "50% 50%",
+      duration: 300,
+      timingFunction: "ease-in",
+      delay: 0
+    });
+    this.animation = animation;
+    this.animation
+      .translate3d("-50%", "-100%", 0)
+      .scale(0)
+      .opacity(1)
+      .step();
+    this.setData({
+      animationData: this.animation.export(),
+      showRightBox: ""
+    });
+  },
+  setCountdown: function() {
+    const _self = this;
+    this.timer = setTimeout(() => {
+      _self.setData({ countdown: _self.data.countdown - 1 });
+      if (_self.data.countdown == 0) {
+        //超时退出
+        clearTimeout(this.timer);
+        this.setData({
+          showRightBox: true,
+          ["answerItem.disabled"]: true,
+          showRight: "timeout"
+        });
+        this.animationFun(function() {
+          _self.goLink();
         });
       } else {
-        this.setCountdown();
+        _self.setCountdown();
       }
     }, 1000);
   },
@@ -97,31 +125,17 @@ Page({
       clearTimeout(this.timer);
     }
     if (this.data.curIndex == this.data.answerItems.length) {
-      console.log(this.data.curIndex);
-      //最后一道题
-      /*
-      util.showModel(
-        "恭喜你，答对了" +
-          this.data.correctAmount +
-          "道题，总时长" +
-          this.data.recordTime +
-          "秒"
-      );
-      */
-      wx.redirectTo({
-        url: "/pages/game-over/game-over"
-      });
+      this.goLink();
       return;
     }
     //每题开始，初始化数据
     this.setData({
       countdown: this.data.initDuration,
-      curRight: false,
-      curWrong: false,
+      showRight: "",
       curKey: "",
       answerItem: {
         ...this.data.answerItems[this.data.curIndex],
-        id: this.data.curIndex + 1
+        showId: this.data.curIndex + 1
       }
     });
     //初始化后，curIndex再+1
@@ -129,6 +143,14 @@ Page({
       curIndex: this.data.curIndex + 1
     });
     this.setCountdown();
+  },
+  goLink: function() {
+    const recordTimeStr = this.data.recordTime.join(",");
+    const correctAmount = this.data.correctAmount;
+
+    wx.redirectTo({
+      url: `/pages/game-over/game-over?account=${correctAmount}&time=${recordTimeStr}`
+    });
   },
   onLoad: function() {
     getQuestionsRequest().then(res => {
