@@ -1,48 +1,46 @@
+import { getUserLevel } from "../../services/game-over";
+// 使用app.js中拿到的用户信息
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo: {},
     currentRound: {
-      score: 150,
       questions: 3
     },
-    currentLevel: 2,
-    processData: [
-      {
-        id: 1,
-        name: "初学乍到",
-        icon: "iconfont icon-level1"
-      },
-      {
-        id: 2,
-        name: "游学四方",
-        icon: "iconfont icon-level2"
-      },
-      {
-        id: 3,
-        name: "有学而志",
-        icon: "iconfont icon-level3"
-      },
-      {
-        id: 4,
-        name: "青年俊才",
-        icon: "iconfont icon-level4"
-      },
-      {
-        id: 5,
-        name: "学长师友",
-        icon: "iconfont icon-level5"
-      }
-    ],
-    nextLevel: "",
-    nextScore: 100
+    currentScore: 0,
+    nextLevel: {},
+    currentLevel: {},
+    gapScore: 100,
+    levelInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    // 获取用户信息
+    this.setData({ userInfo: app.globalData.userInfo });
+
+    // 当前用户级别
+    getUserLevel({
+      open_id: this.data.userInfo.openid
+    }).then(res => {
+      if (res.success) {
+        if (res.current_level && res.next_level) {
+          const score = res.next_level.lowest_score - res.score_info.score;
+          this.setData({
+            nextLevel: res.next_level,
+            currentLevel: res.current_level,
+            gapScore: score,
+            currentScore: res.score_info.score
+          });
+        }
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -52,11 +50,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    this.setData({
-      nextLevel: this.data.processData[this.data.currentLevel + 1].name
-    });
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏

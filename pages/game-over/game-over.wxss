@@ -1,13 +1,22 @@
 @import "../../assets/wxss/custom-icon.wxss";
-.user-image {
+.container {
+  padding-top: 100rpx;
+}
+.user-info {
   text-align: center;
   padding: 10px 0;
 }
 
-.user-image image {
-  width: 70px;
-  height: 70px;
+.user-info image {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 10rpx;
   border-radius: 50%;
+  border: 2px solid #fff;
+}
+.userinfo-nickname {
+  font-size: 32rpx;
+  color: #fff;
 }
 
 .play-score-content {
@@ -85,7 +94,6 @@
   flex-wrap: nowrap;
   margin-top: 20px;
   padding: 10rpx 10rpx 20rpx 10rpx;
-  /*  background-color: #fff; */
 }
 
 .process_wrap {

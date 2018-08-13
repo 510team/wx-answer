@@ -8,6 +8,10 @@ const FindUser = {
   url: `${serverHost}/user/findUser`,
   method: "get"
 };
+const AnswerQuestion = {
+  url: `${serverHost}/answer`,
+  method: "get"
+};
 
 const SaveUserInfo = {
   url: `${serverHost}/login/setUser`,
@@ -27,10 +31,15 @@ const test = {
   url: `${serverHost}/test`,
   method: "post"
 };
-
 const updateScore = {
   url: `${serverHost}/ranks/updateScore`,
   method: "post"
+};
+
+// 查询当前用户的等级
+const GetLevel = {
+  url: `${serverHost}/level`,
+  method: "get"
 };
 
 export {
@@ -40,5 +49,7 @@ export {
   GetRanks,
   test,
   GetQuestions,
-  updateScore
+  updateScore,
+  AnswerQuestion,
+  GetLevel
 };

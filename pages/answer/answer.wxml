@@ -10,10 +10,17 @@
                 {{answerItem.id+"、"}}女友问：{{answerItem.title}}你如何作答：
             </text>
             <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
-                <button data-value="{{item.key}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
+                <image class="icon" src="../../assets/image/list_icon.png" />
+                <button class="{{curKey==item.key?'cur-btn':''}}" data-key="{{item.key}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
                     {{item.value}}
                 </button>
             </view>
         </view>
     </view>
+    <!-- <view class="right-box" animation="{{animation}}">
+        <image src="../../assets/image/right.png" />
+    </view>
+    <view class="wrong-box" animation="{{animation}}">
+        <image src="../../assets/image/wrong.png" />
+    </view> -->
 </view>

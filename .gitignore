@@ -10,3 +10,4 @@ output/
 output.tar.gz
 runtime/
 app/
+*/.DS_Store
