@@ -1,12 +1,14 @@
-<view class="game-over">
-    <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
-    <view class="user-image">
-        <image src='https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKSs9qyDic4hvNzjASOChlzzLeibjibKQfK3gRRX1SmOZic3j76M3tsBfHriaGKuUwNfveIPjG0RmwOXfA/132'></image>
+<view class="game-over container">
+    <view class="user-info">
+        <image src="{{userInfo.avatarUrl}}"></image>
+        <view>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </view>
     </view>
     <view class="play-score-wrapper">
         <view class="play-score-content">
             <view class="m10 score">
-                <text>{{currentRound.score}}</text>
+                <text>{{currentScore}}</text>
                 分
             </view>
             <view class="m10 questions">
@@ -22,25 +24,33 @@
             </view>
         </view>
         <view class="level_process">
-            <view class="process_wrap {{currentLevel>=item.id?'active':''}}" wx:for="{{processData}}" wx:key="">
-                <view class="process process-{{item.id}}">
+            <view class="process_wrap active">
+                <view class="process">
                     <view class="process_line start"></view>
-                    <!-- <image class="process_icon" src="{{item.icon}}"></image> -->
                     <view class="process_circle">
-                        <text class="{{item.icon}}"></text>
+                        <text class="iconfont {{currentLevel.icon}}"></text>
                     </view>
                     <view class="process_line end"></view>
                 </view>
-                <view class="process_name" wx:if="{{currentLevel==item.id}}">
-                    <text>{{item.name}}</text>
+                <view class="process_name">
+                    <text>{{currentLevel.name}}</text>
+                </view>
+            </view>
+            <view class="process_wrap">
+                <view class="process">
+                    <view class="process_line start"></view>
+                    <view class="process_circle">
+                        <text class="iconfont  {{nextLevel.icon}}"></text>
+                    </view>
+                    <view class="process_line end"></view>
                 </view>
             </view>
         </view>
         <view class="upgrade">
             距
-            <text>{{nextLevel}}</text>
+            <text>{{nextLevel.name}}</text>
             只差
-            <text>{{nextScore}}</text>
+            <text>{{gapScore}}</text>
             分
         </view>
     </view>

@@ -5,7 +5,7 @@ const getQuestionsRequest = data => {
   return httpRequest({
     method: GetQuestions.method,
     url: GetQuestions.url,
-    data: {  }
+    data: {}
   });
 };
 

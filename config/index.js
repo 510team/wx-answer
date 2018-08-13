@@ -36,6 +36,12 @@ const updateScore = {
   method: "post"
 };
 
+// 查询当前用户的等级
+const GetLevel = {
+  url: `${serverHost}/level`,
+  method: "get"
+};
+
 export {
   FindUser,
   Login,
@@ -44,5 +50,6 @@ export {
   test,
   GetQuestions,
   updateScore,
-  AnswerQuestion
+  AnswerQuestion,
+  GetLevel
 };
