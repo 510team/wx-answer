@@ -33,8 +33,9 @@ Page({
   },
   onTapCheck: function(e) {
     // 回答正确题目继续，回答错误自动退出，超时直接退出
-    this.setData({ curKey: e.target.dataset.key });
-    const userAnswer = e.target.dataset.value;
+    
+    const userAnswer = e.target.dataset.key;
+    this.setData({ curKey: userAnswer });
     this.onAnswer({
       question_id: this.data.answerItem.id,
       answer: userAnswer
@@ -69,10 +70,12 @@ Page({
       //回答错误
       clearTimeout(this.timer);
       this.setData({ ["answerItem.disabled"]: true, curWrong: true });
-      // util.showModel("答错了，当心回家跪键盘！");
-      wx.redirectTo({
-        url: "/pages/game-over/game-over"
+      util.showModel("答错了，当心回家跪键盘！",undefined,()=>{
+        wx.redirectTo({
+          url: "/pages/game-over/game-over"
+        });
       });
+    
     }
   },
   setCountdown: function() {
