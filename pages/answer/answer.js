@@ -26,7 +26,7 @@ Page({
   onTapCheck: function(e) {
     var _self = this;
     // 回答正确题目继续，回答错误自动退出，超时直接退出
-    this.setData({ curKey: e.target.dataset.key, showRightBox: true });
+    this.setData({ curKey: e.target.dataset.key });
     const userAnswer = e.target.dataset.key;
     this.onAnswer({
       question_id: this.data.answerItem.id,
@@ -39,17 +39,21 @@ Page({
       this.setData({
         recordTime: recordTime,
         correctAmount: this.data.correctAmount + 1,
-        showRight: "right"
+        showRight: "right",
+        showRightBox: true
       });
       this.animationFun(function() {
-        _self.goNextQuestion();
+        setTimeout(function() {
+          _self.goNextQuestion();
+        }, 400);
       });
     } else {
       // 回答错误
       clearTimeout(this.timer);
       this.setData({
         ["answerItem.disabled"]: true,
-        showRight: "wrong"
+        showRight: "wrong",
+        showRightBox: true
       });
       this.animationFun(function() {
         _self.goLink();
@@ -59,6 +63,7 @@ Page({
   animationFun: function(callback) {
     var _self = this;
     this.animation
+      .opacity(1)
       .translate3d("-50%", "-100%", 0)
       .scale(6)
       .step();
@@ -96,8 +101,7 @@ Page({
       .opacity(1)
       .step();
     this.setData({
-      animationData: this.animation.export(),
-      showRightBox: ""
+      animationData: this.animation.export()
     });
   },
   setCountdown: function() {
@@ -108,9 +112,9 @@ Page({
         //超时退出
         clearTimeout(this.timer);
         this.setData({
-          showRightBox: true,
           ["answerItem.disabled"]: true,
-          showRight: "timeout"
+          showRight: "timeout",
+          showRightBox: true
         });
         this.animationFun(function() {
           _self.goLink();
@@ -125,11 +129,15 @@ Page({
       clearTimeout(this.timer);
     }
     if (this.data.curIndex == this.data.answerItems.length) {
+      this.setData({
+        ["answerItem.disabled"]: true
+      });
       this.goLink();
       return;
     }
     //每题开始，初始化数据
     this.setData({
+      showRightBox: false,
       countdown: this.data.initDuration,
       showRight: "",
       curKey: "",

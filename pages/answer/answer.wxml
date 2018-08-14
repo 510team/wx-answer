@@ -20,6 +20,6 @@
     <view class="{{showRightBox ? 'right-box show' : 'right-box hide'}}" animation="{{animationData}}">
         <image wx:if="{{showRight=='right'}}" src="../../assets/image/right.png" />
         <image wx:elif="{{showRight=='wrong'}}" src="../../assets/image/wrong.png" />
-        <image wx:else="{{showRight=='timeout'}}" src="../../assets/image/timeout.png" />
+        <image wx:elif="{{showRight=='timeout'}}" src="../../assets/image/timeout.png" />
     </view>
 </view>
