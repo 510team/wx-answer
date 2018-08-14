@@ -32,10 +32,10 @@ Page({
       question_id: this.data.answerItem.id,
       answer: userAnswer
     });
+    const curDuration = this.data.initDuration - this.data.countdown;
+    let recordTime = this.data.recordTime;
+    recordTime.push(curDuration);
     if (this.data.curKey == this.data.answerItem.answer) {
-      const curDuration = this.data.initDuration - this.data.countdown;
-      let recordTime = this.data.recordTime;
-      recordTime.push(curDuration);
       this.setData({
         recordTime: recordTime,
         correctAmount: this.data.correctAmount + 1,
@@ -52,6 +52,7 @@ Page({
       clearTimeout(this.timer);
       this.setData({
         ["answerItem.disabled"]: true,
+        recordTime: recordTime,
         showRight: "wrong",
         showRightBox: true
       });
@@ -156,8 +157,12 @@ Page({
     const recordTimeStr = this.data.recordTime.join(",");
     const correctAmount = this.data.correctAmount;
 
-    wx.navigateTo({
-      url: `/pages/game-over/game-over?account=${correctAmount}&time=${recordTimeStr}`
+    wx.redirectTo({
+      url: `/pages/game-over/game-over?account=${correctAmount}&time=${recordTimeStr}`,
+      success: function(res) {},
+      fail: function(res) {
+        console.log("fail:", res);
+      }
     });
   },
   onLoad: function() {
