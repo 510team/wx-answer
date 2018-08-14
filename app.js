@@ -44,7 +44,8 @@ App({
     //       });
     //   }
     // });
-    wx.checkSession({
+    wx.getStorage({
+      key: "code",
       // 如果已经登录过，则跳过登录
       success: res => {
         console.log("get code success");
