@@ -31,7 +31,7 @@ const test = {
   url: `${serverHost}/test`,
   method: "post"
 };
-const updateScore = {
+const UpdateScore = {
   url: `${serverHost}/ranks/updateScore`,
   method: "post"
 };
@@ -54,7 +54,7 @@ export {
   GetRanks,
   test,
   GetQuestions,
-  updateScore,
+  UpdateScore,
   AnswerQuestion,
   GetLevel,
   addFeedback

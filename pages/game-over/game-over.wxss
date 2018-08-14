@@ -89,10 +89,17 @@
   border-bottom-left-radius: 5px;
 }
 
+.level-info {
+  margin-top: 20px;
+}
+.level-info .high-score {
+  font-size: 24rpx;
+  text-align: center;
+}
 .level_process {
   display: flex;
   flex-wrap: nowrap;
-  margin-top: 20px;
+  /* margin-top: 10px; */
   padding: 10rpx 10rpx 20rpx 10rpx;
 }
 
