@@ -35,6 +35,11 @@ Page({
         this.onGetCurrentLevel();
       }
     });
+
+    // 是否获取群信息
+    wx.showShareMenu({
+      withShareTicket: true
+    });
   },
 
   /**
@@ -70,8 +75,31 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-    console.log(123);
+  onShareAppMessage: function(options) {
+    console.log("options", options);
+    if (options.from === "button") {
+      console.log(options.target);
+    }
+    debugger;
+    return {
+      title: "快来拯救我～～～",
+      path: "pages/index/index",
+      imageUrl: "../../assets/image/index_bg@2x.png",
+      success: function(res) {
+        console.log("res", res);
+        /* const shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          return false;
+        }
+        // 获取群信息
+        wx.getShareInfo({
+          shareTicket: shareTickets[0]
+        }); */
+      },
+      fail: function(res) {
+        console.log("转发到群失败");
+      }
+    };
   },
 
   /**
@@ -96,7 +124,7 @@ Page({
     * 8～10秒内完成得35分
     */
     let sum = 0; //用来存储最后得分
-    for (let i = 0; i <= items; i++) {
+    for (let i = 0; i < items; i++) {
       const time = parseInt(arr[i]);
       if (time >= 0 && time <= 3) {
         // 0~3秒

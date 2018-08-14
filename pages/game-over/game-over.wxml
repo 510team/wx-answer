@@ -1,9 +1,6 @@
 <view class="game-over container">
     <view class="user-info">
         <image src="{{userInfo.avatarUrl}}"></image>
-        <view>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        </view>
     </view>
     <view class="play-score-wrapper">
         <view class="play-score-content">
