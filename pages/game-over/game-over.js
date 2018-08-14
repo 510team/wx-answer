@@ -12,7 +12,8 @@ Page({
     nextLevel: {}, // 下一个等级信息
     currentLevel: {}, // 当前等级信息
     gapScore: 100, // 分值差
-    highestScore: 0 // 历史最高分
+    highestScore: 0, // 历史最高分,
+    isNewRecord: false
   },
 
   /**
@@ -31,7 +32,11 @@ Page({
     });
     // 添加分数到score表
     updateHighScore({ score: currentScores }).then(res => {
+      console.log("res", res);
       if (res.success) {
+        this.setData({
+          isNewRecord: res.data.new_record
+        });
         this.onGetCurrentLevel();
       }
     });
@@ -112,6 +117,15 @@ Page({
   },
 
   /**
+   * 再来一局
+   */
+  onRanks: function() {
+    wx.redirectTo({
+      url: "/pages/ranks/ranks"
+    });
+  },
+
+  /**
    * 计算分数
    */
   onCalculateScores(arr, items) {
@@ -119,22 +133,22 @@ Page({
     * 计算规则
     * arr是所有题目完成的时间，包括打错的时间
     * items是答对了多少题
-    * 0~3秒内完成得40分
-    * 4～7秒内完成得37分
-    * 8～10秒内完成得35分
+    * 0~3秒内完成得30分
+    * 4～7秒内完成得17分
+    * 8～10秒内完成得10分
     */
     let sum = 0; //用来存储最后得分
     for (let i = 0; i < items; i++) {
       const time = parseInt(arr[i]);
       if (time >= 0 && time <= 3) {
         // 0~3秒
-        sum += 40;
+        sum += 30;
       } else if (time >= 4 && time <= 7) {
         // 4～7秒
-        sum += 37;
+        sum += 17;
       } else if (time >= 8 && time <= 10) {
         //8～10秒
-        sum += 35;
+        sum += 10;
       }
     }
     return sum;
