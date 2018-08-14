@@ -1,4 +1,4 @@
-import { getUserLevel } from "../../services/game-over";
+import { getUserLevel, updateHighScore } from "../../services/game-over";
 // 使用app.js中拿到的用户信息
 const app = getApp();
 Page({
@@ -6,38 +6,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    currentRound: {
-      questions: 3
-    },
-    currentScore: 0,
-    nextLevel: {},
-    currentLevel: {},
-    gapScore: 100,
-    levelInfo: {}
+    userInfo: {}, // 用户信息
+    correctQues: 0, // 当前局答对的题数
+    currentScore: 0, // 当前局的得分
+    nextLevel: {}, // 下一个等级信息
+    currentLevel: {}, // 当前等级信息
+    gapScore: 100, // 分值差
+    highestScore: 0 // 历史最高分
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 获取用户信息
-    this.setData({ userInfo: app.globalData.userInfo });
+    // options是获取页面路径中的参数
+    const quesTimes = options.time.split(",");
+    const currentScores = this.onCalculateScores(quesTimes, options.account);
 
-    // 当前用户级别
-    getUserLevel({
-      open_id: this.data.userInfo.openid
-    }).then(res => {
+    // 获取用户信息
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      correctQues: options.account, //当前答对的题数
+      currentScore: currentScores
+    });
+    // 添加分数到score表
+    updateHighScore({ score: currentScores }).then(res => {
       if (res.success) {
-        if (res.current_level && res.next_level) {
-          const score = res.next_level.lowest_score - res.score_info.score;
-          this.setData({
-            nextLevel: res.next_level,
-            currentLevel: res.current_level,
-            gapScore: score,
-            currentScore: res.score_info.score
-          });
-        }
+        this.onGetCurrentLevel();
       }
     });
   },
@@ -85,6 +80,51 @@ Page({
   onPlay: function() {
     wx.navigateTo({
       url: "/pages/answer/answer"
+    });
+  },
+
+  /**
+   * 计算分数
+   */
+  onCalculateScores(arr, items) {
+    /* 
+    * 计算规则
+    * arr是所有题目完成的时间，包括打错的时间
+    * items是答对了多少题
+    * 0~3秒内完成得40分
+    * 4～7秒内完成得37分
+    * 8～10秒内完成得35分
+    */
+    let sum = 0; //用来存储最后得分
+    for (let i = 0; i <= items; i++) {
+      const time = parseInt(arr[i]);
+      if (time >= 0 && time <= 3) {
+        // 0~3秒
+        sum += 40;
+      } else if (time >= 4 && time <= 7) {
+        // 4～7秒
+        sum += 37;
+      } else if (time >= 8 && time <= 10) {
+        //8～10秒
+        sum += 35;
+      }
+    }
+    return sum;
+  },
+  onGetCurrentLevel() {
+    // 当前用户级别
+    getUserLevel().then(res => {
+      if (res.success) {
+        if (res.current_level && res.next_level) {
+          const score = res.next_level.lowest_score - res.score_info.score;
+          this.setData({
+            nextLevel: res.next_level,
+            currentLevel: res.current_level,
+            gapScore: score,
+            highestScore: res.score_info.score
+          });
+        }
+      }
     });
   }
 });
