@@ -1,5 +1,5 @@
-// const serverHost = "https://adazhang.com";
-const serverHost = "http://localhost:8362";
+const serverHost = "https://adazhang.com";
+//const serverHost = "http://localhost:8362";
 const Login = {
   url: `${serverHost}/login`,
   method: "get"
@@ -31,7 +31,7 @@ const test = {
   url: `${serverHost}/test`,
   method: "post"
 };
-const updateScore = {
+const UpdateScore = {
   url: `${serverHost}/ranks/updateScore`,
   method: "post"
 };
@@ -54,7 +54,7 @@ export {
   GetRanks,
   test,
   GetQuestions,
-  updateScore,
+  UpdateScore,
   AnswerQuestion,
   GetLevel,
   addFeedback
