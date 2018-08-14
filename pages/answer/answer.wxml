@@ -7,7 +7,7 @@
     <view class="questions-box">
         <view class="question">
             <text class="title" id="{{answerItem.id}}">
-                {{answerItem.showId+"、"}}女友问：{{answerItem.title}}你如何作答：
+                {{answerItem.showId+"、"}}问：{{answerItem.title}}，请作答：
             </text>
             <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
                 <image class="icon" src="../../assets/image/list_icon.png" />

@@ -83,7 +83,7 @@ Page({
    * 再来一局
    */
   onPlay: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/answer/answer"
     });
   }
