@@ -23,12 +23,12 @@
   height: 80rpx;
   border-radius: 80rpx;
   background: #ccc;
-  vertical-align: middle;
-  margin-right: 40rpx;
+  margin: 20rpx 40rpx 20rpx 0;
 }
 .ranks .info {
   flex: 2;
   text-align: left;
+  overflow: hidden;
 }
 .ranks .image-box {
   position: relative;
@@ -54,9 +54,11 @@
   vertical-align: middle;
 }
 .ranks .nickName {
+  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 60%;
 }
 .ranks .info-box .item {
   flex: 1;
