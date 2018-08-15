@@ -37,7 +37,7 @@
   display: flex;
   height: 140rpx;
   padding: 60rpx 0;
-  background: #fde3ec;
+  background: #ff777c;
   font-size: 38rpx;
   font-weight: 600;
 }
@@ -52,6 +52,11 @@
   border-radius: 140rpx;
   background: #ccc;
   vertical-align: middle;
+}
+.ranks .nickName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .ranks .info-box .item {
   flex: 1;

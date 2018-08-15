@@ -15,7 +15,7 @@
       </view>
       <view class="rank-item info">
         <image mode="aspectFit" src="{{rank.avatar_url}}" class="rank-item image"></image>
-        <text>{{rank.nick_name}}</text>
+        <text class="nickName">{{rank.nick_name}}</text>
       </view>
       <text class="rank-item">{{rank.score || 0}}</text>
     </view>
