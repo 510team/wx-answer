@@ -1,6 +1,6 @@
 @import "../../assets/wxss/custom-icon.wxss";
 .container {
-  padding-top: 100rpx;
+  padding-top: 20rpx;
 }
 .user-info {
   text-align: center;
@@ -17,6 +17,20 @@
 .userinfo-nickname {
   font-size: 32rpx;
   color: #fff;
+}
+
+.new-record {
+  position: absolute;
+  padding: 0;
+  top: 0;
+  right: -5px;
+}
+
+.new-record text {
+  color: #ff777c;
+  font-size: 55rpx;
+  position: relative;
+  top: -1px;
 }
 
 .play-score-content {
@@ -135,7 +149,7 @@
 .process_name {
   position: relative;
   margin-top: 5px;
-  background: rgb(253, 161, 40);
+  background: #ff777c;
   border-radius: 5px;
   font-size: 24rpx;
   color: #fff;
@@ -146,16 +160,16 @@
   top: -10px;
   left: 35%;
   border: 5px solid transparent;
-  border-bottom-color: rgb(253, 161, 40);
+  border-bottom-color: #ff777c;
 }
 .process_name text {
   padding: 3rpx 5rpx;
 }
 .active .process_circle text {
-  color: rgb(253, 161, 40);
+  color: #ff777c;
 }
 .active .process_line {
-  background: rgb(253, 161, 40);
+  background: #ff777c;
 }
 
 .upgrade {
@@ -166,7 +180,7 @@
 
 .upgrade text {
   margin: 0 5px;
-  color: rgb(253, 161, 40);
+  color: #ff777c;
   font-size: 30rpx;
 }
 
@@ -180,6 +194,6 @@
 }
 
 .footer .share {
-  background: rgb(253, 161, 40);
+  background: #ff777c;
   color: #ffffff;
 }
