@@ -1,10 +1,8 @@
-// var util = require("../../utils/util.js");
 import { getQuestionsRequest, answerQuestion } from "../../services/answer.js";
-// import { callbackify } from "util";
-// const app = getApp();
 
 Page({
   data: {
+    loaded: false,
     timer: null,
     answer: "",
     initDuration: 10, //每题最长时长
@@ -66,7 +64,7 @@ Page({
     this.animation
       .opacity(1)
       .translate3d("-50%", "-100%", 0)
-      .scale(6)
+      .scale(1)
       .step();
     this.setData({
       animationData: this.animation.export()
@@ -167,10 +165,16 @@ Page({
   },
   onLoad: function() {
     getQuestionsRequest().then(res => {
-      this.setData({
-        answerItems: res.data
-      });
-      this.goNextQuestion();
+      if (res.success) {
+        this.setData({
+          loaded: true,
+          answerItems: res.data,
+          answerItem: res.data[0]
+        });
+        this.goNextQuestion();
+      } else {
+        console.log(res);
+      }
     });
   },
   onAnswer(param) {

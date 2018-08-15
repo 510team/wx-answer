@@ -1,8 +1,79 @@
 .answers {
   padding: 0 5%;
   font-size: 14px;
-  position: relative;
 }
+.loading-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 100%;
+  margin: -60px 0px 0px 0px;
+}
+.loading-icon .spinner {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  margin: 0 auto;
+  animation: loading 2s linear infinite;
+}
+
+.loading-icon .bubble-1,
+.loading-icon .bubble-2 {
+  position: absolute;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background-color: #ff777c;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.loading-icon .bubble-2 {
+  top: auto;
+  bottom: 0;
+}
+
+.loading-icon .bubble-2 {
+  animation-delay: -1s;
+}
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.loading-text {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  margin-top: -10px;
+  color: #ff777c;
+  font-size: 14px;
+  padding: 10px;
+}
+
 .alarm {
   position: fixed;
   top: 50px;
@@ -78,12 +149,18 @@ wx-button[disabled]:not([type]) {
   z-index: 100;
 }
 .right-box image {
-  width: 30px;
-  height: 30px;
+  width: 100px;
+  height: 100px;
 }
-.show {
+.right-box-show {
   opacity: 1;
 }
-.hide {
+.right-box-hide {
   opacity: 0;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }

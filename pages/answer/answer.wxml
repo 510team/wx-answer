@@ -1,25 +1,36 @@
 <view class="answers">
     <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
-    <view class="alarm">
-        倒计时：
-        <text>{{countdown}}</text>
-    </view>
-    <view class="questions-box">
-        <view class="question">
-            <text class="title" id="{{answerItem.id}}">
-                {{answerItem.showId+"、"}}问：{{answerItem.title}} 请作答：
-            </text>
-            <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
-                <image class="icon" src="../../assets/image/list_icon.png" />
-                <button class="{{curKey==item.key?'cur-btn':''}}" data-key="{{item.key}}" data-value="{{item.value}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
-                    {{item.value}}
-                </button>
+    <view class="loading-box" class="{{loaded ? 'hide' : 'show'}}">
+        <view class="loading-icon">
+            <view class="spinner">
+                <view class="bubble-1"></view>
+                <view class="bubble-2"></view>
             </view>
         </view>
+        <view class="loading-text">题目搜寻中，很快的哦...</view>
     </view>
-    <view class="{{showRightBox ? 'right-box show' : 'right-box hide'}}" animation="{{animationData}}">
-        <image wx:if="{{showRight=='right'}}" src="../../assets/image/right.png" />
-        <image wx:elif="{{showRight=='wrong'}}" src="../../assets/image/wrong.png" />
-        <image wx:elif="{{showRight=='timeout'}}" src="../../assets/image/timeout.png" />
+    <view class="{{loaded ? 'show' : 'hide'}}">
+        <view class="alarm">
+            倒计时：
+            <text>{{countdown}}</text>
+        </view>
+        <view class="questions-box">
+            <view class="question">
+                <text class="title" id="{{answerItem.id}}">
+                    {{answerItem.showId+"、"}}问：{{answerItem.title}} 请作答：
+                </text>
+                <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
+                    <image class="icon" src="../../assets/image/list_icon.png" />
+                    <button class="{{curKey==item.key?'cur-btn':''}}" data-key="{{item.key}}" data-value="{{item.value}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
+                        {{item.value}}
+                    </button>
+                </view>
+            </view>
+        </view>
+        <view class="{{showRightBox ? 'right-box right-box-show' : 'right-box right-box-hide'}}" animation="{{animationData}}">
+            <image wx:if="{{showRight=='right'}}" src="../../assets/image/right.png" />
+            <image wx:elif="{{showRight=='wrong'}}" src="../../assets/image/wrong.png" />
+            <image wx:elif="{{showRight=='timeout'}}" src="../../assets/image/timeout.png" />
+        </view>
     </view>
 </view>
