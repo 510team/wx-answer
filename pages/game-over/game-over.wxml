@@ -1,12 +1,12 @@
 <view class="game-over container">
     <view class="user-info">
         <image src="{{userInfo.avatarUrl}}"></image>
-        <view>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        </view>
     </view>
     <view class="play-score-wrapper">
         <view class="play-score-content">
+            <view class="new-record" wx:if='{{isNewRecord}}'>
+                <text class="iconfont icon-new"></text>
+            </view>
             <view class="m10 score">
                 本轮得
                 <text>{{currentScore}}</text>
@@ -23,6 +23,7 @@
                 <view class="border border-right-bottom"></view>
                 <view class="border border-left-bottom"></view>
             </view>
+
         </view>
 
         <view class="level-info">
@@ -66,6 +67,7 @@
     </view>
     <view class="footer">
         <button bindtap="onPlay">再来一局</button>
+        <button bindtap="onRanks">排行榜</button>
         <button class="share" open-type='share'>炫耀一下</button>
     </view>
 </view>

@@ -28,7 +28,8 @@ Page({
         console.log("fail");
         this.showToast("提交失败，请稍后再试");
       }
-    });
+      });
+    wx.reportAnalytics('action_tap_feedback');
   },
   showToast: function(title, icon = "none", duration = 2000) {
     wx.showToast({

@@ -1,6 +1,6 @@
 @import "../../assets/wxss/custom-icon.wxss";
 .container {
-  padding-top: 100rpx;
+  padding-top: 20rpx;
 }
 .user-info {
   text-align: center;
@@ -17,6 +17,20 @@
 .userinfo-nickname {
   font-size: 32rpx;
   color: #fff;
+}
+
+.new-record {
+  position: absolute;
+  padding: 0;
+  top: 0;
+  right: -5px;
+}
+
+.new-record text {
+  color: #ff777c;
+  font-size: 55rpx;
+  position: relative;
+  top: -1px;
 }
 
 .play-score-content {
@@ -146,7 +160,7 @@
   top: -10px;
   left: 35%;
   border: 5px solid transparent;
-  border-bottom-color: #fd5055;
+  border-bottom-color: #ff777c;
 }
 .process_name text {
   padding: 3rpx 5rpx;
