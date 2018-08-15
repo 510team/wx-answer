@@ -15,7 +15,7 @@
         <view wx:if="{{hasUserInfo}}">
             <button bindtap="onNav" data-url="/pages/answer/answer">开始答题</button>
             <button bindtap="onNav" data-url="/pages/ranks/ranks">排行榜</button>
-            <button bindtap="onNav" data-url="/pages/feedback/feedback">设置</button>
+            <button bindtap="onNav" data-url="/pages/feedback/feedback">反馈</button>
         </view>
     </view>
 </view>

@@ -1,153 +1,185 @@
-var util = require("../../utils/util.js");
+// var util = require("../../utils/util.js");
 import { getQuestionsRequest, answerQuestion } from "../../services/answer.js";
+// import { callbackify } from "util";
 // const app = getApp();
 
 Page({
-  data: {
-    timer: null,
-    answer: "",
-    initDuration: 10, //每题最长时长
-    curKey: "", //当前的key
-    countdown: 0, //当前计时器的展示时间
-    curIndex: 0, //当前题目的索引值
-    answerItem: null, //当前的题目
-    correctAmount: 0, //正确数量
-    answerItems: [], //所有题目
-    curRight: false, //当前题目正确（添加动画所需变量）
-    curWrong: false, //当前题目回答错误
-    animation: ""
-  },
-  onReady: function() {
-    // 页面渲染完成
-    //实例化一个动画
-    const animation = wx.createAnimation({
-      duration: 2000,
-      timingFunction: "ease-in-out",
-      delay: 100,
-      transformOrigin: "center center 0",
-      success: function(res) {
-        console.log(res);
-      }
-    });
-    this.animation = animation;
-  },
-  onTapCheck: function(e) {
-    // 回答正确题目继续，回答错误自动退出，超时直接退出
-    
-    const userAnswer = e.target.dataset.key;
-    this.setData({ curKey: userAnswer });
-    this.onAnswer({
-      question_id: this.data.answerItem.id,
-      answer: userAnswer
-    });
-    if (userAnswer == this.data.answerItem.answer) {
-      const curDuration = this.data.initDuration - this.data.countdown;
-      // console.log("!!!!!", curDuration);
-      this.setData({
-        recordTime: curDuration + this.data.recordTime,
-        correctAmount: this.data.correctAmount + 1,
-        curRight: true
-      });
-      // this.animation
-      //   .opacity(1)
-      //   .step()
-      //   .translate("50%")
-      //   .scale(1)
-      //   .step()
-      //   .opatity(0)
-      //   .step()
-      //   .translate("200%")
-      //   .step({ ducation: 2000 });
-      // this.setData({
-      //   //输出动画
-      //   animation: this.animation.export()
-      // });
-      util.showModel("恭喜你，答对了！");
-      setTimeout(() => {
-        this.goNextQuestion();
-      }, 500);
-    } else {
-      //回答错误
-      clearTimeout(this.timer);
-      this.setData({ ["answerItem.disabled"]: true, curWrong: true });
-      util.showModel("答错了，当心回家跪键盘！",undefined,()=>{
-        wx.redirectTo({
-          url: "/pages/game-over/game-over"
+    data: {
+        timer: null,
+        answer: "",
+        initDuration: 10, //每题最长时长
+        curKey: "", //当前的key
+        countdown: 0, //当前计时器的展示时间
+        curIndex: 0, //当前题目的索引值
+        answerItem: null, //当前的题目
+        recordTime: [], //每题时间组成的数组
+        correctAmount: 0, //正确数量
+        answerItems: [], //所有题目
+        showRightBox: false, //动画框是否显示
+        showRight: "", //动画l类型
+        animationData: {}
+    },
+    onReady: function() {
+        // 页面渲染完成,实例化一个动画
+        this.animationReset();
+    },
+    onTapCheck: function(e) {
+        var _self = this;
+        // 回答正确题目继续，回答错误自动退出，超时直接退出
+        this.setData({ curKey: e.target.dataset.key });
+        const userAnswer = e.target.dataset.key;
+        this.onAnswer({
+            question_id: this.data.answerItem.id,
+            answer: userAnswer
         });
-      });
-    
-    }
-    wx.reportAnalytics('action_tap_check', {
-      connet: userAnswer
-    });
-  },
-  setCountdown: function() {
-    this.timer = setTimeout(() => {
-      this.setData({ countdown: this.data.countdown - 1 });
-      if (this.data.countdown == 0) {
-        //超时退出
-        this.setData({ ["answerItem.disabled"]: true });
-        clearTimeout(this.timer);
-        util.showModel("回答超时了哦！", undefined, () => {
-          wx.redirectTo({
-            url: "/pages/game-over/game-over"
-          });
+        const curDuration = this.data.initDuration - this.data.countdown;
+        let recordTime = this.data.recordTime;
+        recordTime.push(curDuration);
+        if (this.data.curKey == this.data.answerItem.answer) {
+            this.setData({
+                recordTime: recordTime,
+                correctAmount: this.data.correctAmount + 1,
+                showRight: "right",
+                showRightBox: true
+            });
+            this.animationFun(function() {
+                setTimeout(function() {
+                    _self.goNextQuestion();
+                }, 400);
+            });
+        } else {
+            // 回答错误
+            clearTimeout(this.timer);
+            this.setData({
+                ["answerItem.disabled"]: true,
+                recordTime: recordTime,
+                showRight: "wrong",
+                showRightBox: true
+            });
+            this.animationFun(function() {
+                _self.goLink();
+            });
+        }
+    },
+    animationFun: function(callback) {
+        var _self = this;
+        this.animation
+            .opacity(1)
+            .translate3d("-50%", "-100%", 0)
+            .scale(6)
+            .step();
+        this.setData({
+            animationData: this.animation.export()
         });
-      } else {
+        function timeout() {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    _self.animation.opacity(0).step();
+                    _self.setData({
+                        animationData: _self.animation.export()
+                    });
+                    resolve();
+                }, 1000);
+            });
+        }
+        timeout().then(function() {
+            //重置animation
+            _self.animationReset();
+            callback();
+        });
+        wx.reportAnalytics("action_tap_check", {
+            connet: userAnswer
+        });
+    },
+    animationReset: function() {
+        var animation = wx.createAnimation({
+            transformOrigin: "50% 50%",
+            duration: 300,
+            timingFunction: "ease-in",
+            delay: 0
+        });
+        this.animation = animation;
+        this.animation
+            .translate3d("-50%", "-100%", 0)
+            .scale(0)
+            .opacity(1)
+            .step();
+        this.setData({
+            animationData: this.animation.export()
+        });
+    },
+    setCountdown: function() {
+        const _self = this;
+        this.timer = setTimeout(() => {
+            _self.setData({ countdown: _self.data.countdown - 1 });
+            if (_self.data.countdown == 0) {
+                //超时退出
+                clearTimeout(this.timer);
+                this.setData({
+                    ["answerItem.disabled"]: true,
+                    showRight: "timeout",
+                    showRightBox: true
+                });
+                this.animationFun(function() {
+                    _self.goLink();
+                });
+            } else {
+                _self.setCountdown();
+            }
+        }, 1000);
+    },
+    goNextQuestion() {
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        if (this.data.curIndex == this.data.answerItems.length) {
+            this.setData({
+                ["answerItem.disabled"]: true
+            });
+            this.goLink();
+            return;
+        }
+        //每题开始，初始化数据
+        this.setData({
+            showRightBox: false,
+            countdown: this.data.initDuration,
+            showRight: "",
+            curKey: "",
+            answerItem: {
+                ...this.data.answerItems[this.data.curIndex],
+                showId: this.data.curIndex + 1
+            }
+        });
+        //初始化后，curIndex再+1
+        this.setData({
+            curIndex: this.data.curIndex + 1
+        });
         this.setCountdown();
-      }
-    }, 1000);
-  },
-  goNextQuestion() {
-    if (this.timer) {
-      clearTimeout(this.timer);
+    },
+    goLink: function() {
+        const recordTimeStr = this.data.recordTime.join(",");
+        const correctAmount = this.data.correctAmount;
+
+        wx.redirectTo({
+            url: `/pages/game-over/game-over?account=${correctAmount}&time=${recordTimeStr}`,
+            success: function(res) {},
+            fail: function(res) {
+                console.log("fail:", res);
+            }
+        });
+    },
+    onLoad: function() {
+        getQuestionsRequest().then(res => {
+            this.setData({
+                answerItems: res.data
+            });
+            this.goNextQuestion();
+        });
+    },
+    onAnswer(param) {
+        answerQuestion(param);
+    },
+    onUnload() {
+        clearTimeout(this.timer);
     }
-    if (this.data.curIndex == this.data.answerItems.length) {
-      console.log(this.data.curIndex);
-      //最后一道题
-      /*
-      util.showModel(
-        "恭喜你，答对了" +
-          this.data.correctAmount +
-          "道题，总时长" +
-          this.data.recordTime +
-          "秒"
-      );
-      */
-      wx.redirectTo({
-        url: "/pages/game-over/game-over"
-      });
-      return;
-    }
-    //每题开始，初始化数据
-    this.setData({
-      countdown: this.data.initDuration,
-      curRight: false,
-      curWrong: false,
-      curKey: "",
-      answerItem: {
-        ...this.data.answerItems[this.data.curIndex],
-        id: this.data.curIndex + 1
-      }
-    });
-    //初始化后，curIndex再+1
-    this.setData({
-      curIndex: this.data.curIndex + 1
-    });
-    this.setCountdown();
-  },
-  onLoad: function() {
-    getQuestionsRequest().then(res => {
-      this.setData({
-        answerItems: res.data
-      });
-      this.goNextQuestion();
-    });
-  },
-  onAnswer(param) {
-    answerQuestion(param);
-  },
-  onUnload() {
-    clearTimeout(this.timer);
-  }
 });

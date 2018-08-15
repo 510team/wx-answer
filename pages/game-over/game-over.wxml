@@ -1,19 +1,20 @@
 <view class="game-over container">
     <view class="user-info">
         <image src="{{userInfo.avatarUrl}}"></image>
-        <view>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        </view>
     </view>
     <view class="play-score-wrapper">
         <view class="play-score-content">
+            <view class="new-record" wx:if='{{isNewRecord}}'>
+                <text class="iconfont icon-new"></text>
+            </view>
             <view class="m10 score">
+                本轮得
                 <text>{{currentScore}}</text>
                 分
             </view>
             <view class="m10 questions">
                 答对
-                <text>{{currentRound.questions}}</text>
+                <text>{{correctQues}}</text>
                 道题
             </view>
             <view class="border-box">
@@ -22,30 +23,40 @@
                 <view class="border border-right-bottom"></view>
                 <view class="border border-left-bottom"></view>
             </view>
+
         </view>
-        <view class="level_process">
-            <view class="process_wrap active">
-                <view class="process">
-                    <view class="process_line start"></view>
-                    <view class="process_circle">
-                        <text class="iconfont {{currentLevel.icon}}"></text>
+
+        <view class="level-info">
+            <view class="m10 high-score">
+                历史最高分
+                <text>{{highestScore}}</text>
+                分
+            </view>
+            <view class="level_process">
+                <view class="process_wrap active">
+                    <view class="process">
+                        <view class="process_line start"></view>
+                        <view class="process_circle">
+                            <text class="iconfont {{currentLevel.icon}}"></text>
+                        </view>
+                        <view class="process_line end"></view>
                     </view>
-                    <view class="process_line end"></view>
+                    <view class="process_name">
+                        <text>{{currentLevel.name}}</text>
+                    </view>
                 </view>
-                <view class="process_name">
-                    <text>{{currentLevel.name}}</text>
+                <view class="process_wrap">
+                    <view class="process">
+                        <view class="process_line start"></view>
+                        <view class="process_circle">
+                            <text class="iconfont  {{nextLevel.icon}}"></text>
+                        </view>
+                        <view class="process_line end"></view>
+                    </view>
                 </view>
             </view>
-            <view class="process_wrap">
-                <view class="process">
-                    <view class="process_line start"></view>
-                    <view class="process_circle">
-                        <text class="iconfont  {{nextLevel.icon}}"></text>
-                    </view>
-                    <view class="process_line end"></view>
-                </view>
-            </view>
         </view>
+
         <view class="upgrade">
             距
             <text>{{nextLevel.name}}</text>
@@ -56,6 +67,7 @@
     </view>
     <view class="footer">
         <button bindtap="onPlay">再来一局</button>
+        <button bindtap="onRanks">排行榜</button>
         <button class="share" open-type='share'>炫耀一下</button>
     </view>
 </view>

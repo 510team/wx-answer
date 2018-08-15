@@ -1,33 +1,36 @@
 .answers {
   padding: 0 5%;
-  font-size: 12px;
+  font-size: 14px;
   position: relative;
 }
 .alarm {
   position: fixed;
-  top: 20px;
+  top: 50px;
   right: 20px;
-  height: 32px;
-  line-height: 32px;
-  padding: 0 20px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.7);
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 100px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   z-index: 100;
 }
 .questions-box {
-  padding-top: 72px;
+  padding-top: 130px;
 }
 .question {
   line-height: 24px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   padding: 20px;
-  font-size: 14px;
 }
 .answer-box {
   margin-top: 10px;
   position: relative;
+}
+.title {
+  font-size: 16px;
 }
 .answer-box .icon {
   position: absolute;
@@ -36,17 +39,18 @@
   margin-top: 5px;
 }
 .answer-box button {
+  /*  绿色底边框 #5ca05f*/
   border: 0px;
   padding: 0;
   display: block;
   line-height: 30px;
   margin-left: 28px;
   text-align: left;
+  font-size: 15px;
   margin-bottom: 10px;
-  font-size: 14px;
   background: none;
   border-radius: 0px;
-  border-bottom: 1px dashed #5ca05f;
+  border-bottom: 1px dashed #ff777c;
   padding-left: 3px;
   color: rgba(0, 0, 0, 0.7);
 }
@@ -62,16 +66,24 @@ wx-button[disabled]:not([type]) {
 }
 .answer-box button.btn_hover,
 .answer-box .cur-btn {
-  color: #5ca05f;
+  color: #ff777c;
 }
 
-.right-box,
-.wrong-box {
+.right-box {
   position: fixed;
   text-align: center;
-  left: 0;
-  top: 0;
-  transform: translate(0, 200%) scale(0);
-  opacity: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -100%, 0) scale(0);
   z-index: 100;
+}
+.right-box image {
+  width: 30px;
+  height: 30px;
+}
+.show {
+  opacity: 1;
+}
+.hide {
+  opacity: 0;
 }

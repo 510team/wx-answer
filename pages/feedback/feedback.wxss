@@ -4,8 +4,8 @@
   margin: 20rpx auto;
   border: 1rpx solid #eee;
   border-radius: 10rpx;
-  padding: 10rpx;
-  font-size: 24rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
   background: rgba(255, 255, 255, 0.8);
 }
 .feedback .btn-area {

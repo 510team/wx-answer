@@ -20,7 +20,7 @@ const httpRequest = data => {
             if (res.data.success) {
               resolve(res.data);
             } else {
-              console.log(JSON.stringify(res));
+              // console.log(JSON.stringify(res));
               reject(res.data);
             }
           },

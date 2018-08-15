@@ -1,4 +1,4 @@
-import { Login, SaveUserInfo,FindUser } from "../config/index.js";
+import { Login, SaveUserInfo, FindUser } from "../config/index.js";
 import httpRequest from "../utils/request.js";
 
 //调用API获得Code
@@ -42,16 +42,14 @@ const getUserInfoApi = () => {
   });
 };
 
-
 //发送findUser Request
-const  findUserRequest = () => {
+const findUserRequest = () => {
   return httpRequest({
     method: FindUser.method,
     data: {},
     url: FindUser.url
   });
 };
-
 
 //请求服务端从code 获取OpenId，SessionKEY
 const loginRequest = code => {
@@ -75,7 +73,6 @@ const setUserRequest = (rawData, signature) => {
     url: SaveUserInfo.url
   });
 };
-
 
 export {
   loginApi,

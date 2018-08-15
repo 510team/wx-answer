@@ -8,14 +8,14 @@
     </view>
     <view wx:for="{{rankList}}" wx:for-item="rank" wx:key="{{index}}" class="item-box">
       <view class="rank-item">
-          <image class="rank-icon" wx:if="{{index === 0}}" mode="aspectFit" src="../../../assets/image/first.png"></image>
-          <image class="rank-icon" wx:elif="{{index === 1}}" mode="aspectFit" src="../../../assets/image/second.png"></image>
-          <image class="rank-icon" wx:elif="{{index === 2}}" mode="aspectFit" src="../../../assets/image/third.png"></image>
+          <image class="rank-icon" wx:if="{{index === 0}}" mode="aspectFit" src="https://cdn.adazhang.com/assets/image/first.png"></image>
+          <image class="rank-icon" wx:elif="{{index === 1}}" mode="aspectFit" src="https://cdn.adazhang.com/assets/image/second.png"></image>
+          <image class="rank-icon" wx:elif="{{index === 2}}" mode="aspectFit" src="https://cdn.adazhang.com/assets/image/third.png"></image>
           <text wx:else>{{index + 1}}</text>
       </view>
       <view class="rank-item info">
         <image mode="aspectFit" src="{{rank.avatar_url}}" class="rank-item image"></image>
-        <text>{{rank.nick_name}}</text>
+        <view class="nickName">{{rank.nick_name}}</view>
       </view>
       <text class="rank-item">{{rank.score || 0}}</text>
     </view>

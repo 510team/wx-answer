@@ -1,5 +1,5 @@
 import httpRequest from "../utils/request.js";
-import { GetLevel } from "../config/index";
+import { GetLevel, UpdateScore } from "../config/index";
 
 const getUserLevel = data => {
   return httpRequest({
@@ -9,4 +9,12 @@ const getUserLevel = data => {
   });
 };
 
-export { getUserLevel };
+const updateHighScore = data => {
+  return httpRequest({
+    method: UpdateScore.method,
+    url: UpdateScore.url,
+    data: { ...data }
+  });
+};
+
+export { getUserLevel, updateHighScore };
