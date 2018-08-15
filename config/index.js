@@ -1,5 +1,5 @@
-// const serverHost = "https://adazhang.com";
-const serverHost = "http://localhost:8362";
+const serverHost = "https://adazhang.com";
+// const serverHost = "http://localhost:8362";
 const Login = {
   url: `${serverHost}/login`,
   method: "get"

@@ -81,15 +81,13 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(options) {
-    console.log("options", options);
     if (options.from === "button") {
       console.log(options.target);
     }
-    debugger;
     return {
-      title: "快来拯救我～～～",
+      title: "敢来我pk下吗？",
       path: "pages/index/index",
-      imageUrl: "../../assets/image/index_bg@2x.png",
+      imageUrl: "../../assets/image/share.jpg",
       success: function(res) {
         console.log("res", res);
         /* const shareTickets = res.shareTickets;
