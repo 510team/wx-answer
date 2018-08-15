@@ -24,6 +24,7 @@
   border-radius: 80rpx;
   background: #ccc;
   margin: 20rpx 40rpx 20rpx 0;
+  float: left;
 }
 .ranks .info {
   flex: 2;
@@ -54,11 +55,11 @@
   vertical-align: middle;
 }
 .ranks .nickName {
-  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 60%;
+  float: left;
 }
 .ranks .info-box .item {
   flex: 1;
