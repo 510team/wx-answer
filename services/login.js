@@ -1,4 +1,4 @@
-import { Login, SaveUserInfo,FindUser } from "../config/index.js";
+import { Login, SaveUserInfo, FindUser } from "../config/index.js";
 import httpRequest from "../utils/request.js";
 
 //调用API获得Code
@@ -24,7 +24,12 @@ const getUserSettingApi = () => {
       success: res => {
         if (res.authSetting["scope.userInfo"]) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          console.log(
+            "已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框"
+          );
           resolve(res);
+        } else {
+          console.log("未授权，弹窗");
         }
       }
     });
@@ -42,16 +47,14 @@ const getUserInfoApi = () => {
   });
 };
 
-
 //发送findUser Request
-const  findUserRequest = () => {
+const findUserRequest = () => {
   return httpRequest({
     method: FindUser.method,
     data: {},
     url: FindUser.url
   });
 };
-
 
 //请求服务端从code 获取OpenId，SessionKEY
 const loginRequest = code => {
@@ -75,7 +78,6 @@ const setUserRequest = (rawData, signature) => {
     url: SaveUserInfo.url
   });
 };
-
 
 export {
   loginApi,
