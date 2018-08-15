@@ -1,0 +1,12 @@
+<!--pages/user-info/user-info.wxml-->
+<view class="user-box">
+  <view class="user-header">
+    <image class="h-img" src="{{userInfo.avatarUrl}}"></image>
+    <view class='h-level'>
+      <text class='level-1'>等级1小童</text> 
+    </view>
+  </view>
+  <view class="content">
+    none
+  </view>
+</view>

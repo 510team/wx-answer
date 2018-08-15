@@ -88,6 +88,9 @@ Page({
     wx.navigateTo({
       url: e.target.dataset.url
     });
+    wx.reportAnalytics('link_to_page', {
+      url: e.target.dataset.url
+    });
   },
   test() {
     testRequest().then(data => {

@@ -86,5 +86,8 @@ Page({
     wx.navigateTo({
       url: "/pages/answer/answer"
     });
+    wx.reportAnalytics('link_to_page', {
+      url: "/pages/answer/answer"
+    });
   }
 });

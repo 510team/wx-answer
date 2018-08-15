@@ -77,6 +77,9 @@ Page({
       });
     
     }
+    wx.reportAnalytics('action_tap_check', {
+      connet: userAnswer
+    });
   },
   setCountdown: function() {
     this.timer = setTimeout(() => {

@@ -8,7 +8,8 @@
     "pages/ranks/ranks",
     "pages/answer/answer",
     "pages/game-over/game-over",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/user-info/user-info"
   ],
   "window": {
     "backgroundTextStyle": "light",

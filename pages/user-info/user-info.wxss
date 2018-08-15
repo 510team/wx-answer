@@ -1,0 +1,20 @@
+/* pages/user-info/user-info.wxss */
+.user-box {
+  background-color: bisque;
+  height: 100vh;
+  text-align: center;
+}
+.user-header {
+  background-color:#71beff;
+  border-radius:0 0 60% 60%;
+  padding-bottom:50rpx;
+}
+.user-header .h-img {
+  height: 150rpx;
+  width: 150rpx;
+  margin-top:100rpx;
+  border-radius: 50%;
+}
+.user-header .h-level {
+
+}
