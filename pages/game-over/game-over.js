@@ -85,7 +85,7 @@ Page({
       console.log(options.target);
     }
     return {
-      title: "敢来我pk下吗？",
+      title: "敢来和我pk下吗？",
       path: "pages/index/index",
       imageUrl: "../../assets/image/share.jpg",
       success: function(res) {
