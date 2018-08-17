@@ -21,11 +21,21 @@ const httpRequest = data => {
               resolve(res.data);
             } else {
               // console.log(JSON.stringify(res));
+              if (res.data.errorCode == 100) {
+                wx.reLaunch({
+                  url: "../index/index"
+                });
+              }
               reject(res.data);
             }
           },
           fail: function(res) {
             console.log(JSON.stringify(res));
+            if (res.data.errorCode == 100) {
+              wx.reLaunch({
+                url: "../index/index"
+              });
+            }
             reject(res);
           }
         });
@@ -33,6 +43,9 @@ const httpRequest = data => {
       fail: res => {
         console.log("http request failed", code);
         console.log("not found code in storage");
+        wx.reLaunch({
+          url: "../index/index"
+        });
       }
     });
   });
