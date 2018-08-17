@@ -1,12 +1,5 @@
 //app.js
-import {
-  loginApi,
-  getUserInfoApi,
-  getUserSettingApi,
-  loginRequest,
-  setUserRequest,
-  findUserRequest
-} from "./services/login.js";
+import { loginAction } from "./services/login.js";
 
 App({
   onLaunch: function() {
@@ -20,41 +13,16 @@ App({
           },
           fail: err => {
             // 重新登录
-            loginApi()
-              .then(code => loginRequest(code))
-              .then(res => {
-                const data = res.data.data;
-                if (data && data.code) {
-                  wx.setStorage({
-                    key: "code",
-                    data: data.code
-                  });
-                }
-              })
-              .catch(data => {
-                console.error("storage存储code失败");
-              });
+            loginAction();
           }
         });
       },
       fail: res => {
-        loginApi()
-          .then(code => loginRequest(code))
-          .then(res => {
-            const data = res.data.data;
-            if (data && data.code) {
-              wx.setStorage({
-                key: "code",
-                data: data.code
-              });
-            }
-          })
-          .catch(data => {
-            console.error("storage存储code失败");
-          });
+        loginAction();
       }
     });
   },
+
   globalData: {
     userInfo: null,
     isLogin: false

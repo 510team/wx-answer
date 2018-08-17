@@ -1,4 +1,4 @@
-import { removeStorage } from "./util";
+import { goBackIndex } from "./util";
 const httpRequest = data => {
   return new Promise(function(resolve, reject) {
     console.log("http request", data.url);
@@ -23,10 +23,7 @@ const httpRequest = data => {
             } else {
               // console.log(JSON.stringify(res));
               if (res.data.errorCode == 100) {
-                wx.reLaunch({
-                  url: "../index/index"
-                });
-                removeStorage("code");
+                goBackIndex();
               }
               reject(res.data);
             }
@@ -34,10 +31,7 @@ const httpRequest = data => {
           fail: function(res) {
             console.log(JSON.stringify(res));
             if (res.data.errorCode == 100) {
-              wx.reLaunch({
-                url: "../index/index"
-              });
-              removeStorage("code");
+              goBackIndex();
             }
             reject(res);
           }
@@ -46,10 +40,7 @@ const httpRequest = data => {
       fail: res => {
         console.log("http request failed", code);
         console.log("not found code in storage");
-        wx.reLaunch({
-          url: "../index/index"
-        });
-        removeStorage("code");
+        goBackIndex();
       }
     });
   });

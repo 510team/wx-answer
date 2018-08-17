@@ -57,10 +57,18 @@ var removeStorage = key => {
   });
 };
 
+var goBackIndex = () => {
+  removeStorage("code");
+  wx.reLaunch({
+    url: "../index/index"
+  });
+};
+
 module.exports = {
   formatTime,
   showBusy,
   showSuccess,
   showModel,
-  removeStorage
+  removeStorage,
+  goBackIndex
 };

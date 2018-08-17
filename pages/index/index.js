@@ -1,5 +1,7 @@
 //index.js
 import httpRequest from "../../utils/request.js";
+import { loginAction } from "../../services/login.js";
+
 import {
   loginApi,
   getUserInfoApi,
@@ -25,6 +27,15 @@ Page({
     });
   },
   onLoad: function() {
+    wx.getStorage({
+      key: "code",
+      success: res => {
+        console.log("code in stroage");
+      },
+      fail: res => {
+        loginAction();
+      }
+    });
     wx.getStorage({
       key: "hasUserInfo",
       success: res => {
