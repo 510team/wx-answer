@@ -54,7 +54,6 @@ Page({
             }
         });
 
-        // 是否获取群信息
         wx.showShareMenu({
             withShareTicket: true
         });
