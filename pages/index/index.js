@@ -80,6 +80,11 @@ Page({
         data: e.detail.userInfo
       });
       setUserRequest(e.detail.rawData, e.detail.signature);
+      getUserLevel().then(res => {
+        this.setData({
+          level: res.current_level.name
+        });
+      });
     }
   },
   onNav(e) {

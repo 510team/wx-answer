@@ -5,7 +5,7 @@
         <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}" background-size="cover" ></image>
         <view>
             <text class="userinfo-nickname">{{userInfo.avatarUrl ? userInfo.nickName : '匿名'}}</text>
-            <text class="userinfo-nickname">（{{level || ''}}）</text>
+            <text class="userinfo-nickname">{{userInfo.avatarUrl ? '(' + level + ')' : ''}}</text>
         </view>
     </view>
 
