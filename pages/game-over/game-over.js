@@ -26,10 +26,20 @@ Page({
             quesTimes,
             options.account
         );
-
+        wx.getStorage({
+            key: "hasUserInfo",
+            success: res => {
+                console.log('game over hasUserinfo success',res);
+                this.setData({
+                    userInfo: res.data
+                });
+            },
+            fail: res => {
+                console.log('game over hasUserinfo fail',res);
+            }
+          });
         // 获取用户信息
         this.setData({
-            userInfo: app.globalData.userInfo,
             correctQues: options.account, //当前答对的题数
             currentScore: currentScores
         });
@@ -144,15 +154,20 @@ Page({
         let sum = 0; //用来存储最后得分
         for (let i = 0; i < items; i++) {
             const time = parseInt(arr[i]);
-            if (time >= 0 && time <= 3) {
+            if (time >= 0 && time <= 5) {
                 // 0~3秒
                 sum += 30;
-            } else if (time >= 4 && time <= 7) {
+            } else if (time > 5 && time <= 10) {
                 // 4～7秒
-                sum += 17;
-            } else if (time >= 8 && time <= 10) {
-                //8～10秒
+                sum += 15;
+
+            } else if (time >10 && time <= 20) {
+                // 4～7秒
                 sum += 10;
+                
+            }else if (time > 20 && time <= 30) {
+                //8～10秒
+                sum += 5;
             }
         }
         return sum;

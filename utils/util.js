@@ -35,15 +35,40 @@ var showSuccess = text =>
   });
 
 // 显示失败提示,需要用户点击
-var showModel = (title, content,callback) => {
+var showModel = (title, content, callback) => {
   wx.hideToast();
 
   wx.showModal({
     title,
     content: JSON.stringify(content) || "",
     showCancel: false,
-    success:callback
+    success: callback
   });
 };
 
-module.exports = { formatTime, showBusy, showSuccess, showModel };
+// 清理storgage
+
+var removeStorage = key => {
+  wx.removeStorage({
+    key: key,
+    success: function(res) {
+      console.log(key + "缓存已被清理");
+    }
+  });
+};
+
+var goBackIndex = () => {
+  removeStorage("code");
+  wx.reLaunch({
+    url: "../index/index"
+  });
+};
+
+module.exports = {
+  formatTime,
+  showBusy,
+  showSuccess,
+  showModel,
+  removeStorage,
+  goBackIndex
+};

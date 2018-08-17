@@ -1,3 +1,4 @@
+import { goBackIndex } from "./util";
 const httpRequest = data => {
   return new Promise(function(resolve, reject) {
     console.log("http request", data.url);
@@ -21,11 +22,17 @@ const httpRequest = data => {
               resolve(res.data);
             } else {
               // console.log(JSON.stringify(res));
+              if (res.data.errorCode == 100) {
+                goBackIndex();
+              }
               reject(res.data);
             }
           },
           fail: function(res) {
             console.log(JSON.stringify(res));
+            if (res.data.errorCode == 100) {
+              goBackIndex();
+            }
             reject(res);
           }
         });
@@ -33,6 +40,7 @@ const httpRequest = data => {
       fail: res => {
         console.log("http request failed", code);
         console.log("not found code in storage");
+        goBackIndex();
       }
     });
   });

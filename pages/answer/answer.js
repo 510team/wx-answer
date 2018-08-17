@@ -5,7 +5,7 @@ Page({
     loaded: false,
     timer: null,
     answer: "",
-    initDuration: 10, //每题最长时长
+    initDuration: 30, //每题最长时长
     curKey: "", //当前的key
     countdown: 0, //当前计时器的展示时间
     curIndex: 0, //当前题目的索引值
@@ -26,13 +26,15 @@ Page({
     // 回答正确题目继续，回答错误自动退出，超时直接退出
     this.setData({ curKey: e.target.dataset.key });
     const userAnswer = e.target.dataset.key;
-    this.onAnswer({
-      question_id: this.data.answerItem.id,
-      answer: userAnswer
-    });
+   
     const curDuration = this.data.initDuration - this.data.countdown;
     let recordTime = this.data.recordTime;
     recordTime.push(curDuration);
+    this.onAnswer({
+      question_id: this.data.answerItem.id,
+      answer: userAnswer,
+      duration:curDuration
+    });
     if (this.data.curKey == this.data.answerItem.answer) {
       this.setData({
         recordTime: recordTime,

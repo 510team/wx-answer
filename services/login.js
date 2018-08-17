@@ -74,11 +74,31 @@ const setUserRequest = (rawData, signature) => {
   });
 };
 
+const loginAction = () => {
+  return new Promise(() => {
+    loginApi()
+      .then(code => loginRequest(code))
+      .then(res => {
+        const data = res.data.data;
+        if (data && data.code) {
+          wx.setStorage({
+            key: "code",
+            data: data.code
+          });
+        }
+      })
+      .catch(data => {
+        console.error("storage存储code失败");
+      });
+  });
+};
+
 export {
   loginApi,
   getUserInfoApi,
   getUserSettingApi,
   loginRequest,
+  loginAction,
   setUserRequest,
   findUserRequest
 };
