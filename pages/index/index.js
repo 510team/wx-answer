@@ -27,61 +27,43 @@ Page({
     });
   },
   onLoad: function() {
+    //检查code
     wx.getStorage({
       key: "code",
       success: res => {
-        console.log("code in stroage");
+        wx.checkSession({
+          success: res => {
+            console.log("登陆状态未失效");
+          },
+          fail: err => {
+            // 重新登录
+            console.log("登陆状态失效");
+            loginAction();
+          }
+        });
       },
       fail: res => {
         loginAction();
       }
     });
-    wx.getStorage({
-      key: "hasUserInfo",
-      success: res => {
+    //检查userInfo
+    getUserInfoApi()
+      .then(res => {
         this.setData({
-          userInfo: res.data,
+          userInfo: res.userInfo,
           hasUserInfo: true
         });
-      },
-      fail: res => {
-        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-        // 所以此处加入 callback 以防止这种情况
-        app.userInfoReadyCallback = res => {
-          if (res.userInfo && res.userInfo.nickName && res.userInfo.avatarUrl) {
-            this.setData({
-              userInfo: res.userInfo,
-              hasUserInfo: true
-            });
-            console.log("userInfoReadyCallback", res);
-            return res;
-          }
-        };
-      }
-    });
+        wx.setStorage({
+          key: "hasUserInfo",
+          data: res.userInfo
+        });
+        return res;
+      })
+      .then(res => setUserRequest(res.rawData, res.signature));
   },
-  onShow() {
-    this.onLoad();
-  },
-  //事件处理函数
-  goDemo: function() {
-    wx.navigateTo({
-      url: "../demo/demo"
-    });
-  },
-  goPage: function(event) {
-    console.log(event);
-    wx.navigateTo({
-      url:
-        "../" +
-        event.currentTarget.dataset.url +
-        "/" +
-        event.currentTarget.dataset.url
-    });
-  },
+
   getUserInfo: function(e) {
     if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo;
       this.setData({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
@@ -90,27 +72,7 @@ Page({
         key: "hasUserInfo",
         data: e.detail.userInfo
       });
-    } else {
-      console.log("授权失败");
-      wx.openSetting({
-        success: res => {
-          if (res.authSetting["scope.userInfo"]) {
-            getUserInfoApi()
-              .then(res => {
-                this.setData({
-                  userInfo: res.userInfo,
-                  hasUserInfo: true
-                });
-                wx.setStorage({
-                  key: "hasUserInfo",
-                  data: res.userInfo
-                });
-                return res;
-              })
-              .then(res => setUserRequest(res.rawData, res.signature));
-          }
-        }
-      });
+      setUserRequest(e.detail.rawData, e.detail.signature);
     }
   },
   onNav(e) {
@@ -119,11 +81,6 @@ Page({
     });
     wx.reportAnalytics("link_to_page", {
       url: e.target.dataset.url
-    });
-  },
-  test() {
-    testRequest().then(data => {
-      console.log(data);
     });
   }
 });
