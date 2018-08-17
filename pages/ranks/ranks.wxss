@@ -31,6 +31,20 @@
   text-align: left;
   overflow: hidden;
 }
+.ranks .score {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 0;
+}
+.ranks .level {
+  display: inline-block;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.ranks .info-level {
+  height: 50rpx;
+  line-height: 50rpx;
+}
 .ranks .image-box {
   position: relative;
 }

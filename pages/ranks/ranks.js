@@ -7,6 +7,7 @@ Page({
     rankList: [],
     currentRank: 1,
     score: 0,
+    level: "",
     user: {},
     offset: 0,
     count: 10,
@@ -63,6 +64,7 @@ Page({
       rankList: [...this.data.rankList, ...data.rankList],
       currentRank: data.currentRank,
       score: data.score,
+      level: data.level,
       user: data.user,
       offset: this.data.offset + this.data.count,
       amount: data.amount

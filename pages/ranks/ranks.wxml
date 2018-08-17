@@ -4,7 +4,10 @@
         <view class="item">
           <image mode="aspectFit" src="{{user.avatarUrl}}" class="info-image"></image>
         </view>
-        <view class="item">{{score || 0}}分</view>
+        <view class="item score">
+          <text class="info-level">{{score || 0}}分</text>
+          <text class="info-level">{{level || ''}}</text>
+      </view>
     </view>
     <view wx:for="{{rankList}}" wx:for-item="rank" wx:key="{{index}}" class="item-box">
       <view class="rank-item">
@@ -17,7 +20,10 @@
         <image mode="aspectFit" src="{{rank.avatar_url}}" class="rank-item image"></image>
         <view class="nickName">{{rank.nick_name}}</view>
       </view>
-      <text class="rank-item">{{rank.score || 0}}</text>
+      <view class="rank-item score">
+        <text class="level">{{rank.score || 0}}</text>
+        <text class="level">{{rank.name || ''}}</text>
+      </view>
     </view>
     <view class="loading-content" hidden="{{isHideLoadMore}}">
       <view class="loading-icon"></view>
