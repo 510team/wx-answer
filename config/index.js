@@ -14,7 +14,7 @@ const AnswerQuestion = {
 };
 
 const SaveUserInfo = {
-  url: `${serverHost}/login/setUser`,
+  url: `${serverHost}/user/setUser`,
   method: "post"
 };
 
