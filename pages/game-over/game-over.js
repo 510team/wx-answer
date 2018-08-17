@@ -26,10 +26,20 @@ Page({
             quesTimes,
             options.account
         );
-
+        wx.getStorage({
+            key: "hasUserInfo",
+            success: res => {
+                console.log('game over hasUserinfo success',res);
+                this.setData({
+                    userInfo: res.data
+                });
+            },
+            fail: res => {
+                console.log('game over hasUserinfo fail',res);
+            }
+          });
         // 获取用户信息
         this.setData({
-            userInfo: app.globalData.userInfo,
             correctQues: options.account, //当前答对的题数
             currentScore: currentScores
         });
