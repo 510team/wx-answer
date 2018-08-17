@@ -1,6 +1,7 @@
 //index.js
 import httpRequest from "../../utils/request.js";
 import { loginAction } from "../../services/login.js";
+import { getUserLevel } from "../../services/game-over";
 
 import {
   loginApi,
@@ -18,6 +19,7 @@ Page({
     motto: "Hello World",
     userInfo: {},
     hasUserInfo: false,
+    level: "",
     canIUse: wx.canIUse("button.open-type.getUserInfo")
   },
   //事件处理函数
@@ -31,6 +33,11 @@ Page({
     wx.getStorage({
       key: "code",
       success: res => {
+        getUserLevel().then(res => {
+          this.setData({
+            level: res.current_level.name
+          });
+        });
         wx.checkSession({
           success: res => {
             console.log("登陆状态未失效");
