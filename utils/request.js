@@ -1,3 +1,4 @@
+import { removeStorage } from "./util";
 const httpRequest = data => {
   return new Promise(function(resolve, reject) {
     console.log("http request", data.url);
@@ -25,6 +26,7 @@ const httpRequest = data => {
                 wx.reLaunch({
                   url: "../index/index"
                 });
+                removeStorage("code");
               }
               reject(res.data);
             }
@@ -35,6 +37,7 @@ const httpRequest = data => {
               wx.reLaunch({
                 url: "../index/index"
               });
+              removeStorage("code");
             }
             reject(res);
           }
@@ -46,6 +49,7 @@ const httpRequest = data => {
         wx.reLaunch({
           url: "../index/index"
         });
+        removeStorage("code");
       }
     });
   });
