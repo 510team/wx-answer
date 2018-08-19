@@ -1,0 +1,11 @@
+<!-- index.wxml -->
+<view class="container">
+    <view class="pic-box" wx:for="{{pics}}" wx:for-item="pic" wx:key="*this" wx:for-index="index">
+        <view class="{{index < changeNum ? 'enable' : 'disabled'}}" >
+            <image mode="widthFix" src="{{'http://localhost:8362'+pic}}"></image>
+            <button class="pic-btn" data-index="{{index}}" data-src="{{pic}}" bindtap="onTapChange">
+                更换
+            </button>
+        </view>
+    </view>
+</view>
