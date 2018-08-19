@@ -1,5 +1,5 @@
-// const serverHost = "https://adazhang.com";
-const serverHost = "http://localhost:8362";
+const serverHost = "https://adazhang.com";
+// const serverHost = "http://localhost:8362";
 const Login = {
   url: `${serverHost}/login`,
   method: "get"
@@ -47,6 +47,17 @@ const addFeedback = {
   method: "post"
 };
 
+//获取背景图
+const GetAllBackground = {
+  url: `${serverHost}/background`,
+  method: "get"
+};
+//设置背景图
+const SetBackground = {
+  url: `${serverHost}/background/updateBackground`,
+  method: "post"
+};
+
 export {
   FindUser,
   Login,
@@ -57,5 +68,7 @@ export {
   UpdateScore,
   AnswerQuestion,
   GetLevel,
-  addFeedback
+  addFeedback,
+  GetAllBackground,
+  SetBackground
 };

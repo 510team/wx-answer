@@ -22,6 +22,7 @@
             <button bindtap="onNav" data-url="/pages/ranks/ranks">排行榜</button>
             <button bindtap="onNav" data-url="/pages/feedback/feedback">设置</button>
             <button bindtap="onShare" open-type='share'>分享给朋友</button>
+            <!-- <button bindtap="onNav" data-url="/pages/background/background">更换壁纸</button> -->
         </view>
   </view>
 </view>
