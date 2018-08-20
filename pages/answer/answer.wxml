@@ -20,9 +20,9 @@
                     {{answerItem.showId+"、"}} {{answerItem.title}} 请作答：
                 </text>
                 <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
-                    <image class="icon" src="../../assets/image/list_icon.png" />
                     <button class="{{curKey==item.key?'cur-btn':''}}" data-key="{{item.key}}" data-value="{{item.value}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
-                        {{item.value}}
+                        <image class="icon" src="../../assets/image/list_icon.png" />
+                        <view class="word">{{item.value}}</view>
                     </button>
                 </view>
             </view>

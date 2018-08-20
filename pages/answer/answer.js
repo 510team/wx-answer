@@ -26,14 +26,14 @@ Page({
     // 回答正确题目继续，回答错误自动退出，超时直接退出
     this.setData({ curKey: e.target.dataset.key });
     const userAnswer = e.target.dataset.key;
-   
+
     const curDuration = this.data.initDuration - this.data.countdown;
     let recordTime = this.data.recordTime;
     recordTime.push(curDuration);
     this.onAnswer({
       question_id: this.data.answerItem.id,
       answer: userAnswer,
-      duration:curDuration
+      duration: curDuration
     });
     if (this.data.curKey == this.data.answerItem.answer) {
       this.setData({
@@ -118,7 +118,7 @@ Page({
           showRightBox: true
         });
         this.animationFun(function() {
-          _self.goLink();
+          // _self.goLink();
         });
       } else {
         _self.setCountdown();
