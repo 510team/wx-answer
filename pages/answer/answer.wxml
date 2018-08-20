@@ -1,5 +1,5 @@
 <view class="answers">
-    <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
+    <image src="{{backgroundUrl}}" class="container-bg"></image>
     <view class="loading-box" class="{{loaded ? 'hide' : 'show'}}">
         <view class="loading-icon">
             <view class="spinner">

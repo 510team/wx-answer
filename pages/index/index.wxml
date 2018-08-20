@@ -1,17 +1,18 @@
 <!-- index.wxml -->
 <view class="container">
-    <image src="../../assets/image/index_bg@2x.png" class="container-bg"></image>
+    <image src="{{backgroundUrl}}" class="container-bg"></image>
     <view class="userinfo" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-        <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}" background-size="cover" ></image>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}" background-size="cover"></image>
         <view>
             <text class="userinfo-nickname">{{userInfo.avatarUrl ? userInfo.nickName : '匿名'}}</text>
             <text class="userinfo-nickname">{{userInfo.avatarUrl ? '(' + level + ')' : ''}}</text>
         </view>
     </view>
-
-  <view class="content">
-        <view  wx:if="{{!hasUserInfo}}">
-            <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取授权</button>
+    <view class="content">
+        <view wx:if="{{!hasUserInfo}}">
+            <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+                获取授权
+            </button>
             <view class="tips" wx:else>
                 <view>当前微信版本过低，为了更好的体验,</view>
                 <view>请您升级微信版本后再来</view>
@@ -22,7 +23,7 @@
             <button bindtap="onNav" data-url="/pages/ranks/ranks">排行榜</button>
             <button bindtap="onNav" data-url="/pages/feedback/feedback">设置</button>
             <button bindtap="onShare" open-type='share'>分享给朋友</button>
-            <!-- <button bindtap="onNav" data-url="/pages/background/background">更换壁纸</button> -->
+            <button bindtap="onNav" data-url="/pages/background/background">更换壁纸</button>
         </view>
-  </view>
+    </view>
 </view>

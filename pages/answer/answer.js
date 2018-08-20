@@ -1,5 +1,5 @@
 import { getQuestionsRequest, answerQuestion } from "../../services/answer.js";
-
+const app = getApp();
 Page({
   data: {
     loaded: false,
@@ -15,11 +15,14 @@ Page({
     answerItems: [], //所有题目
     showRightBox: false, //动画框是否显示
     showRight: "", //动画l类型
-    animationData: {}
+    animationData: {},
+    backgroundUrl: ""
   },
   onReady: function() {
     // 页面渲染完成,实例化一个动画
     this.animationReset();
+    this.setData({ backgroundUrl: app.globalData.background });
+    console.log(app.globalData.background);
   },
   onTapCheck: function(e) {
     var _self = this;
