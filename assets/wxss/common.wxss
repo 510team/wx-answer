@@ -1,5 +1,5 @@
 .main {
-  display: inline-block;
+    display: inline-block;
 }
 .wx-btn {
     width: 80%;
@@ -7,8 +7,36 @@
     height: 80rpx;
     text-align: center;
     line-height: 80rpx;
-    background: #1AAD19;
-    border: 1px solid rgba(5,5,5,0.08);
+    background: #1aad19;
+    border: 1px solid rgba(5, 5, 5, 0.08);
     border-radius: 10rpx;
     color: #fff;
+}
+
+.table {
+    border: 1px solid #dadada;
+    width: 98%;
+}
+.tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.th,
+.td {
+    padding: 10px;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    text-align: center;
+    width: 100%;
+}
+.td:last-child,
+.th:last-child {
+    border-right: 0px;
+}
+.tr:last-child .td {
+    border-bottom: 0px;
+}
+.th {
+    font-weight: 400;
 }
