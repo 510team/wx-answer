@@ -1,5 +1,5 @@
 import { getQuestionsRequest, answerQuestion } from "../../services/answer.js";
-
+const app = getApp();
 Page({
   data: {
     loaded: false,
@@ -15,25 +15,28 @@ Page({
     answerItems: [], //所有题目
     showRightBox: false, //动画框是否显示
     showRight: "", //动画l类型
-    animationData: {}
+    animationData: {},
+    backgroundUrl: ""
   },
   onReady: function() {
     // 页面渲染完成,实例化一个动画
     this.animationReset();
+    this.setData({ backgroundUrl: app.globalData.background });
+    console.log(app.globalData.background);
   },
   onTapCheck: function(e) {
     var _self = this;
     // 回答正确题目继续，回答错误自动退出，超时直接退出
     this.setData({ curKey: e.target.dataset.key });
     const userAnswer = e.target.dataset.key;
-   
+
     const curDuration = this.data.initDuration - this.data.countdown;
     let recordTime = this.data.recordTime;
     recordTime.push(curDuration);
     this.onAnswer({
       question_id: this.data.answerItem.id,
       answer: userAnswer,
-      duration:curDuration
+      duration: curDuration
     });
     if (this.data.curKey == this.data.answerItem.answer) {
       this.setData({
@@ -118,7 +121,7 @@ Page({
           showRightBox: true
         });
         this.animationFun(function() {
-          _self.goLink();
+          // _self.goLink();
         });
       } else {
         _self.setCountdown();

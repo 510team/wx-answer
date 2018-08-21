@@ -94,10 +94,9 @@
   line-height: 24px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
-  padding: 20px;
+  padding: 20px 20px 30px;
 }
 .answer-box {
-  margin-top: 10px;
   position: relative;
 }
 .title {
@@ -107,22 +106,26 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  margin-top: 5px;
+  left: 0px;
+  top: 13px;
+}
+.answer-box .word {
+  margin-left: 26px;
 }
 .answer-box button {
   /*  绿色底边框 #5ca05f*/
+  position: relative;
   border: 0px;
   padding: 0;
   display: block;
-  line-height: 30px;
-  margin-left: 28px;
-  text-align: left;
-  font-size: 15px;
-  margin-bottom: 10px;
   background: none;
+  font-size: 15px;
+  line-height: 48px;
+  text-align: left;
   border-radius: 0px;
   border-bottom: 1px dashed #ff777c;
   padding-left: 3px;
+  margin-top: 3px;
   color: rgba(0, 0, 0, 0.7);
 }
 /* 去掉默认边框 */
