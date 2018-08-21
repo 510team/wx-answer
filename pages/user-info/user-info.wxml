@@ -11,16 +11,16 @@
   <view class="user-header">
     <image class="h-img" src="{{userInfo.avatarUrl}}"></image>
     <view class='user-info'>
-      <text class="i-name">人不言</text>
-      <text>积分: 0</text>
-      <text>级别: --</text>
+      <text class="i-name">{{userInfo.nickName}}</text>
+      <text>得分: {{userInfo.total_score}}</text>
+      <text>级别: {{userInfo.level}}</text>
     </view>
   </view>
   <view class="user-cxt table">
     <view class="tr">
       <view class="c-item td">
         <text>答题数</text>
-        <text class="item-num">0</text>
+        <text class="item-num">{{userInfo.score}}</text>
       </view>
       <view class="c-item td">
         <text>正确数</text>
