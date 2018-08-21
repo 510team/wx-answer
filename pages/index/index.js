@@ -3,6 +3,7 @@ import httpRequest from "../../utils/request.js";
 import { loginAction } from "../../services/login.js";
 import { getUserLevel } from "../../services/game-over";
 import { getAllBackground } from "../../services/background";
+import { serverHost } from "../../config/index";
 
 import {
   loginApi,
@@ -14,8 +15,6 @@ import {
 import { testRequest, updateScoreRequest } from "../../services/test.js";
 //获取应用实例
 const app = getApp();
-// const serverHost = "https://adazhang.com";
-const serverHost = "http://localhost:8362";
 
 Page({
   data: {

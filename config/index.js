@@ -1,5 +1,6 @@
 // const serverHost = "https://adazhang.com";
 const serverHost = "http://localhost:8362";
+
 const Login = {
   url: `${serverHost}/login`,
   method: "get"
@@ -59,6 +60,7 @@ const SetBackground = {
 };
 
 export {
+  serverHost,
   FindUser,
   Login,
   SaveUserInfo,

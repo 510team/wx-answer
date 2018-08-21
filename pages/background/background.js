@@ -1,10 +1,9 @@
 import { getUserLevel } from "../../services/game-over";
 import { getAllBackground, setBackground } from "../../services/background";
 import { showModal } from "../../utils/util";
+import { serverHost } from "../../config/index";
 
 const app = getApp();
-// const serverHost = "https://adazhang.com";
-const serverHost = "http://localhost:8362";
 
 Page({
   data: {
@@ -17,9 +16,10 @@ Page({
     const pic = e.target.dataset.src;
     if (index < this.data.changeNum) {
       //更换壁纸
+      // const picUrl = pic.
       setBackground({ img: pic }).then(res => {
         if (res.success) {
-          app.globalData.background = serverHost + pic;
+          app.globalData.background = pic;
           showModal({
             title: "更换成功",
             content: "赶紧去首页看看效果吧！",
@@ -62,16 +62,20 @@ Page({
     }
   },
   onLoad: function() {
-    this.setData({ backgroundUrl: app.globalData.background });
     // const userInfo = app.globalData.userInfo;
     // wx.showLoading({
     //   mask: true
     // });
     getAllBackground().then(res => {
-      // debugger;
       if (res.success) {
+        var pics = [];
+        if (res.data.lists.length > 0) {
+          pics = res.data.lists.map(item => {
+            return serverHost + item;
+          });
+        }
         this.setData({
-          pics: res.data.lists,
+          pics: pics,
           cur: res.data.cur
         });
       } else {
