@@ -95,13 +95,12 @@ Page({
             url: e.target.dataset.url
         });
     },
-    onShare(options) {
+    onShareAppMessage(options) {
         if (options.from === "button") {
             console.log(options.target);
         }
         return {
             title: "敢来和我pk下吗？",
-            path: "pages/index/index",
             imageUrl: "../../assets/image/share.jpg",
             success: function (res) {
                 console.log("res", res);
