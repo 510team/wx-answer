@@ -102,7 +102,7 @@ Page({
       url: e.target.dataset.url
     });
   },
-  onShare(options) {
+  onShareAppMessage(options) {
     if (options.from === "button") {
       console.log(options.target);
     }
