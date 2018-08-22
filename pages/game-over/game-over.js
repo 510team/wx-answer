@@ -1,4 +1,8 @@
 import { getUserLevel, updateHighScore } from "../../services/game-over";
+
+// import { loginApi, loginRequest } from "../../services/login.js";
+// import WXBizDataCrypt from "../../utils/RdWXBizDataCrypt";
+
 // 使用app.js中拿到的用户信息
 const app = getApp();
 Page({
@@ -24,15 +28,26 @@ Page({
     const quesTimes = options.time.split(",");
     const currentScores = this.onCalculateScores(quesTimes, options.account);
 
-    // 获取用户信息
     this.setData({
-      userInfo: app.globalData.userInfo,
       correctQues: options.account, //当前答对的题数
       currentScore: currentScores
     });
+
+    // 获取用户信息
+    wx.getStorage({
+      key: "hasUserInfo",
+      success: res => {
+        console.log("game over hasUserinfo success", res);
+        this.setData({
+          userInfo: res.data
+        });
+      },
+      fail: res => {
+        console.log("game over hasUserinfo fail", res);
+      }
+    });
     // 添加分数到score表
     updateHighScore({ score: currentScores }).then(res => {
-      console.log("res", res);
       if (res.success) {
         this.setData({
           isNewRecord: res.data.new_record
@@ -81,23 +96,46 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(options) {
-    if (options.from === "button") {
-      console.log(options.target);
-    }
     return {
       title: "我获得了“" + this.data.currentLevel.name + "”称号，敢来pk吗？",
       path: "pages/index/index",
       imageUrl: "../../assets/image/share.jpg",
       success: function(res) {
         console.log("res", res);
-        /* const shareTickets = res.shareTickets;
+        const shareTickets = res.shareTickets; // 只有转发到群聊中打开才可以获取到sharetickets
         if (shareTickets.length == 0) {
           return false;
         }
+
         // 获取群信息
         wx.getShareInfo({
-          shareTicket: shareTickets[0]
-        }); */
+          shareTicket: shareTickets[0],
+          success: function(res) {
+            /* const iv = res.iv;
+            const encryptedData = res.encryptedData;
+            const appId = "wx2540d7f2157d37aa";
+
+            loginApi()
+              .then(code => loginRequest(code))
+              .then(res => {
+                // 会获取到群的openGid，当用户通过点击分享的卡片之后就可以将用户与群绑定
+                const pc = new WXBizDataCrypt(appId, res.data.data.session_key);
+                const data = pc.decryptData(encryptedData, iv);
+                console.log("解密后 data: ", data);
+              }); */
+
+            wx.showToast({
+              title: "转发成功",
+              duration: 5000
+            });
+          },
+          fail: function(res) {
+            wx.showToast({
+              title: "fail" + res.errMsg,
+              duration: 5000
+            });
+          }
+        });
       },
       fail: function(res) {
         console.log("转发到群失败");
