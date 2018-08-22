@@ -2,7 +2,8 @@
 <view class="container">
     <image src="{{backgroundUrl}}" class="container-bg"></image>
     <view class="userinfo" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-        <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}" background-size="cover"></image>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl ? userInfo.avatarUrl : '../../assets/image/index_bg@2x.png'}}" background-size="cover"
+            bindtap="onNav" data-url="/pages/user-info/user-info"></image>
         <view>
             <text class="userinfo-nickname">{{userInfo.avatarUrl ? userInfo.nickName : '匿名'}}</text>
             <text class="userinfo-nickname">{{userInfo.avatarUrl ? '(' + level + ')' : ''}}</text>

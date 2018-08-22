@@ -1,20 +1,75 @@
-/* pages/user-info/user-info.wxss */
+@import "../../assets/wxss/common.wxss";
 .user-box {
-  background-color: bisque;
-  height: 100vh;
-  text-align: center;
+    background: linear-gradient(#fee4eb, #ee9fbc, #ee9fbc);
+    height: 100vh;
+    text-align: left;
+    padding: 0 40rpx;
+    font-size: 12px;
 }
 .user-header {
-  background-color:#71beff;
-  border-radius:0 0 60% 60%;
-  padding-bottom:50rpx;
+    display: flex;
+    padding-top: 50rpx;
 }
 .user-header .h-img {
-  height: 150rpx;
-  width: 150rpx;
-  margin-top:100rpx;
-  border-radius: 50%;
+    height: 150rpx;
+    width: 150rpx;
+    border-radius: 50%;
+    margin-right: 50rpx;
+    border: 2px solid #ee9fbc;
 }
-.user-header .h-level {
+.user-header .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.user-header .user-info text {
+    display: block;
+    color: #fff;
+}
+.user-header .user-info text.i-name {
+    font-size: 16px;
+}
 
+.user-cxt {
+    margin-top: 50rpx;
+    border-radius: 20rpx;
+    background-color: #fff;
+    color: #ccc;
+    font-size: 14px;
+    box-shadow: 4px 4px 6px 2px rgba(150, 150, 150, 0.5);
 }
+.user-cxt .c-item {
+    padding: 20rpx;
+}
+.user-cxt .c-item .item-num {
+    margin-top: 8rpx;
+    display: block;
+    color: red;
+}
+/* .user-header {
+    height: 350rpx;
+    overflow: hidden;
+    position: relative;
+    .h-bg {
+    height: 100%;
+    width: 110vw;
+    background-color: #71beff;
+    border-radius: 0 0 50% 50%;
+    transform: translateX(-5vw);
+    position: absolute;
+    z-index: 0;
+    top: 0;
+}
+.h-cxt {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+}
+.h-img {
+    height: 150rpx;
+    width: 150rpx;
+    margin-top: 50rpx;
+    border-radius: 50%;
+}
+} */

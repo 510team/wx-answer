@@ -1,12 +1,41 @@
-<!--pages/user-info/user-info.wxml-->
 <view class="user-box">
+  <!-- <view class="user-header">
+    <view class='h-cxt'>
+      <image class="h-img" src="{{userInfo.avatarUrl}}"></image>
+      <view class='h-level'>
+        <text class='level-1'>等级1小童</text>
+      </view>
+    </view>
+    <view class='h-bg'></view>
+  </view> -->
   <view class="user-header">
     <image class="h-img" src="{{userInfo.avatarUrl}}"></image>
-    <view class='h-level'>
-      <text class='level-1'>等级1小童</text> 
+    <view class='user-info'>
+      <text class="i-name">{{userInfo.nickName}}</text>
+      <text>得分: {{userInfo.total_score}}</text>
+      <text>级别: {{userInfo.level}}</text>
     </view>
   </view>
-  <view class="content">
-    none
+  <view class="user-cxt table">
+    <view class="tr">
+      <view class="c-item td">
+        <text>答题数</text>
+        <text class="item-num">{{userInfo.score}}</text>
+      </view>
+      <view class="c-item td">
+        <text>正确数</text>
+        <text class="item-num">0</text>
+      </view>
+    </view>
+    <view class="tr">
+      <view class="c-item td">
+        <text>错误数</text>
+        <text class="item-num">0</text>
+      </view>
+      <view class="c-item td">
+        <text>分享次数</text>
+        <text class="item-num">0</text>
+      </view>
+    </view>
   </view>
 </view>
