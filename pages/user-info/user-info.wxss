@@ -1,6 +1,8 @@
 @import "../../assets/wxss/common.wxss";
+.container-bg {
+    filter: blur(30px);
+}
 .user-box {
-    background: linear-gradient(#fee4eb, #ee9fbc, #ee9fbc);
     height: 100vh;
     text-align: left;
     padding: 0 40rpx;
@@ -15,7 +17,7 @@
     width: 150rpx;
     border-radius: 50%;
     margin-right: 50rpx;
-    border: 2px solid #ee9fbc;
+    border: 2px solid #fff;
 }
 .user-header .user-info {
     display: flex;
@@ -25,6 +27,7 @@
 .user-header .user-info text {
     display: block;
     color: #fff;
+    text-shadow: 2px 2px 1px #c7c7c74a;
 }
 .user-header .user-info text.i-name {
     font-size: 16px;

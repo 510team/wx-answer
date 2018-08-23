@@ -1,4 +1,5 @@
 <view class="user-box">
+    <image src="{{userInfo.avatarUrl}}" class="container-bg"></image>
   <!-- <view class="user-header">
     <view class='h-cxt'>
       <image class="h-img" src="{{userInfo.avatarUrl}}"></image>
