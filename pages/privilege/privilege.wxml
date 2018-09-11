@@ -4,7 +4,7 @@
 !-->
     <view wx:if="{{hasPrivilege}}" class="tips">
         <image src="../../assets/image/star.png"></image>
-        <view>哇塞，太棒了，您已经达到了院长水平</view>
+        <view>哇塞，太棒了，您已经达到了叫兽水平</view>
         <view>可以解锁自定义背景图片功能呦</view>
         <view>赶快来试试吧，您上传的背景图片</view>
         <view>只要通过审核，所有人都会看到的呢</view>
@@ -12,7 +12,7 @@
     </view>
     <view wx:else class="tips">
         <image src="../../assets/image/star.png"></image>
-        <view>只有达到院长水平，才可以自定义背景图片呢</view>
+        <view>只有达到叫兽水平，才可以自定义背景图片呢</view>
         <view>您上传的背景图片，只要通过审核，所有人都会看到</view>
         <view>想解锁此功能，请继续加油努力~</view>
         <button bindtap="onPlay" class="go-play">去赢第一名</button>

@@ -45,11 +45,13 @@
                 <view>意见反馈</view>
                 <view class="tips">欢迎来吐槽</view>
             </view>
+            <!--
             <view class="box" bindtap="onNav" data-url="/pages/redeem/redeem">
                 <image src="../../assets/image/redeem.png" class="icon-image"></image>
                 <view>积分兑换</view>
                 <view class="tips">敬请期待</view>
             </view>
+            -->
         </view>
     </view>
 </view>

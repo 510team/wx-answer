@@ -7,6 +7,6 @@
     <view class="content-box">
         <view class="title">分享奖励</view>
         <view class="description">每天首次分享到微信群，可获得30积分</view>
-        <button class="btn" bindtap="onShare" open-type='share' disabled="{{!canShare}}">{{canShare ? '分享' : '已分享'}}</button>
+        <button class="btn" open-type='share' disabled="{{!canShare}}">{{canShare ? '分享' : '已分享'}}</button>
     </view>
 </view>
