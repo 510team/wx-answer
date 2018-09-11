@@ -20,33 +20,33 @@
             </view>
         </view>
         <view wx:if="{{hasUserInfo}}">
-            <view class="box" bindtap="onNav" data-url="/pages/answer/answer">
+            <view class="box" hover-class="on-tap" bindtap="onNav" data-url="/pages/answer/answer">
                 <image src="../../assets/image/start.png" class="icon-image"></image>
                 <view>开始答题</view>
                 <view class="tips">海量题库，等你来挑战</view>
             </view>
-            <view class="box" bindtap="onNav" data-url="/pages/ranks/ranks">
+            <view class="box" hover-class="on-tap" bindtap="onNav" data-url="/pages/ranks/ranks">
                 <image src="../../assets/image/rank.png" class="icon-image"></image>
                 <view>排行榜</view>
                 <view class="tips">快来看看自己的排名</view>
             </view>
-            <view class="box" class="box" bindtap="onNav" data-url="/pages/daily-task/daily-task">
+            <view class="box" hover-class="on-tap" bindtap="onNav" data-url="/pages/daily-task/daily-task">
                 <image src="../../assets/image/diamond.png" class="icon-image"></image>
                 <view>每日任务</view>
                 <view class="tips">每日登录，领取积分和复活卡</view>
             </view>
-            <view class="box" class="box" bindtap="onNav" data-url="/pages/privilege/privilege">
+            <view class="box" hover-class="on-tap" bindtap="onNav" data-url="/pages/privilege/privilege">
                 <image src="../../assets/image/privilege.png" class="icon-image"></image>
                 <view>我的特权</view>
                 <view class="tips">背景图片，由你来决定</view>
             </view>
-            <view class="box" bindtap="onNav" data-url="/pages/feedback/feedback">
+            <view class="box" hover-class="on-tap" bindtap="onNav" data-url="/pages/feedback/feedback">
                 <image src="../../assets/image/setting.png" class="icon-image"></image>
                 <view>意见反馈</view>
                 <view class="tips">欢迎来吐槽</view>
             </view>
             <!--
-            <view class="box" bindtap="onNav" data-url="/pages/redeem/redeem">
+            <view class="box" hover-class="on-tap" bindtap="onNav" data-url="/pages/redeem/redeem">
                 <image src="../../assets/image/redeem.png" class="icon-image"></image>
                 <view>积分兑换</view>
                 <view class="tips">敬请期待</view>

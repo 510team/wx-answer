@@ -67,3 +67,7 @@
 .tips {
   font-size: 20rpx;
 }
+.on-tap {
+  background: #7299f8;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
