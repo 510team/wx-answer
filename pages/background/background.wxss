@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+}
+.pic-box {
+  display: inline-block;
+  width: 40%;
+  height: auto;
+  margin: 20px 5% 0;
+  text-align: center;
+  overflow: hidden;
+}
+.pic-box .disabled image {
+  /* filter: opacity(60%); */
+  filter: blur(4px);
+}
+.pic-box .disabled button {
+  filter: opacity(60%);
+  color: #ccc;
+}
+.pic-box .enable button {
+  background: #ff777c;
+  color: #ffffff;
+}
+.pic-box image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pic-box button {
+  margin-top: 10px;
+}

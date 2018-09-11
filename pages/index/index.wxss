@@ -1,18 +1,17 @@
 /**index.wxss**/
 
-.container{
-  padding-top:100rpx;
+.container {
+  padding-top: 10rpx;
+  /* background: #eee; */
+  padding: 20rpx 3%;
 }
-.userinfo{
-  height: 140rpx;
-  width: 100%;
-  color:#fff;
-  /* border: 1px solid rgba(0, 0, 0, .1); */
-  border-left: none;
-  border-right: none;
+.userinfo {
+  margin-bottom: 20rpx;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10rpx;
   text-align: center;
-  margin-top:10rpx;
-  transition: all 300ms ease;
 }
 
 .userinfo-avatar {
@@ -20,18 +19,51 @@
   height: 150rpx;
   margin: 10rpx;
   border-radius: 50%;
-  border:2px solid #fff;
+  border: 2px solid #fff;
 }
 
 .userinfo-nickname {
   font-size: 32rpx;
-  /* color: #007AFF; */
 }
-.content{
-  margin-top:150rpx;
-  padding:0 30rpx;
+.content button {
+  width: 500rpx;
+  margin: 60rpx auto;
 }
-.content button{
-  width:500rpx;
-  margin:60rpx auto;
+.box {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 48%;
+  height: 100%;
+  padding: 20rpx;
+  margin-bottom: 4%;
+  border-radius: 10rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 28rpx;
+  background: #91b1ff;
+}
+.box:nth-child(2n + 1) {
+  margin-right: 4%;
+}
+/* .box:first-child {
+  background: rgba(80, 209, 255, 0.5);
+}
+.box:nth-child(2) {
+  background: #9e85ff;
+}
+.box:nth-child(5) {
+  background: #c4ebff;
+}
+.box:nth-child(3) {
+  background: #ff905d;
+}
+.box:nth-child(4) {
+  background: #ffcf63;
+} */
+.icon-image {
+  width: 160rpx;
+  height: 160rpx;
+}
+.tips {
+  font-size: 20rpx;
 }

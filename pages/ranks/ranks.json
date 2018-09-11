@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "排行榜",
   "enablePullDownRefresh": true,
-  "backgroundColor": "#ff777c"
+  "backgroundColor": "#91b1ff",
+  "onReachBottomDistance": 200
 }

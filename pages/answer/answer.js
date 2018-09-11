@@ -1,11 +1,11 @@
 import { getQuestionsRequest, answerQuestion } from "../../services/answer.js";
-
+const app = getApp();
 Page({
   data: {
     loaded: false,
     timer: null,
     answer: "",
-    initDuration: 10, //每题最长时长
+    initDuration: 30, //每题最长时长
     curKey: "", //当前的key
     countdown: 0, //当前计时器的展示时间
     curIndex: 0, //当前题目的索引值
@@ -15,24 +15,29 @@ Page({
     answerItems: [], //所有题目
     showRightBox: false, //动画框是否显示
     showRight: "", //动画l类型
-    animationData: {}
+    animationData: {},
+    backgroundUrl: ""
   },
   onReady: function() {
     // 页面渲染完成,实例化一个动画
     this.animationReset();
+    this.setData({ backgroundUrl: app.globalData.background });
+    console.log(app.globalData.background);
   },
   onTapCheck: function(e) {
     var _self = this;
     // 回答正确题目继续，回答错误自动退出，超时直接退出
     this.setData({ curKey: e.target.dataset.key });
     const userAnswer = e.target.dataset.key;
-    this.onAnswer({
-      question_id: this.data.answerItem.id,
-      answer: userAnswer
-    });
+
     const curDuration = this.data.initDuration - this.data.countdown;
     let recordTime = this.data.recordTime;
     recordTime.push(curDuration);
+    this.onAnswer({
+      question_id: this.data.answerItem.id,
+      answer: userAnswer,
+      duration: curDuration
+    });
     if (this.data.curKey == this.data.answerItem.answer) {
       this.setData({
         recordTime: recordTime,
@@ -164,7 +169,7 @@ Page({
     });
   },
   onLoad: function() {
-    getQuestionsRequest().then(res => {
+    getQuestionsRequest({ count: 100 }).then(res => {
       if (res.success) {
         this.setData({
           loaded: true,
