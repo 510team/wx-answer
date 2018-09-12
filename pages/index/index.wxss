@@ -45,21 +45,6 @@
 .box:nth-child(2n + 1) {
   margin-right: 4%;
 }
-/* .box:first-child {
-  background: rgba(80, 209, 255, 0.5);
-}
-.box:nth-child(2) {
-  background: #9e85ff;
-}
-.box:nth-child(5) {
-  background: #c4ebff;
-}
-.box:nth-child(3) {
-  background: #ff905d;
-}
-.box:nth-child(4) {
-  background: #ffcf63;
-} */
 .icon-image {
   width: 160rpx;
   height: 160rpx;
@@ -70,4 +55,5 @@
 .on-tap {
   background: #7299f8;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  transform: translate(4px, 4px);
 }
