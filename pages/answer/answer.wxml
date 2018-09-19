@@ -10,27 +10,35 @@
         <view class="loading-text">题目搜寻中，很快的哦...</view>
     </view>
     <view class="{{loaded ? 'show' : 'hide'}}">
-        <view class="alarm">
-            倒计时：
-            <text>{{countdown}}</text>
+        <view id="showQuestionId" class="answer-number {{!contentShow?'answer-number-show ':'fadeout'}}">
+            第 {{answerItem.showId}} 题
         </view>
-        <view class="questions-box">
-            <view class="question">
-                <text class="title" id="{{answerItem.id}}">
-                    {{answerItem.showId+"、"}} {{answerItem.title}} 请作答：
-                </text>
-                <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
-                    <button class="{{curKey==item.key?'cur-btn':''}}" data-key="{{item.key}}" data-value="{{item.value}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
-                        <image class="icon" src="../../assets/image/list_icon.png" />
-                        <view class="word">{{item.value}}</view>
-                    </button>
+        <view class="countdown-box {{contentShow?'fadein':'fadeout'}}">
+            <view class="{{answerRight == ''?'fadein':'fadeout'}}">
+                <canvas style="width: 80px; height: 80px;" canvas-id="secondCanvas"></canvas>
+                <view class="countdown-text {{countdown==='时间到'?'timeover':''}}">
+                    {{countdown}}
                 </view>
             </view>
+            <!-- <canvas canvas-id="secondCanvas" class="{{answerRight == ''?'fadein':'fadeout'}}"></canvas> -->
+            <text class="showface iconfont icon-biaoqing {{answerRight == 'true'?'down-animation':''}}"></text>
+            <text class="showface iconfont icon-31wentifankui {{answerRight == 'false'?'shake-animation':''}}"></text>
         </view>
-        <view class="{{showRightBox ? 'right-box right-box-show' : 'right-box right-box-hide'}}" animation="{{animationData}}">
-            <image wx:if="{{showRight=='right'}}" src="../../assets/image/right.png" />
-            <image wx:elif="{{showRight=='wrong'}}" src="../../assets/image/wrong.png" />
-            <image wx:elif="{{showRight=='timeout'}}" src="../../assets/image/timeout.png" />
+        <view class="questions-box {{contentShow?'fadein':'fadeout'}}">
+            <view class="title" id="{{answerItem.id}}">{{answerItem.title}}</view>
+            <view class="question">
+                <view class="answer-box" wx:for="{{answerItem.items}}" wx:key="*this">
+                    <button class="{{buttonClass[index]}}" data-index="{{index}}" data-key="{{item.key}}" data-value="{{item.value}}" bindtap="onTapCheck" hover-class='btn_hover' disabled="{{answerItem.disabled}}" plain>
+                        {{item.value}}
+                    </button>
+                    <view class="btn-icon">
+                        <text wx:if="{{buttonClass[index] == 'btn-right'}}" class="iconfont icon-31yiguanzhudianpu"></text>
+                        <text wx:elif="{{buttonClass[index] == 'btn-wrong'}}" class="iconfont icon-guanbi"></text>
+                        <text wx:else class=""></text>
+                    </view>
+                </view>
+            </view>
+            <view class="page-id">第 {{answerItem.showId}} 题</view>
         </view>
     </view>
 </view>

@@ -1,3 +1,5 @@
+@import "../../assets/wxss/custom-icon.wxss";
+
 .answers {
   padding: 0 5%;
   font-size: 14px;
@@ -74,59 +76,75 @@
   padding: 10px;
 }
 
-.alarm {
-  position: fixed;
-  top: 50px;
-  right: 20px;
-  height: 40px;
-  line-height: 40px;
+.countdown-box {
+  position: relative;
+  margin: 40px auto 0;
+  width: 80px;
+  height: 80px;
+}
+.countdown-text {
+  position: absolute;
   text-align: center;
-  width: 100px;
-  border-radius: 30px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  z-index: 100;
+  line-height: 30px;
+  font-size: 30px;
+  color: #969696;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  margin-top: 24px;
+}
+.countdown-text.timeover {
+  font-size: 14px;
+  color: #ef8b62;
+}
+.countdown-box canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -40px 0 0 -41px;
+  width: 80px;
+  height: 80px;
+}
+
+.question {
+  margin-top: 20px;
 }
 .questions-box {
-  padding-top: 130px;
-}
-.question {
+  padding-top: 20px;
+  margin-top: 15px;
+  text-align: center;
   line-height: 24px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  padding: 20px 20px 30px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.page-id {
+  text-align: center;
+  color: #969696;
+  margin-top: 20px;
+  font-size: 14px;
 }
 .answer-box {
+  margin-top: 20px;
   position: relative;
 }
-.title {
-  font-size: 16px;
-}
-.answer-box .icon {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 0px;
-  top: 13px;
-}
-.answer-box .word {
-  margin-left: 26px;
-}
 .answer-box button {
-  /*  绿色底边框 #5ca05f*/
   position: relative;
   border: 0px;
   padding: 0;
+  margin: 0;
   display: block;
   background: none;
   font-size: 15px;
   line-height: 48px;
-  text-align: left;
-  border-radius: 0px;
-  border-bottom: 1px dashed #ff777c;
-  padding-left: 3px;
-  margin-top: 3px;
-  color: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  text-align: center;
 }
 /* 去掉默认边框 */
 .btn::after {
@@ -135,32 +153,133 @@
 /* 禁用的样式 */
 button[disabled][type="default"],
 wx-button[disabled]:not([type]) {
-  color: rgba(0, 0, 0, 0.3);
+  color: #ddd;
   background: none;
 }
 .answer-box button.btn_hover,
-.answer-box .cur-btn {
-  color: #ff777c;
+.answer-box button.btn-cur {
+  background: #f7d847;
+  border-color: #f7d847;
+  box-shadow: 1px 2px 1px #fcf1bc;
+  color: #fff;
+}
+.answer-box button.btn-right {
+  transition: all 0.1s 0.5s;
+  background: #a0d679;
+  border-color: #a0d679;
+  box-shadow: 1px 5px 5px #e4f4dd;
+  color: #fff;
 }
 
-.right-box {
-  position: fixed;
+.answer-box button.btn-wrong {
+  transition: all 0.1s 0.5s;
+  background: #ef8b62;
+  border-color: #ef8b62;
+  box-shadow: 1px 5px 5px #fddfdc;
+  color: #fff;
+}
+.btn-icon {
+  position: absolute;
+  right: 30px;
+  top: 15px;
+}
+.iconfont {
+  font-size: 28px;
+  color: #fff;
+  font-weight: bold;
+}
+.answer-number {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 55px;
+  left: 0px;
+  font-weight: bold;
+  font-size: 30px;
   text-align: center;
-  left: 50%;
-  top: 50%;
-  transform: translate3d(-50%, -100%, 0) scale(0);
-  z-index: 100;
+  color: #fff;
 }
-.right-box image {
-  width: 100px;
-  height: 100px;
+.answer-number-show {
+  animation: title-animation 0.8s ease-in-out forwards;
 }
-.right-box-show {
-  opacity: 1;
+@keyframes title-animation {
+  0% {
+    opatity: 1;
+    transform: scale(0.6);
+  }
+  40% {
+    transform: scale(1.8);
+  }
+  100% {
+    opatity: 1;
+    transform: scale(0.8);
+  }
 }
-.right-box-hide {
+.showface {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  font-size: 80px;
+  font-weight: bold;
   opacity: 0;
 }
+.fadein {
+  opacity: 1;
+}
+.fadeout {
+  opacity: 0;
+}
+.showface.icon-biaoqing {
+  color: #a0d679;
+}
+.showface.down-animation {
+  animation: downAnimation 0.6s cubic-bezier(0.85, 0.17, 0.54, 0.97) forwards;
+}
+.showface.icon-31wentifankui {
+  color: #ef8b62;
+}
+.showface.shake-animation {
+  animation: shakeAnimation 0.6s ease-in forwards;
+}
+@keyframes downAnimation {
+  0% {
+    opacity: 1;
+    transform: translate(0, -30px);
+  }
+  70% {
+    transform: translate(0, 0px);
+  }
+  90% {
+    transform: translate(0, -10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+    opacity: 1;
+  }
+}
+@keyframes shakeAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  10% {
+    transform: rotate(0deg) scale(1.2);
+  }
+  25% {
+    transform: rotate(-8deg) scale(1.2);
+  }
+  65% {
+    transform: rotate(8deg) scale(1.2);
+  }
+  85% {
+    transform: rotate(0deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
 .show {
   display: block;
 }
