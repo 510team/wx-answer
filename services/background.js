@@ -1,5 +1,5 @@
 import httpRequest from "../utils/request";
-import { GetAllBackground, SetBackground } from "../config/index";
+import { GetAllBackground, SetBackground, GetPrivilege } from "../config/index";
 
 const getAllBackground = () => {
   return httpRequest({
@@ -15,4 +15,12 @@ const setBackground = data => {
     data: data
   });
 };
-export { getAllBackground, setBackground };
+const getPrivilegeRequest = data => {
+  return httpRequest({
+    method: GetPrivilege.method,
+    url: GetPrivilege.url,
+    data: data
+  });
+};
+
+export { getAllBackground, setBackground, getPrivilegeRequest };

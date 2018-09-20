@@ -1,28 +1,17 @@
-<view class="feedback">
-    <image src="{{backgroundUrl}}" class="container-bg"></image>
+<view class="feedback container">
     <view>
-        <textarea bindinput="bindTextAreaInput" placeholder="如果您对我们有任何建议或意见，请在此处向我们提交，期待您的宝贵建议。" />
-        <view class="btn-area">
-            <button bindtap="bindSubmit" disabled="{{feedbackContent.length === 0 || btnLoading}}" loading="{{btnLoading}}">
+        <form bindsubmit="bindSubmit">
+            <textarea placeholder="如果您对我们有任何建议或意见，请在此处向我们提交，期待您的宝贵建议。" name="feedbackContent" value="{{feedbackContent}}" bindinput="bindTextAreaInput" />
+            <button class="submit-btn" form-type="submit" disabled="{{feedbackContent.length == 0 || btnLoading}}" loading="{{btnLoading}}" value="{{feedbackContent}}">
                 提交
             </button>
-        </view>
+        </form>
     </view>
     <view class="about-us">
         <view class="title">
-            <text>反馈给我们</text>
+            <text>提意见不够爽，想直接与我们交流，欢迎扫码加入QQ群</text>
+            <text>QQ群号码：734544486</text>
         </view>
-        <view class="image-content">
-            <view>
-                <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ep5kE8qS8pBWAiaicy1yAuqo5ibjVxtibInv5w0mibbniaKIjen3dB9WMeveYmiaMfwvy1tEWicEXGrJu3sWA/132" class="info-image"></image>
-                <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIRb4zZpibibbNCEr7C0WVOW3tAYlUfzicIibWU30sRiaEqickWaNlQsRpUukjzvKOK4ibrZnzoy6WJz7Wlw/132" class="info-image"></image>
-                <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKSs9qyDic4hvNzjASOChlzzLeibjibKQfK3gRRX1SmOZic3j76M3tsBfHriaGKuUwNfveIPjG0RmwOXfA/132" class="info-image"></image>
-            </view>
-            <view>
-                <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eo1XeR5AVCfYYbGCfWMSjNajcqjxo95j7rnMsXBjcnd5fHfpvMaHV1U6agC2ElsibkjSSMCuWRLhlw/132" class="info-image"></image>
-                <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eroeBZdpuz6Zvxqkibn2fwk5Q61wZPG3O7Xkia40VA7bAhPic3KPb1NP8LJPj3Zrck1Cf41clkqNiagRA/132" class="info-image"></image>
-                <image mode="aspectFit" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIxQoibT3WvrjFK6n03SjJkMibmPQP6B4HKBBwHBd9MUIuB5KvknaJRgzLlt2Rfl1ncNJTnic8V01PhQ/132" class="info-image"></image>
-            </view>
-        </view>
+        <image mode="aspectFit" bindlongpress="viewImage" data-src="https://cdn.adazhang.com/assets/image/QQ.jpeg" src="https://cdn.adazhang.com/assets/image/QQ.jpeg"></image>
     </view>
 </view>

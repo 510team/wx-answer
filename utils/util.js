@@ -45,6 +45,14 @@ var showModal = ({
   });
 };
 
+const showToast = (title, icon = "none", duration = 2000) => {
+  wx.showToast({
+    title: title,
+    icon: icon,
+    duration: duration
+  });
+};
+
 // 清理storgage
 
 var removeStorage = key => {
@@ -68,5 +76,6 @@ module.exports = {
   formatNumber,
   showModal,
   removeStorage,
-  goBackIndex
+  goBackIndex,
+  showToast
 };

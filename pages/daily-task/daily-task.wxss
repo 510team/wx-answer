@@ -1,0 +1,30 @@
+.daily-task {
+  padding: 20rpx 2%;
+  background: #91b1ff;
+}
+.content-box {
+  position: relative;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.title {
+  font-size: 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.description {
+  font-size: 22rpx;
+}
+.btn {
+  position: absolute;
+  border-radius: 40rpx;
+  top: 30rpx;
+  right: 20rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  border: 1px solid #91b1ff;
+  color: #91b1ff;
+  background: #fff;
+}

@@ -1,5 +1,5 @@
 <view class="user-box">
-    <image src="{{userInfo.avatarUrl}}" class="container-bg"></image>
+  <image src="{{userInfo.avatarUrl}}" class="container-bg"></image>
   <!-- <view class="user-header">
     <view class='h-cxt'>
       <image class="h-img" src="{{userInfo.avatarUrl}}"></image>
@@ -13,7 +13,8 @@
     <image class="h-img" src="{{userInfo.avatarUrl}}"></image>
     <view class='user-info'>
       <text class="i-name">{{userInfo.nickName}}</text>
-      <text>得分: {{userInfo.total_score}}</text>
+      <text>积分: {{point || 0}}</text>
+      <text>总得分: {{userInfo.total_score}}</text>
       <text>级别: {{userInfo.level}}</text>
     </view>
   </view>

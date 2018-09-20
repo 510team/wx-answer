@@ -9,7 +9,9 @@
     "pages/game-over/game-over",
     "pages/feedback/feedback",
     "pages/user-info/user-info",
-    "pages/background/background"
+    "pages/background/background",
+    "pages/daily-task/daily-task",
+    "pages/privilege/privilege"
   ],
   "window": {
     "backgroundTextStyle": "light",

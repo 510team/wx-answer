@@ -1,0 +1,21 @@
+<view class="privilege container">
+<!--
+    <image src="{{backgroundUrl}}" class="container-bg"></image>
+!-->
+    <view wx:if="{{hasPrivilege}}" class="tips">
+        <image src="../../assets/image/star.png"></image>
+        <view>哇塞，太棒了，您已经达到了叫兽水平</view>
+        <view>可以解锁自定义背景图片功能呦</view>
+        <view>赶快来试试吧，您上传的背景图片</view>
+        <view>只要通过审核，所有人都会看到的呢</view>
+        <button bindtap="onUpload" class="go-play">立刻上传</button>
+    </view>
+    <view wx:else class="tips">
+        <image src="../../assets/image/star.png"></image>
+        <view>只有达到<text class="level-name">叫兽</text>以上等级，才可以自定义背景图片呢</view>
+        <view>您现在的等级是<text class="current-level">{{current_level}}</text>，距叫兽等级还差<text class="score-diff">{{score_diff}}</text>分</view>
+        <view>您上传的背景图片，只要通过审核，所有人都会看到</view>
+        <view>想解锁此功能，请继续加油努力~</view>
+        <button bindtap="onPlay" class="go-play">去赢第一名</button>
+    </view>
+</view>

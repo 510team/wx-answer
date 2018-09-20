@@ -1,0 +1,12 @@
+<view class="daily-task container">
+     <view class="content-box">
+        <view class="title">每日签到奖励</view>
+        <view class="description">每日签到可领取20积分，连续签到7天可领取100积分</view>
+        <button class="btn" data-type="daily" bindtap="onSignIn" disabled="{{!canSignIn}}">{{canSignIn ? '领取' : '已领取'}}</button>
+    </view>
+    <view class="content-box">
+        <view class="title">分享奖励</view>
+        <view class="description">每天首次分享到微信群，可获得30积分</view>
+        <button class="btn" open-type='share' disabled="{{!canShare}}">{{canShare ? '分享' : '已分享'}}</button>
+    </view>
+</view>

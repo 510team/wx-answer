@@ -1,5 +1,5 @@
-// const serverHost = "https://adazhang.com";
-const serverHost = "http://localhost:8362";
+const serverHost = "https://adazhang.com";
+// const serverHost = "http://localhost:8362";
 
 const Login = {
   url: `${serverHost}/login`,
@@ -59,6 +59,41 @@ const SetBackground = {
   method: "post"
 };
 
+const uploadBackground = {
+  url: `${serverHost}/background/upload`,
+  method: "post"
+};
+
+const GetPrivilege = {
+  url: `${serverHost}/background/getPrivilege`,
+  method: "get"
+};
+
+const signInTask = {
+  url: `${serverHost}/signIn`,
+  method: "post"
+};
+
+const canSignIn = {
+  url: `${serverHost}/signIn/canSignIn`,
+  method: "post"
+};
+
+const canShare = {
+  url: `${serverHost}/signIn/canShare`,
+  method: "post"
+};
+
+const Share = {
+  url: `${serverHost}/signIn/share`,
+  method: "post"
+};
+
+const GetPoint = {
+  url: `${serverHost}/signIn/getPoint`,
+  method: "post"
+};
+
 export {
   serverHost,
   FindUser,
@@ -72,5 +107,12 @@ export {
   GetLevel,
   addFeedback,
   GetAllBackground,
-  SetBackground
+  SetBackground,
+  uploadBackground,
+  GetPrivilege,
+  signInTask,
+  canSignIn,
+  canShare,
+  Share,
+  GetPoint
 };

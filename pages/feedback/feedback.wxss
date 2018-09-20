@@ -1,3 +1,6 @@
+.feedback {
+  background: #91b1ff;
+}
 .feedback textarea {
   width: 90%;
   height: 300rpx;
@@ -12,21 +15,24 @@
   margin: 20rpx auto;
 }
 
-.feedback .btn-area button {
-  width: 700rpx;
+.feedback .submit-btn {
+  width: 710rpx;
+  margin-top: 20px;
 }
 
 .feedback .about-us {
+  box-sizing: border-box;
   text-align: center;
   background: rgba(255, 255, 255, 0.8);
-  width: 90%;
-  margin: 100rpx auto 0;
+  width: 94%;
+  margin: 40rpx auto 0;
+  padding-bottom: 10px;
   border-radius: 20rpx;
 }
 
 .feedback .title {
-  padding-top: 20rpx;
-  font-size: 30rpx;
+  padding: 20rpx;
+  font-size: 26rpx;
 }
 
 .feedback .about-us .info-image {

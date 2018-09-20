@@ -176,15 +176,15 @@ Page({
     let sum = 0; //用来存储最后得分
     for (let i = 0; i < items; i++) {
       const time = parseInt(arr[i]);
-      if (time >= 0 && time <= 3) {
+      if (time >= 0 && time <= 8) {
         // 0~3秒
-        sum += 30;
-      } else if (time >= 4 && time <= 7) {
+        sum += 20;
+      } else if (time >= 8 && time <= 20) {
         // 4～7秒
-        sum += 17;
-      } else if (time >= 8 && time <= 10) {
+        sum += 12;
+      } else if (time >= 20 && time <= 30) {
         //8～10秒
-        sum += 10;
+        sum += 7;
       }
     }
     return sum;

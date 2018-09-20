@@ -1,11 +1,16 @@
 .ranks {
   font-size: 28rpx;
+  padding: 3%;
+  background: #91b1ff;
 }
 .ranks .item-box {
   display: flex;
   height: 120rpx;
   line-height: 120rpx;
-  border-bottom: 1rpx solid #eee;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #eee;
+  background: #fff;
 }
 .ranks .rank-item {
   flex: 1;
@@ -50,9 +55,10 @@
 }
 .ranks .info-box {
   display: flex;
-  height: 140rpx;
-  padding: 60rpx 0;
-  background: #ff777c;
+  box-sizing: border-box;
+  padding: 40rpx 0;
+  border-radius: 10rpx;
+  background: #91b1ff;
   font-size: 38rpx;
   font-weight: 600;
 }
@@ -78,7 +84,7 @@
 .ranks .info-box .item {
   flex: 1;
   text-align: center;
-  height: 140rpx;
+  height: 120rpx;
   line-height: 140rpx;
 }
 /*  加载更多   */

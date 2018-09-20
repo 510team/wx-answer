@@ -1,0 +1,24 @@
+.privilege .tips {
+  font-size: 28rpx;
+  text-align: center;
+}
+.go-play {
+  width: 400rpx;
+  margin: 60rpx auto;
+}
+.tips view {
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.level-name,
+.current-level,
+.score-diff {
+  display: inline-block;
+  padding: 0 6rpx;
+  font-size: 36rpx;
+  color: rgba(255, 0, 0, 0.849);
+}
+.current-level,
+.score-diff {
+  font-size: 30rpx;
+}
