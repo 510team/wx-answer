@@ -20,7 +20,6 @@
                     {{countdown}}
                 </view>
             </view>
-            <!-- <canvas canvas-id="secondCanvas" class="{{answerRight == ''?'fadein':'fadeout'}}"></canvas> -->
             <text class="showface iconfont icon-biaoqing {{answerRight == 'true'?'down-animation':''}}"></text>
             <text class="showface iconfont icon-31wentifankui {{answerRight == 'false'?'shake-animation':''}}"></text>
         </view>

@@ -7,7 +7,7 @@ Page({
     loaded: false,
     timer: null,
     answer: "",
-    initDuration: 10, //每题最长时长
+    initDuration: 30, //每题最长时长
     countdown: 0, //当前计时器的展示时间
     curIndex: 0, //当前题目的索引值
     answerItem: null, //当前的题目
@@ -47,49 +47,53 @@ Page({
     if (userAnswer == this.data.answerItem.answer) {
       this.setData({
         recordTime: recordTime,
-        correctAmount: this.data.correctAmount + 1,
-        [curIndexClass]: "btn-right"
+        correctAmount: this.data.correctAmount + 1
       });
       setTimeout(() => {
-        this.setData({ answerRight: "true" });
+        this.setData({
+          answerRight: "true",
+          [curIndexClass]: "btn-right"
+        });
       }, 500);
       setTimeout(function() {
         _self.goNextQuestion();
-      }, 1500);
+      }, 1600);
     } else {
       // 回答错误
       clearTimeout(this.timer);
       const rightIndexClass = "buttonClass[" + this.data.rightAnswerIndex + "]";
       this.setData({
         ["answerItem.disabled"]: true,
-        recordTime: recordTime,
-        [rightIndexClass]: "btn-right",
-        [curIndexClass]: "btn-wrong"
+        recordTime: recordTime
       });
       setTimeout(() => {
-        this.setData({ answerRight: "false" });
+        this.setData({
+          answerRight: "false",
+          [rightIndexClass]: "btn-right",
+          [curIndexClass]: "btn-wrong"
+        });
       }, 500);
       setTimeout(function() {
         _self.goLink();
-      }, 1500);
+      }, 1600);
     }
   },
   setCountdown: function() {
     const _self = this;
     this.timer = setTimeout(() => {
-      _self.setData({ countdown: _self.data.countdown - 1 });
-      if (_self.data.countdown == 0) {
+      // console.log("~~~~~", this.data.countdown);
+      if (_self.data.countdown <= 0) {
         //超时退出
         clearTimeout(this.timer);
         this.setData({
           ["answerItem.disabled"]: true,
           countdown: "时间到"
         });
-
         setTimeout(() => {
           _self.goLink();
         }, 1500);
       } else {
+        _self.setData({ countdown: _self.data.countdown - 1 });
         _self.setCountdown();
       }
     }, 1000);
@@ -120,6 +124,7 @@ Page({
     setTimeout(() => {
       this.setData({ contentShow: true });
       countdownCanvas = new CountdownCanvas();
+      countdownCanvas.totalTime = 30;
       countdownCanvas.countdown();
       this.setCountdown();
     }, 800);
@@ -167,5 +172,6 @@ Page({
   },
   onUnload() {
     clearTimeout(this.timer);
+    countdownCanvas.stop();
   }
 });

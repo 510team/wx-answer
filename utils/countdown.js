@@ -93,8 +93,9 @@ class CountdownCanvas {
       _this._countdownNum = n;
       _this._drawRang(precent);
       _this._ringRun = _this._ringRun + _this.ringSpace;
+      //   console.log("!!!!!!!!", _this._countdownNum);
       if (precent >= 1) {
-        clearInterval(this._countdownInterval);
+        _this.stop();
         return;
       }
     }, _this.ringSpace);
@@ -102,12 +103,6 @@ class CountdownCanvas {
   stop(val) {
     clearInterval(this._countdownInterval);
     this._countdownInterval = null;
-  }
-  carvasEnd() {
-    cxt_arc.setLineWidth(8);
-    cxt_arc.setStrokeStyle("#ef8b62");
-    cxt_arc.setLineCap("round");
-    cxt_arc.beginPath();
   }
 }
 
