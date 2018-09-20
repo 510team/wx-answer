@@ -8,7 +8,9 @@ Page({
   data: {
     hasPrivilege: false,
     backgroundUrl: "",
-    code: ""
+    code: "",
+    current_level: "",
+    score_diff: 0
   },
   onLoad: function() {
     this.setData({ backgroundUrl: app.globalData.background });
@@ -21,7 +23,9 @@ Page({
     getUserLevel().then(res => {
       if (res.success) {
         this.setData({
-          hasPrivilege: res.current_level.name == "叫兽"
+          current_level: res.current_level.name,
+          hasPrivilege: res.current_level.grade >= 5,
+          score_diff: 1000 - res.score_info.score
         });
       }
     });
@@ -41,8 +45,43 @@ Page({
       }
     });
   },
+  // uploadFile: function(tempFilePaths, code) {
+  //   const t = this;
+  //   wx.uploadFile({
+  //     url: uploadBackground.url,
+  //     filePath: tempFilePaths[0],
+  //     header: {
+  //       "content-Type": "multipart/form-data",
+  //       code: code
+  //     },
+  //     name: "file",
+  //     success: function(res) {
+  //       var data = JSON.parse(res.data);
+  //       if (data.success) {
+  //         showModal({
+  //           title: "上传壁纸成功",
+  //           content: "通过系统审核后即可展示",
+  //           confirmText: "去首页",
+  //           cancelText: "重传一张",
+  //           successFun: function() {
+  //             wx.navigateTo({
+  //               url: "/pages/index/index"
+  //             });
+  //           },
+  //           cancleFun: function() {
+  //             t.onUpload();
+  //           }
+  //         });
+  //       }
+  //     },
+  //     fail: function(res) {
+  //       showToast("不小心上传失败了，请稍后再试试");
+  //     }
+  //   });
+  // },
   uploadFile: function(tempFilePaths, code) {
     const t = this;
+
     wx.uploadFile({
       url: uploadBackground.url,
       filePath: tempFilePaths[0],
