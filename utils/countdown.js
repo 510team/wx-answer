@@ -17,7 +17,7 @@ class CountdownCanvas {
     canvasRaidus = 33,
     ringConfig = { ringColor: "#FFD700", ringWidth: 8 },
     textConfig = { fontSize: "30", fontColor: "#fff" },
-    totalTime = 10
+    totalTime = 30
   ) {
     this.canvasId = canvasId;
     this.ringSpace = ringSpace;
@@ -88,7 +88,7 @@ class CountdownCanvas {
     const _this = this;
     clearInterval(this._countdownInterval);
     this._countdownInterval = setInterval(() => {
-      var n = _this.totalTime - Math.floor(_this._ringRun / _this.textSpace);
+      var n = _this.totalTime - Math.ceil(_this._ringRun / _this.textSpace);
       var precent = _this._ringRun / (_this.totalTime * _this.textSpace);
       _this._countdownNum = n;
       _this._drawRang(precent);
@@ -103,6 +103,10 @@ class CountdownCanvas {
   stop(val) {
     clearInterval(this._countdownInterval);
     this._countdownInterval = null;
+  }
+  getCountdown() {
+    const _this = this;
+    return _this._countdownNum;
   }
 }
 

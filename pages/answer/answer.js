@@ -25,6 +25,9 @@ Page({
   },
   onTapCheck: function(e) {
     var _self = this;
+    //倒计时结束
+    countdownCanvas.stop();
+    clearTimeout(this.timer);
     const userAnswer = e.target.dataset.key;
     const index = e.target.dataset.index * 1;
     const curIndexClass = "buttonClass[" + index + "]";
@@ -34,14 +37,13 @@ Page({
     const curDuration = this.data.initDuration - this.data.countdown;
     let recordTime = this.data.recordTime;
     recordTime.push(curDuration);
+    // console.log("@@@@@", curDuration);
     //上传问题和回答
     this.onAnswer({
       question_id: this.data.answerItem.id,
       answer: userAnswer,
       duration: curDuration
     });
-    //倒计时结束
-    countdownCanvas.stop();
 
     // 回答正确题目继续，回答错误自动退出，超时直接退出
     if (userAnswer == this.data.answerItem.answer) {
@@ -60,7 +62,6 @@ Page({
       }, 1600);
     } else {
       // 回答错误
-      clearTimeout(this.timer);
       const rightIndexClass = "buttonClass[" + this.data.rightAnswerIndex + "]";
       this.setData({
         ["answerItem.disabled"]: true,
@@ -81,8 +82,10 @@ Page({
   setCountdown: function() {
     const _self = this;
     this.timer = setTimeout(() => {
-      // console.log("~~~~~", this.data.countdown);
-      if (_self.data.countdown <= 0) {
+      const countdownNUm = countdownCanvas.getCountdown();
+      _self.setData({ countdown: countdownNUm });
+      // console.log("!!!!!", countdownNUm);
+      if (countdownNUm <= 0) {
         //超时退出
         clearTimeout(this.timer);
         this.setData({
@@ -93,7 +96,6 @@ Page({
           _self.goLink();
         }, 1500);
       } else {
-        _self.setData({ countdown: _self.data.countdown - 1 });
         _self.setCountdown();
       }
     }, 1000);
@@ -124,8 +126,10 @@ Page({
     setTimeout(() => {
       this.setData({ contentShow: true });
       countdownCanvas = new CountdownCanvas();
-      countdownCanvas.totalTime = 30;
+      countdownCanvas.totalTime = this.data.initDuration;
       countdownCanvas.countdown();
+      const countdownNUm = countdownCanvas.getCountdown();
+      this.setData({ countdown: countdownNUm });
       this.setCountdown();
     }, 800);
 
